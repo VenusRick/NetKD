@@ -9,6 +9,7 @@ from .label_encoder import LabelEncoder, calculate_class_weights
 from .preprocessor import DataPreprocessor, PreprocessConfig
 from .statistics import DatasetStatistics
 from .validator import DataValidator
+from .image_loader import ImageFlowDataset, load_dataset_from_folders, quick_load_dataset
 
 # Backwards compatibility with earlier scaffolding
 EncryptedFlowDataset = FlowDataset
@@ -32,4 +33,8 @@ __all__ = [
     "ISCXVPN2016Adapter",
     "ISCXTor2016Adapter",
     "USTCTFC2016Adapter",
+    # Image-based dataset loaders
+    "ImageFlowDataset",
+    "load_dataset_from_folders",
+    "quick_load_dataset",
 ]
