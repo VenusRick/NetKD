@@ -6,8 +6,8 @@ import argparse
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
-from student_model import StudentNet
-from train import run_demo_pipeline
+from models import StudentNet
+from training import run_demo_pipeline
 
 
 def _make_dummy_loader(num_samples: int, num_classes: int, height: int, width: int, batch_size: int) -> DataLoader:
