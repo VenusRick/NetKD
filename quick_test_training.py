@@ -26,7 +26,7 @@ def quick_test():
     print("正在加载数据集...")
     train_loader, val_loader, test_loader, metadata = quick_load_dataset(
         dataset_name="ISCXVPN2016",
-        dataset_root=r"G:\数据集\Dataset",
+        dataset_root="/walnut_data/yqm/Dataset",
         batch_size=32,  # 小批次
         num_workers=0,
     )

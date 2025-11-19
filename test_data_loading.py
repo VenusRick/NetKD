@@ -19,7 +19,7 @@ def test_dataset_loading(dataset_name="ISCXVPN2016"):
         # 加载数据集
         train_loader, val_loader, test_loader, metadata = quick_load_dataset(
             dataset_name=dataset_name,
-            dataset_root=r"G:\数据集\Dataset",
+            dataset_root="/walnut_data/yqm/Dataset",
             batch_size=32,
             num_workers=0,  # Windows下建议设为0
             pin_memory=False,
@@ -91,7 +91,7 @@ def main():
     
     print("NetKD 数据集加载测试")
     print("="*60)
-    print(f"数据集根目录: G:\\数据集\\Dataset")
+    print("数据集根目录: /walnut_data/yqm/Dataset")
     print("="*60)
     
     # 测试第一个数据集
