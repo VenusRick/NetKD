@@ -1,0 +1,123 @@
+
+======================================================================
+NetKD训练 - 使用真实数据集
+======================================================================
+数据集: ISCXVPN2016
+数据路径: /walnut_data/yqm/Dataset
+训练模式: full_pipeline
+设备: cuda
+======================================================================
+
+正在加载数据集...
+Loading dataset from: /walnut_data/yqm/Dataset/ISCXVPN2016
+Found 7 classes: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+  Class 'browsing': 1697 images
+  Class 'chat': 4000 images
+  Class 'email': 598 images
+  Class 'ftp': 1949 images
+  Class 'p2p': 922 images
+  Class 'streaming': 666 images
+  Class 'voip': 4000 images
+
+Total images loaded: 13832
+Number of classes: 7
+
+Dataset split:
+  Train: 9682 images (70.0%)
+  Val:   2075 images (15.0%)
+  Test:  2075 images (15.0%)
+
+Image dimensions: 1 x 40 x 40
+
+数据集加载完成！
+  类别数: 7
+  训练集: 9682 样本
+  验证集: 2075 样本
+  测试集: 2075 样本
+  图像尺寸: 1x40x40
+  类别名称: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+
+
+======================================================================
+阶段 I: 训练教师模型
+======================================================================
+
+[Teacher resnet50] epoch=1 train_loss=1.0050 val_loss=0.8944 val_acc=0.7465
+[Teacher resnet50] epoch=2 train_loss=0.4759 val_loss=0.3276 val_acc=0.8901
+[Teacher resnet50] epoch=3 train_loss=0.3543 val_loss=0.4141 val_acc=0.8598
+[Teacher resnet50] epoch=4 train_loss=0.2806 val_loss=0.2566 val_acc=0.9089
+[Teacher resnet50] epoch=5 train_loss=0.2035 val_loss=0.2149 val_acc=0.9287
+[Teacher mbv3] epoch=1 train_loss=0.8864 val_loss=1.8234 val_acc=0.2892
+[Teacher mbv3] epoch=2 train_loss=0.4205 val_loss=1.8781 val_acc=0.2892
+[Teacher mbv3] epoch=3 train_loss=0.3289 val_loss=1.7830 val_acc=0.2892
+[Teacher mbv3] epoch=4 train_loss=0.2554 val_loss=1.8394 val_acc=0.2892
+[Teacher mbv3] epoch=5 train_loss=0.2072 val_loss=1.8247 val_acc=0.2892
+[Teacher densenet121] epoch=1 train_loss=0.6383 val_loss=0.5056 val_acc=0.8410
+[Teacher densenet121] epoch=2 train_loss=0.3662 val_loss=0.3787 val_acc=0.8795
+[Teacher densenet121] epoch=3 train_loss=0.2728 val_loss=0.2706 val_acc=0.9080
+[Teacher densenet121] epoch=4 train_loss=0.2168 val_loss=0.2810 val_acc=0.9065
+[Teacher densenet121] epoch=5 train_loss=0.1823 val_loss=0.2350 val_acc=0.9239
+
+✅ 教师模型训练完成！检查点已保存到: checkpoints
+
+======================================================================
+阶段 II: 训练Stacking集成模型
+======================================================================
+
+[Stacking] epoch=1 train_loss=0.3224 val_loss=0.1594 val_acc=0.9407
+[Stacking] epoch=2 train_loss=0.0939 val_loss=0.1466 val_acc=0.9455
+[Stacking] epoch=3 train_loss=0.0822 val_loss=0.1484 val_acc=0.9427
+[Stacking] epoch=4 train_loss=0.0771 val_loss=0.1442 val_acc=0.9499
+[Stacking] epoch=5 train_loss=0.0735 val_loss=0.1483 val_acc=0.9455
+
+✅ Stacking模型训练完成！检查点: checkpoints/stacking_model.pth
+
+======================================================================
+阶段 III: 训练学生模型（知识蒸馏）
+======================================================================
+
+蒸馏损失配置:
+  CE权重: 1.0
+  FKL权重: 0.5
+  RKL权重: 0.5
+  Sinkhorn权重: 0.1
+  温度: 4.0
+
+[Student] epoch=1 train_loss=1.8846 val_loss=1.1261 val_acc=0.6111
+[Student] epoch=2 train_loss=1.2257 val_loss=0.7465 val_acc=0.7576
+[Student] epoch=3 train_loss=1.2449 val_loss=1.1243 val_acc=0.7036
+[Student] epoch=4 train_loss=10.5537 val_loss=25.3309 val_acc=0.0665
+[Student] epoch=5 train_loss=39.1416 val_loss=17.3701 val_acc=0.3648
+[Student] epoch=6 train_loss=8.4308 val_loss=3.4272 val_acc=0.3393
+[Student] epoch=7 train_loss=2.4175 val_loss=1.3415 val_acc=0.5190
+[Student] epoch=8 train_loss=2.0729 val_loss=1.3711 val_acc=0.4867
+[Student] epoch=9 train_loss=2.0331 val_loss=1.2726 val_acc=0.5369
+[Student] epoch=10 train_loss=2.0948 val_loss=1.3596 val_acc=0.5002
+
+✅ 学生模型训练完成！检查点: checkpoints/student_sd_mkd.pth
+
+======================================================================
+评估学生模型
+======================================================================
+
+
+测试集结果:
+  准确率: 0.5041
+  F1分数: 0.4936
+
+混淆矩阵:
+tensor([[135,  23,   2,  17,  39,  11,  28],
+        [ 38, 264,   1,  23,  14,   3, 257],
+        [  4,  22,   0,   7,  29,   7,  21],
+        [ 18,  11,   0, 167,  43,  21,  32],
+        [ 12,   6,   6,  13,  71,   8,  22],
+        [ 16,   7,   0,  15,  35,  19,   8],
+        [ 29, 120,   0,  38,  20,   3, 390]])
+
+结果已保存到: checkpoints/results_ISCXVPN2016.json
+
+======================================================================
+训练完成！
+======================================================================
+
+

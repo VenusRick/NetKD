@@ -29,7 +29,7 @@ def parse_args():
     parser.add_argument(
         "--data_root",
         type=str,
-        default=r"G:\数据集\Dataset",
+        default="/walnut_data/yqm/Dataset",
         help="数据集根目录"
     )
     parser.add_argument(

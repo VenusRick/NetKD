@@ -1,0 +1,22 @@
+# Core training stack
+torch==2.2.2
+torchvision==0.17.2
+
+# Model zoo / augmentation helpers
+timm==0.9.16
+
+# Data science basics
+numpy==1.26.4
+scipy==1.11.4
+scikit-learn==1.4.2
+pillow==10.3.0
+matplotlib==3.8.4
+seaborn==0.13.2
+
+# Training utilities
+tensorboard==2.16.2
+tqdm==4.66.4
+
+# Optional preprocessing extras
+dpkt==1.9.8
+scapy==2.5.0

@@ -94,6 +94,8 @@ def train_student(
             )
             optimizer.zero_grad()
             loss.backward()
+            # Gradient clipping for stability
+            torch.nn.utils.clip_grad_norm_(student.parameters(), max_norm=1.0)
             optimizer.step()
             batch_losses.append(loss.item())
 

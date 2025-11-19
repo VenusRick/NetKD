@@ -7,9 +7,9 @@ This module loads pre-processed traffic flow images directly from disk.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from typing import Callable, Dict, List, Optional, Tuple
+from typing import Callable, Deque, Dict, Iterable, List, Optional, Tuple
+from collections import deque
 
 import numpy as np
 import torch
@@ -95,6 +95,46 @@ class ImageFlowDataset(Dataset):
         return f"class_{label}"
 
 
+def _detect_image_root(base_path: Path) -> Path:
+    """Resolve the folder that actually holds class subdirectories of images.
+
+    Historically, some datasets were stored under ``images_sampled_new`` while
+    others exposed the class folders at the dataset root. This helper scans a
+    few common layouts and returns the first one that clearly contains PNG
+    files inside subdirectories.
+    """
+
+    candidates: Deque[Path] = deque(
+        [
+            base_path / "images_sampled_new",
+            base_path / "images",
+            base_path,
+        ]
+    )
+    seen: set[Path] = set()
+
+    while candidates:
+        candidate = candidates.popleft()
+        if candidate in seen or not candidate.exists():
+            continue
+        seen.add(candidate)
+
+        subdirs = [child for child in candidate.iterdir() if child.is_dir()]
+        if not subdirs:
+            continue
+
+        for child in subdirs:
+            if any(child.glob("*.png")):
+                return candidate
+
+        # Fall back to exploring one more level (train/val style layouts).
+        candidates.extend(subdirs)
+
+    raise FileNotFoundError(
+        f"Could not locate image folders under {base_path}. Expected subdirectories with PNG files."
+    )
+
+
 def load_dataset_from_folders(
     dataset_root: str,
     dataset_name: str,
@@ -125,10 +165,11 @@ def load_dataset_from_folders(
     """
     
     # Construct dataset path
-    dataset_path = Path(dataset_root) / dataset_name / "images_sampled_new"
-    
-    if not dataset_path.exists():
-        raise FileNotFoundError(f"Dataset path not found: {dataset_path}")
+    base_path = Path(dataset_root) / dataset_name
+    if not base_path.exists():
+        raise FileNotFoundError(f"Dataset root not found: {base_path}")
+
+    dataset_path = _detect_image_root(base_path)
     
     print(f"Loading dataset from: {dataset_path}")
     
@@ -238,7 +279,7 @@ def load_dataset_from_folders(
 
 def quick_load_dataset(
     dataset_name: str = "ISCXVPN2016",
-    dataset_root: str = r"G:\数据集\Dataset",
+    dataset_root: str | Path = "/walnut_data/yqm/Dataset",
     batch_size: int = 32,
     **kwargs
 ) -> Tuple[DataLoader, DataLoader, DataLoader, Dict]:
@@ -258,7 +299,7 @@ def quick_load_dataset(
         >>> print(f"Loaded {info['num_classes']} classes")
     """
     return load_dataset_from_folders(
-        dataset_root=dataset_root,
+        dataset_root=str(dataset_root),
         dataset_name=dataset_name,
         batch_size=batch_size,
         **kwargs
