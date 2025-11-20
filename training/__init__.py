@@ -12,6 +12,8 @@ from .loss_functions import (
     class_cost_matrix,
 )
 from .evaluation import evaluate_model, summarize_metrics
+from .monitor import LiveTrainingMonitor
+from .status_tracker import TrainingStatusLogger
 from .train import (
     train_teachers,
     train_stacking_model_stage,
@@ -30,6 +32,8 @@ __all__ = [
     # Evaluation
     "evaluate_model",
     "summarize_metrics",
+    "LiveTrainingMonitor",
+    "TrainingStatusLogger",
     # Training pipelines
     "train_teachers",
     "train_stacking_model_stage",

@@ -4,8 +4,12 @@ from __future__ import annotations
 from collections import Counter
 from typing import Dict, Iterable, Sequence
 
-import matplotlib.pyplot as plt
 import numpy as np
+
+try:  # pragma: no cover - optional dependency
+    import matplotlib.pyplot as plt
+except Exception:  # pragma: no cover
+    plt = None
 
 from .utils import get_logger
 
@@ -32,6 +36,9 @@ class DatasetStatistics:
         return stats
 
     def plot_class_distribution(self, labels: Sequence[int], path: str | None = None) -> None:
+        if plt is None:
+            self.logger.warning("matplotlib not available; skipping class distribution plot")
+            return
         counts = Counter(labels)
         classes, values = zip(*sorted(counts.items())) if counts else ([], [])
         plt.figure(figsize=(8, 4))
@@ -45,6 +52,9 @@ class DatasetStatistics:
             plt.show()
 
     def plot_length_histogram(self, flows: Sequence[np.ndarray], path: str | None = None) -> None:
+        if plt is None:
+            self.logger.warning("matplotlib not available; skipping length histogram")
+            return
         lengths = [len(arr) for arr in flows]
         plt.figure(figsize=(8, 4))
         plt.hist(lengths, bins=30)

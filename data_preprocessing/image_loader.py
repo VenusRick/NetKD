@@ -10,12 +10,17 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Callable, Deque, Dict, Iterable, List, Optional, Tuple
 from collections import deque
+import random
+
+try:
+    from sklearn.model_selection import train_test_split as _sklearn_train_test_split  # type: ignore
+except Exception:  # pragma: no cover - optional dependency
+    _sklearn_train_test_split = None
 
 import numpy as np
 import torch
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
-from sklearn.model_selection import train_test_split
 
 
 class ImageFlowDataset(Dataset):
@@ -135,6 +140,50 @@ def _detect_image_root(base_path: Path) -> Path:
     )
 
 
+def _fallback_train_test_split(
+    data: List[str],
+    labels: List[int],
+    test_size: float,
+    random_state: int,
+    stratify: Optional[Iterable[int]] = None,
+):
+    rng = random.Random(random_state)
+    indices = list(range(len(data)))
+
+    if stratify is None:
+        rng.shuffle(indices)
+        split = max(1, int(round(len(indices) * (1 - test_size))))
+        train_idx = indices[:split]
+        test_idx = indices[split:]
+    else:
+        buckets: Dict[int, List[int]] = {}
+        for idx, label in zip(indices, stratify):
+            buckets.setdefault(int(label), []).append(idx)
+
+        train_idx: List[int] = []
+        test_idx: List[int] = []
+        for bucket in buckets.values():
+            rng.shuffle(bucket)
+            if len(bucket) <= 1:
+                train_idx.extend(bucket)
+                continue
+            n_test = max(1, int(round(len(bucket) * test_size)))
+            n_test = min(len(bucket) - 1, n_test)
+            test_idx.extend(bucket[:n_test])
+            train_idx.extend(bucket[n_test:])
+
+    def _gather(seq, idxs):
+        return [seq[i] for i in idxs]
+
+    return _gather(data, train_idx), _gather(data, test_idx), _gather(labels, train_idx), _gather(labels, test_idx)
+
+
+def _train_test_split(*args, **kwargs):
+    if _sklearn_train_test_split is not None:
+        return _sklearn_train_test_split(*args, **kwargs)
+    return _fallback_train_test_split(*args, **kwargs)
+
+
 def load_dataset_from_folders(
     dataset_root: str,
     dataset_name: str,
@@ -143,8 +192,11 @@ def load_dataset_from_folders(
     batch_size: int = 32,
     num_workers: int = 4,
     pin_memory: bool = True,
+    persistent_workers: bool = True,
+    prefetch_factor: int = 2,
     random_seed: int = 42,
     to_grayscale: bool = True,
+    max_samples_per_class: int | None = None,
 ) -> Tuple[DataLoader, DataLoader, DataLoader, Dict]:
     """
     Load dataset from folder structure and create train/val/test dataloaders.
@@ -185,12 +237,21 @@ def load_dataset_from_folders(
     image_paths = []
     labels = []
     label_names = []
+    rng = random.Random(random_seed)
     
     for label_idx, class_folder in enumerate(class_folders):
         label_names.append(class_folder.name)
         
         # Find all PNG images in this class folder
-        class_images = list(class_folder.glob("*.png"))
+        class_images = sorted(class_folder.glob("*.png"))
+
+        if max_samples_per_class is not None and max_samples_per_class > 0:
+            limit = min(len(class_images), max_samples_per_class)
+            if limit < len(class_images):
+                class_images = rng.sample(class_images, limit)
+                class_images.sort(key=lambda p: p.name)
+            else:
+                class_images = class_images[:limit]
         
         print(f"  Class '{class_folder.name}': {len(class_images)} images")
         
@@ -203,13 +264,13 @@ def load_dataset_from_folders(
     
     # Split into train/val/test
     # First split: train+val vs test
-    train_val_paths, test_paths, train_val_labels, test_labels = train_test_split(
+    train_val_paths, test_paths, train_val_labels, test_labels = _train_test_split(
         image_paths, labels, test_size=test_ratio, random_state=random_seed, stratify=labels
     )
     
     # Second split: train vs val
     val_size = val_ratio / (1 - test_ratio)  # Adjust val_ratio for remaining data
-    train_paths, val_paths, train_labels, val_labels = train_test_split(
+    train_paths, val_paths, train_labels, val_labels = _train_test_split(
         train_val_paths, train_val_labels, test_size=val_size, random_state=random_seed, stratify=train_val_labels
     )
     
@@ -230,6 +291,8 @@ def load_dataset_from_folders(
         shuffle=True,
         num_workers=num_workers,
         pin_memory=pin_memory,
+        persistent_workers=persistent_workers if num_workers > 0 else False,
+        prefetch_factor=prefetch_factor if num_workers > 0 else None,
     )
     
     val_loader = DataLoader(
@@ -238,6 +301,8 @@ def load_dataset_from_folders(
         shuffle=False,
         num_workers=num_workers,
         pin_memory=pin_memory,
+        persistent_workers=persistent_workers if num_workers > 0 else False,
+        prefetch_factor=prefetch_factor if num_workers > 0 else None,
     )
     
     test_loader = DataLoader(
@@ -246,6 +311,8 @@ def load_dataset_from_folders(
         shuffle=False,
         num_workers=num_workers,
         pin_memory=pin_memory,
+        persistent_workers=persistent_workers if num_workers > 0 else False,
+        prefetch_factor=prefetch_factor if num_workers > 0 else None,
     )
     
     # Get image dimensions from first image
@@ -270,6 +337,7 @@ def load_dataset_from_folders(
         "image_width": width,
         "image_channels": channels,
         "batch_size": batch_size,
+        "max_samples_per_class": max_samples_per_class,
     }
     
     print(f"\nImage dimensions: {channels} x {height} x {width}")
@@ -281,6 +349,11 @@ def quick_load_dataset(
     dataset_name: str = "ISCXVPN2016",
     dataset_root: str | Path = "/walnut_data/yqm/Dataset",
     batch_size: int = 32,
+    num_workers: int = 0,
+    pin_memory: bool = True,
+    persistent_workers: bool = True,
+    prefetch_factor: int = 2,
+    max_samples_per_class: int | None = None,
     **kwargs
 ) -> Tuple[DataLoader, DataLoader, DataLoader, Dict]:
     """
@@ -302,6 +375,11 @@ def quick_load_dataset(
         dataset_root=str(dataset_root),
         dataset_name=dataset_name,
         batch_size=batch_size,
+        num_workers=num_workers,
+        pin_memory=pin_memory,
+        persistent_workers=persistent_workers,
+        prefetch_factor=prefetch_factor,
+        max_samples_per_class=max_samples_per_class,
         **kwargs
     )
 

@@ -9,7 +9,13 @@ import torch
 from pathlib import Path
 
 from data_preprocessing import quick_load_dataset
-from training import train_teachers, train_stacking_model_stage, train_student_stage
+from training import (
+    train_teachers,
+    train_stacking_model_stage,
+    train_student_stage,
+    LiveTrainingMonitor,
+    TrainingStatusLogger,
+)
 from models import StudentNet
 from training.evaluation import evaluate_model
 
@@ -38,6 +44,14 @@ def parse_args():
         default=64,
         help="批次大小"
     )
+    parser.add_argument(
+        "--max_samples_per_class",
+        type=int,
+        default=0,
+        help="每个类别使用的最大样本数（0表示全部，用于快速验证真实数据管道）"
+    )
+    parser.add_argument("--val_ratio", type=float, default=0.15, help="验证集比例")
+    parser.add_argument("--test_ratio", type=float, default=0.15, help="测试集比例")
     
     # 训练参数
     parser.add_argument(
@@ -62,7 +76,7 @@ def parse_args():
     parser.add_argument(
         "--epochs_student",
         type=int,
-        default=20,
+        default=50,
         help="学生模型训练轮数"
     )
     parser.add_argument(
@@ -79,23 +93,32 @@ def parse_args():
     )
     
     # 蒸馏损失权重
-    parser.add_argument("--lamb_ce", type=float, default=1.0, help="交叉熵损失权重")
+    parser.add_argument("--lamb_ce", type=float, default=1.5, help="交叉熵损失权重 (优化后)")
     parser.add_argument("--lamb_f", type=float, default=0.5, help="前向KL损失权重")
     parser.add_argument("--lamb_r", type=float, default=0.5, help="反向KL损失权重")
-    parser.add_argument("--lamb_s", type=float, default=0.1, help="Sinkhorn损失权重")
-    parser.add_argument("--temperature", type=float, default=4.0, help="蒸馏温度")
+    parser.add_argument("--lamb_s", type=float, default=0.05, help="Sinkhorn损失权重 (优化后)")
+    parser.add_argument("--temperature", type=float, default=3.0, help="蒸馏温度 (优化后)")
     
     # 其他参数
     parser.add_argument("--num_workers", type=int, default=0, help="数据加载线程数（Windows建议0）")
     parser.add_argument("--student_ckpt", type=str, default="student_sd_mkd.pth", help="学生模型检查点")
     parser.add_argument("--output_dir", type=str, default="./checkpoints", help="检查点保存目录")
+    parser.add_argument(
+        "--disable_monitor",
+        action="store_true",
+        help="禁用实时监控输出"
+    )
+    parser.add_argument(
+        "--status_file",
+        type=str,
+        default="checkpoints/training_status.jsonl",
+        help="训练状态日志文件（留空可禁用）",
+    )
     
     return parser.parse_args()
 
 
-def main():
-    args = parse_args()
-    
+def run_pipeline(args):
     # 设置设备
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"\n{'='*70}")
@@ -119,6 +142,9 @@ def main():
         batch_size=args.batch_size,
         num_workers=args.num_workers,
         pin_memory=(device.type == "cuda"),
+        max_samples_per_class=args.max_samples_per_class if args.max_samples_per_class > 0 else None,
+        val_ratio=args.val_ratio,
+        test_ratio=args.test_ratio,
     )
     
     num_classes = metadata['num_classes']
@@ -138,6 +164,15 @@ def main():
     }
     stacking_ckpt = str(output_dir / "stacking_model.pth")
     student_ckpt = str(output_dir / args.student_ckpt)
+
+    status_logger = None
+    status_path = (args.status_file or "").strip()
+    if status_path:
+        status_logger = TrainingStatusLogger(status_path)
+
+    monitor = None
+    if not args.disable_monitor or status_logger:
+        monitor = LiveTrainingMonitor(verbose=not args.disable_monitor, status_logger=status_logger)
     
     # 执行训练
     if args.mode == "train_teachers" or args.mode == "full_pipeline":
@@ -153,6 +188,7 @@ def main():
             num_epochs_teacher=args.epochs_teacher,
             lr=args.lr,
             weight_decay=args.weight_decay,
+            monitor=monitor,
         )
         
         # 保存到输出目录
@@ -178,6 +214,7 @@ def main():
             num_epochs_stacking=args.epochs_stacking,
             lr=args.lr,
             weight_decay=args.weight_decay,
+            monitor=monitor,
         )
         
         # 移动到输出目录
@@ -214,6 +251,7 @@ def main():
             lamb_f=args.lamb_f,
             lamb_r=args.lamb_r,
             lamb_s=args.lamb_s,
+            monitor=monitor,
         )
         
         # 移动到输出目录
@@ -265,6 +303,14 @@ def main():
     print("训练完成！")
     print(f"{'='*70}\n")
 
+    return {
+        "student_ckpt": student_ckpt,
+        "stacking_ckpt": stacking_ckpt,
+        "teacher_ckpts": teacher_ckpts,
+        "metadata": metadata,
+    }
+
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    run_pipeline(args)

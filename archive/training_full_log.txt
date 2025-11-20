@@ -1,0 +1,176 @@
+nohup: ignoring input
+
+======================================================================
+NetKD训练 - 使用真实数据集
+======================================================================
+数据集: ISCXVPN2016
+数据路径: /walnut_data/yqm/Dataset
+训练模式: full_pipeline
+设备: cuda
+======================================================================
+
+正在加载数据集...
+Loading dataset from: /walnut_data/yqm/Dataset/ISCXVPN2016
+Found 7 classes: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+  Class 'browsing': 1697 images
+  Class 'chat': 4000 images
+  Class 'email': 598 images
+  Class 'ftp': 1949 images
+  Class 'p2p': 922 images
+  Class 'streaming': 666 images
+  Class 'voip': 4000 images
+
+Total images loaded: 13832
+Number of classes: 7
+
+Dataset split:
+  Train: 9682 images (70.0%)
+  Val:   2075 images (15.0%)
+  Test:  2075 images (15.0%)
+
+Image dimensions: 1 x 40 x 40
+
+数据集加载完成！
+  类别数: 7
+  训练集: 9682 样本
+  验证集: 2075 样本
+  测试集: 2075 样本
+  图像尺寸: 1x40x40
+  类别名称: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+
+
+======================================================================
+阶段 I: 训练教师模型
+======================================================================
+
+[Teacher resnet50] epoch=1 train_loss=0.9825 val_loss=1.1273 val_acc=0.5687
+[Teacher resnet50] epoch=2 train_loss=0.4259 val_loss=0.3349 val_acc=0.8983
+[Teacher resnet50] epoch=3 train_loss=0.3424 val_loss=0.5188 val_acc=0.8284
+[Teacher resnet50] epoch=4 train_loss=0.3270 val_loss=0.3473 val_acc=0.8911
+[Teacher resnet50] epoch=5 train_loss=0.2354 val_loss=0.3040 val_acc=0.8993
+[Teacher resnet50] epoch=6 train_loss=0.1499 val_loss=0.2369 val_acc=0.9239
+[Teacher resnet50] epoch=7 train_loss=0.1307 val_loss=0.2226 val_acc=0.9277
+[Teacher resnet50] epoch=8 train_loss=0.1319 val_loss=0.2132 val_acc=0.9354
+[Teacher resnet50] epoch=9 train_loss=0.1159 val_loss=0.1906 val_acc=0.9398
+[Teacher resnet50] epoch=10 train_loss=0.1022 val_loss=0.1504 val_acc=0.9480
+[Teacher resnet50] epoch=11 train_loss=0.0946 val_loss=0.2324 val_acc=0.9229
+[Teacher resnet50] epoch=12 train_loss=0.0735 val_loss=0.1574 val_acc=0.9460
+[Teacher resnet50] epoch=13 train_loss=0.0663 val_loss=0.1951 val_acc=0.9393
+[Teacher resnet50] epoch=14 train_loss=0.0582 val_loss=0.1878 val_acc=0.9455
+[Teacher resnet50] epoch=15 train_loss=0.0527 val_loss=0.1704 val_acc=0.9480
+[Teacher mbv3] epoch=1 train_loss=0.8861 val_loss=1.8346 val_acc=0.2892
+[Teacher mbv3] epoch=2 train_loss=0.4213 val_loss=1.8184 val_acc=0.2892
+[Teacher mbv3] epoch=3 train_loss=0.3066 val_loss=1.7924 val_acc=0.2892
+[Teacher mbv3] epoch=4 train_loss=0.2521 val_loss=1.8361 val_acc=0.2892
+[Teacher mbv3] epoch=5 train_loss=0.1974 val_loss=1.9010 val_acc=0.2892
+[Teacher mbv3] epoch=6 train_loss=0.1753 val_loss=1.8633 val_acc=0.2892
+[Teacher mbv3] epoch=7 train_loss=0.1601 val_loss=1.7581 val_acc=0.3007
+[Teacher mbv3] epoch=8 train_loss=0.1487 val_loss=1.2937 val_acc=0.4704
+[Teacher mbv3] epoch=9 train_loss=0.1304 val_loss=0.6610 val_acc=0.7648
+[Teacher mbv3] epoch=10 train_loss=0.1233 val_loss=0.2960 val_acc=0.9084
+[Teacher mbv3] epoch=11 train_loss=0.0933 val_loss=0.3245 val_acc=0.9166
+[Teacher mbv3] epoch=12 train_loss=0.0695 val_loss=0.3778 val_acc=0.9055
+[Teacher mbv3] epoch=13 train_loss=0.0868 val_loss=0.3513 val_acc=0.9210
+[Teacher mbv3] epoch=14 train_loss=0.0732 val_loss=0.3499 val_acc=0.9214
+[Teacher mbv3] epoch=15 train_loss=0.0673 val_loss=0.3693 val_acc=0.9229
+[Teacher densenet121] epoch=1 train_loss=0.6126 val_loss=0.5130 val_acc=0.8265
+[Teacher densenet121] epoch=2 train_loss=0.3450 val_loss=0.4204 val_acc=0.8520
+[Teacher densenet121] epoch=3 train_loss=0.2559 val_loss=0.2867 val_acc=0.9002
+[Teacher densenet121] epoch=4 train_loss=0.2095 val_loss=0.2065 val_acc=0.9301
+[Teacher densenet121] epoch=5 train_loss=0.1725 val_loss=0.3832 val_acc=0.8935
+[Teacher densenet121] epoch=6 train_loss=0.1440 val_loss=0.2057 val_acc=0.9277
+[Teacher densenet121] epoch=7 train_loss=0.1477 val_loss=0.1976 val_acc=0.9393
+[Teacher densenet121] epoch=8 train_loss=0.1288 val_loss=0.2498 val_acc=0.9176
+[Teacher densenet121] epoch=9 train_loss=0.1092 val_loss=0.2914 val_acc=0.9253
+[Teacher densenet121] epoch=10 train_loss=0.0949 val_loss=0.4469 val_acc=0.8906
+[Teacher densenet121] epoch=11 train_loss=0.0731 val_loss=0.1725 val_acc=0.9480
+[Teacher densenet121] epoch=12 train_loss=0.0590 val_loss=0.2034 val_acc=0.9398
+[Teacher densenet121] epoch=13 train_loss=0.0626 val_loss=0.2883 val_acc=0.9176
+[Teacher densenet121] epoch=14 train_loss=0.0611 val_loss=0.2080 val_acc=0.9431
+[Teacher densenet121] epoch=15 train_loss=0.0614 val_loss=0.2474 val_acc=0.9398
+
+✅ 教师模型训练完成！检查点已保存到: checkpoints
+
+======================================================================
+阶段 II: 训练Stacking集成模型
+======================================================================
+
+[Stacking] epoch=1 train_loss=0.1492 val_loss=0.1607 val_acc=0.9561
+[Stacking] epoch=2 train_loss=0.0162 val_loss=0.1566 val_acc=0.9561
+[Stacking] epoch=3 train_loss=0.0150 val_loss=0.1591 val_acc=0.9552
+[Stacking] epoch=4 train_loss=0.0120 val_loss=0.1608 val_acc=0.9552
+[Stacking] epoch=5 train_loss=0.0110 val_loss=0.1551 val_acc=0.9566
+[Stacking] epoch=6 train_loss=0.0107 val_loss=0.1625 val_acc=0.9561
+[Stacking] epoch=7 train_loss=0.0099 val_loss=0.1572 val_acc=0.9566
+[Stacking] epoch=8 train_loss=0.0088 val_loss=0.1613 val_acc=0.9586
+[Stacking] epoch=9 train_loss=0.0086 val_loss=0.1671 val_acc=0.9557
+[Stacking] epoch=10 train_loss=0.0083 val_loss=0.1676 val_acc=0.9576
+[Stacking] epoch=11 train_loss=0.0089 val_loss=0.1737 val_acc=0.9557
+[Stacking] epoch=12 train_loss=0.0074 val_loss=0.1633 val_acc=0.9590
+
+✅ Stacking模型训练完成！检查点: checkpoints/stacking_model.pth
+
+======================================================================
+阶段 III: 训练学生模型（知识蒸馏）
+======================================================================
+
+蒸馏损失配置:
+  CE权重: 1.0
+  FKL权重: 0.5
+  RKL权重: 0.5
+  Sinkhorn权重: 0.1
+  温度: 4.0
+
+[Student] epoch=1 train_loss=2.3504 val_loss=1.3688 val_acc=0.5436
+[Student] epoch=2 train_loss=1.7200 val_loss=1.0962 val_acc=0.7012
+[Student] epoch=3 train_loss=1.9224 val_loss=0.8563 val_acc=0.7335
+[Student] epoch=4 train_loss=1.4658 val_loss=0.6913 val_acc=0.7880
+[Student] epoch=5 train_loss=25.6876 val_loss=42.1649 val_acc=0.1605
+[Student] epoch=6 train_loss=24.6165 val_loss=8.9667 val_acc=0.3161
+[Student] epoch=7 train_loss=3.9894 val_loss=1.3923 val_acc=0.5027
+[Student] epoch=8 train_loss=2.6258 val_loss=1.2619 val_acc=0.5749
+[Student] epoch=9 train_loss=2.8893 val_loss=1.6475 val_acc=0.3846
+[Student] epoch=10 train_loss=2.8286 val_loss=1.3656 val_acc=0.4949
+[Student] epoch=11 train_loss=2.7883 val_loss=1.4685 val_acc=0.4487
+[Student] epoch=12 train_loss=2.6945 val_loss=1.3148 val_acc=0.5595
+[Student] epoch=13 train_loss=2.5641 val_loss=1.1945 val_acc=0.6111
+[Student] epoch=14 train_loss=2.3553 val_loss=1.0652 val_acc=0.6776
+[Student] epoch=15 train_loss=2.0844 val_loss=1.0962 val_acc=0.6737
+[Student] epoch=16 train_loss=1.9059 val_loss=0.9335 val_acc=0.7214
+[Student] epoch=17 train_loss=1.7536 val_loss=0.8799 val_acc=0.7234
+[Student] epoch=18 train_loss=1.6711 val_loss=0.9586 val_acc=0.7080
+[Student] epoch=19 train_loss=1.5509 val_loss=0.8149 val_acc=0.7667
+[Student] epoch=20 train_loss=1.7805 val_loss=1.0579 val_acc=0.6896
+[Student] epoch=21 train_loss=1.7967 val_loss=0.8787 val_acc=0.7253
+[Student] epoch=22 train_loss=1.6095 val_loss=0.8811 val_acc=0.7239
+[Student] epoch=23 train_loss=1.4758 val_loss=0.8904 val_acc=0.7634
+[Student] epoch=24 train_loss=1.5426 val_loss=0.8951 val_acc=0.7359
+[Student] epoch=25 train_loss=1.3771 val_loss=0.6863 val_acc=0.7831
+
+✅ 学生模型训练完成！检查点: checkpoints/student_sd_mkd.pth
+
+======================================================================
+评估学生模型
+======================================================================
+
+
+测试集结果:
+  准确率: 0.7561
+  F1分数: 0.7485
+
+混淆矩阵:
+tensor([[165,   9,   4,  17,  17,   8,  35],
+        [ 16, 534,   8,  22,   9,   1,  10],
+        [  4,  22,  46,   8,   3,   4,   3],
+        [ 23,  15,  17, 184,  16,  10,  27],
+        [  8,   6,   4,  14,  98,   3,   5],
+        [ 29,   4,  25,  12,   6,   8,  16],
+        [  6,   2,  11,  29,  12,   6, 534]])
+
+结果已保存到: checkpoints/results_ISCXVPN2016.json
+
+======================================================================
+训练完成！
+======================================================================
+
+

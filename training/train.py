@@ -17,6 +17,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
 from .loss_functions import class_cost_matrix, distillation_loss
+from .monitor import LiveTrainingMonitor
 from models import (
     StudentNet,
     DenseNet121Teacher,
@@ -67,6 +68,7 @@ def train_teachers(
     num_epochs_teacher: int = 1,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
+    monitor: LiveTrainingMonitor | None = None,
 ) -> Dict[str, str]:
     """Train three teachers independently and save checkpoints.
 
@@ -80,6 +82,9 @@ def train_teachers(
     }
     ckpt_paths: Dict[str, str] = {}
     for name, model in teachers.items():
+        stage_name = f"teacher_{name}"
+        if monitor:
+            monitor.stage_start(stage_name, num_epochs_teacher)
         optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
         for res in train_single_teacher(
             model, train_loader_A, val_loader_A, device, epochs=num_epochs_teacher, lr=lr, weight_decay=weight_decay
@@ -88,9 +93,17 @@ def train_teachers(
                 f"[Teacher {name}] epoch={res.epoch} train_loss={res.train_loss:.4f} "
                 f"val_loss={res.val_loss:.4f} val_acc={res.val_acc:.4f}"
             )
+            if monitor:
+                monitor.log(
+                    stage_name,
+                    res.epoch,
+                    {"train_loss": res.train_loss, "val_loss": res.val_loss, "val_acc": res.val_acc},
+                )
         path = f"{name}_teacher.pth"
         torch.save(model.state_dict(), path)
         ckpt_paths[name] = path
+        if monitor:
+            monitor.stage_end(stage_name)
     return ckpt_paths
 
 
@@ -108,6 +121,7 @@ def train_stacking_model_stage(
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
     teacher_ckpts: Dict[str, str] | None = None,
+    monitor: LiveTrainingMonitor | None = None,
 ) -> str:
     """Train the stacking MLP on top of frozen teachers.
 
@@ -134,16 +148,34 @@ def train_stacking_model_stage(
     ensemble.t3 = t3
 
     stacking = StackingModel(num_classes=num_classes).to(device)
+    if monitor:
+        monitor.stage_start("stacking", num_epochs_stacking)
+
     for res in train_stacking_model(
-        ensemble, stacking, train_loader_B, val_loader_B, device, epochs=num_epochs_stacking, lr=lr, weight_decay=weight_decay
+        ensemble,
+        stacking,
+        train_loader_B,
+        val_loader_B,
+        device,
+        epochs=num_epochs_stacking,
+        lr=lr,
+        weight_decay=weight_decay,
     ):
         print(
             f"[Stacking] epoch={res.epoch} train_loss={res.train_loss:.4f} "
             f"val_loss={res.val_loss:.4f} val_acc={res.val_acc:.4f}"
         )
+        if monitor:
+            monitor.log(
+                "stacking",
+                res.epoch,
+                {"train_loss": res.train_loss, "val_loss": res.val_loss, "val_acc": res.val_acc},
+            )
 
     stacking_path = "stacking_model.pth"
     torch.save(stacking.state_dict(), stacking_path)
+    if monitor:
+        monitor.stage_end("stacking")
     return stacking_path
 
 
@@ -167,6 +199,7 @@ def train_student_stage(
     weight_decay: float = 1e-4,
     teacher_ckpts: Dict[str, str] | None = None,
     stacking_ckpt: str | None = None,
+    monitor: LiveTrainingMonitor | None = None,
 ) -> str:
     """Distill the student from frozen teachers + stacking ensemble."""
 
@@ -191,6 +224,9 @@ def train_student_stage(
     student = StudentNet(num_classes=num_classes).to(device)
     optimizer = torch.optim.AdamW(student.parameters(), lr=lr, weight_decay=weight_decay)
     cost = class_cost_matrix(num_classes, device=device)
+
+    if monitor:
+        monitor.stage_start("student", num_epochs_student)
 
     for epoch in range(1, num_epochs_student + 1):
         student.train()
@@ -224,9 +260,13 @@ def train_student_stage(
             f"[Student] epoch={epoch} train_loss={train_loss:.4f} "
             f"val_loss={val_loss:.4f} val_acc={val_acc:.4f}"
         )
+        if monitor:
+            monitor.log("student", epoch, {"train_loss": train_loss, "val_loss": val_loss, "val_acc": val_acc})
 
     student_path = "student_sd_mkd.pth"
     torch.save(student.state_dict(), student_path)
+    if monitor:
+        monitor.stage_end("student")
     return student_path
 
 
@@ -241,7 +281,7 @@ def _make_dummy_loader(num_samples: int, num_classes: int, height: int, width: i
     return DataLoader(TensorDataset(x, y), batch_size=batch_size, shuffle=True)
 
 
-def run_demo_pipeline(mode: str, device: torch.device):
+def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMonitor | None = None):
     num_classes = 5
     h = w = 32
     batch_size = 8
@@ -264,7 +304,7 @@ def run_demo_pipeline(mode: str, device: torch.device):
         if all(os.path.exists(p) for p in paths.values()):
             return paths
         print("[Demo] Training teachers because checkpoints were not found.")
-        return train_teachers(train_A, val_A, num_classes, device)
+        return train_teachers(train_A, val_A, num_classes, device, monitor=monitor)
 
     def _ensure_stacking(existing_teachers: Dict[str, str]) -> str:
         path = "stacking_model.pth"
@@ -277,13 +317,21 @@ def run_demo_pipeline(mode: str, device: torch.device):
             num_classes,
             device,
             teacher_ckpts=existing_teachers,
+            monitor=monitor,
         )
 
     if mode == "train_teachers":
-        train_teachers(train_A, val_A, num_classes, device)
+        train_teachers(train_A, val_A, num_classes, device, monitor=monitor)
     elif mode == "train_stacking":
         teacher_ckpts = _ensure_teachers()
-        train_stacking_model_stage(train_B, val_B, num_classes, device, teacher_ckpts=teacher_ckpts)
+        train_stacking_model_stage(
+            train_B,
+            val_B,
+            num_classes,
+            device,
+            teacher_ckpts=teacher_ckpts,
+            monitor=monitor,
+        )
     elif mode == "train_student":
         teacher_ckpts = _ensure_teachers()
         stacking_ckpt = _ensure_stacking(teacher_ckpts)
@@ -294,6 +342,7 @@ def run_demo_pipeline(mode: str, device: torch.device):
             device,
             teacher_ckpts=teacher_ckpts,
             stacking_ckpt=stacking_ckpt,
+            monitor=monitor,
         )
     else:
         raise ValueError(f"Unsupported mode: {mode}")
