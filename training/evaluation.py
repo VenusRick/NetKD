@@ -9,7 +9,8 @@ from __future__ import annotations
 from typing import Tuple
 
 import torch
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+
+from util.simple_metrics import accuracy_score, confusion_matrix, f1_score
 
 
 def evaluate_model(model: torch.nn.Module, data_loader, device: torch.device) -> Tuple[float, float, torch.Tensor]:
@@ -59,7 +60,7 @@ def summarize_metrics(acc: float, f1: float, cm: torch.Tensor) -> str:
 def evaluate_saved_student(checkpoint_path: str, num_classes: int, device: torch.device, data_loader) -> Tuple[float, float, torch.Tensor]:
     """Load a saved student checkpoint and evaluate it on a data loader."""
 
-    from student_model import StudentNet  # Imported here to avoid heavy deps at module load.
+    from models.student_model import StudentNet  # Lazy import to avoid heavy deps at module load.
 
     model = StudentNet(num_classes=num_classes)
     state = torch.load(checkpoint_path, map_location="cpu")

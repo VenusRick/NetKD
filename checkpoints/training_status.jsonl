@@ -1,0 +1,17 @@
+{"stage": "teacher_resnet50", "epoch": 1, "train_loss": 2.2621086182132846, "val_loss": 2.0475920609065463, "val_acc": 0.14285714285714285, "message": null, "timestamp": 1763626439.3553069}
+{"stage": "teacher_resnet50", "epoch": 2, "train_loss": 1.3394394959172895, "val_loss": 2.9838534763881137, "val_acc": 0.14285714285714285, "message": null, "timestamp": 1763626440.8954992}
+{"stage": "teacher_resnet50", "epoch": 3, "train_loss": 1.1479574634182839, "val_loss": 1.3404994436672755, "val_acc": 0.580952380952381, "message": null, "timestamp": 1763626442.351574}
+{"stage": "teacher_mbv3", "epoch": 1, "train_loss": 1.7630694027869933, "val_loss": 1.9455864770071847, "val_acc": 0.14285714285714285, "message": null, "timestamp": 1763626444.5779102}
+{"stage": "teacher_mbv3", "epoch": 2, "train_loss": 1.2396978543650718, "val_loss": 1.947264347757612, "val_acc": 0.14285714285714285, "message": null, "timestamp": 1763626446.1069372}
+{"stage": "teacher_mbv3", "epoch": 3, "train_loss": 0.8744956783709987, "val_loss": 1.9461624792643957, "val_acc": 0.14285714285714285, "message": null, "timestamp": 1763626447.62316}
+{"stage": "teacher_densenet121", "epoch": 1, "train_loss": 1.3645489023577781, "val_loss": 2.343350120953151, "val_acc": 0.1619047619047619, "message": null, "timestamp": 1763626450.8237839}
+{"stage": "teacher_densenet121", "epoch": 2, "train_loss": 0.9005102169129157, "val_loss": 1.2325696178844996, "val_acc": 0.6095238095238096, "message": null, "timestamp": 1763626453.4395106}
+{"stage": "teacher_densenet121", "epoch": 3, "train_loss": 0.7118833920648021, "val_loss": 1.1289220537458147, "val_acc": 0.6476190476190476, "message": null, "timestamp": 1763626456.211425}
+{"stage": "stacking", "epoch": 1, "train_loss": 0.927005063141546, "val_loss": 0.8168778419494629, "val_acc": 0.7523809523809524, "message": null, "timestamp": 1763626458.464621}
+{"stage": "stacking", "epoch": 2, "train_loss": 0.49826515730350246, "val_loss": 0.7917548503194537, "val_acc": 0.7666666666666667, "message": null, "timestamp": 1763626459.618395}
+{"stage": "stacking", "epoch": 3, "train_loss": 0.4568130590261952, "val_loss": 0.761686989239284, "val_acc": 0.780952380952381, "message": null, "timestamp": 1763626460.7771919}
+{"stage": "student", "epoch": 1, "train_loss": 3.5355315592981156, "val_loss": 2.546463966369629, "val_acc": 0.14761904761904762, "message": null, "timestamp": 1763626464.5566957}
+{"stage": "student", "epoch": 2, "train_loss": 3.1788280317860265, "val_loss": 1.9440773725509644, "val_acc": 0.21904761904761905, "message": null, "timestamp": 1763626467.296343}
+{"stage": "student", "epoch": 3, "train_loss": 2.811880327040149, "val_loss": 1.5342937197004045, "val_acc": 0.49523809523809526, "message": null, "timestamp": 1763626470.0675104}
+{"stage": "student", "epoch": 4, "train_loss": 2.7146122071050827, "val_loss": 1.396181379045759, "val_acc": 0.45714285714285713, "message": null, "timestamp": 1763626472.9030578}
+{"stage": "student", "epoch": 5, "train_loss": 3.03173053649164, "val_loss": 2.131420748574393, "val_acc": 0.22857142857142856, "message": null, "timestamp": 1763626475.8087041}
