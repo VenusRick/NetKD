@@ -98,6 +98,10 @@ def parse_args():
     parser.add_argument("--lamb_r", type=float, default=0.5, help="反向KL损失权重")
     parser.add_argument("--lamb_s", type=float, default=0.05, help="Sinkhorn损失权重 (优化后)")
     parser.add_argument("--temperature", type=float, default=3.0, help="蒸馏温度 (优化后)")
+    parser.add_argument("--student_grad_clip", type=float, default=5.0, help="学生模型梯度裁剪阈值(<=0禁用)")
+    parser.add_argument("--student_min_lr", type=float, default=1e-5, help="学生模型最小学习率(用于自适应降速)")
+    parser.add_argument("--student_lr_patience", type=int, default=2, help="学生模型ReduceLROnPlateau的patience")
+    parser.add_argument("--student_lr_factor", type=float, default=0.5, help="学生模型学习率衰减因子")
     
     # 其他参数
     parser.add_argument("--num_workers", type=int, default=0, help="数据加载线程数（Windows建议0）")
@@ -252,6 +256,10 @@ def run_pipeline(args):
             lamb_r=args.lamb_r,
             lamb_s=args.lamb_s,
             monitor=monitor,
+            grad_clip=args.student_grad_clip,
+            scheduler_patience=args.student_lr_patience,
+            scheduler_factor=args.student_lr_factor,
+            min_lr=args.student_min_lr,
         )
         
         # 移动到输出目录

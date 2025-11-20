@@ -19,6 +19,7 @@ from .train import (
     train_stacking_model_stage,
     train_student_stage,
     run_demo_pipeline,
+    run_real_pipeline,
 )
 
 __all__ = [
@@ -39,4 +40,5 @@ __all__ = [
     "train_stacking_model_stage",
     "train_student_stage",
     "run_demo_pipeline",
+    "run_real_pipeline",
 ]
