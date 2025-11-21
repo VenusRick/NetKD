@@ -11,21 +11,15 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
-import sys
 from typing import Dict, Tuple
 
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
-# Ensure the project root is on sys.path so this script works when run directly.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
 from data_preprocessing import quick_load_dataset
-from training.loss_functions import class_cost_matrix, distillation_loss
-from training.monitor import LiveTrainingMonitor
+from .loss_functions import class_cost_matrix, distillation_loss
+from .monitor import LiveTrainingMonitor
 from models import (
     StudentNet,
     DenseNet121Teacher,
@@ -76,11 +70,6 @@ def train_teachers(
     num_epochs_teacher: int = 1,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
-    teacher_pretrained: bool = True,
-    class_weights: torch.Tensor | None = None,
-    scheduler_patience: int = 2,
-    scheduler_factor: float = 0.5,
-    min_lr: float = 1e-6,
     monitor: LiveTrainingMonitor | None = None,
 ) -> Dict[str, str]:
     """Train three teachers independently and save checkpoints.
@@ -89,29 +78,18 @@ def train_teachers(
     """
 
     teachers = {
-        "resnet50": ResNet50Teacher(num_classes, pretrained=teacher_pretrained).to(device),
-        "mbv3": MobileNetV3LargeTeacher(num_classes, pretrained=teacher_pretrained).to(device),
-        "densenet121": DenseNet121Teacher(num_classes, pretrained=teacher_pretrained).to(device),
+        "resnet50": ResNet50Teacher(num_classes, pretrained=False).to(device),
+        "mbv3": MobileNetV3LargeTeacher(num_classes, pretrained=False).to(device),
+        "densenet121": DenseNet121Teacher(num_classes, pretrained=False).to(device),
     }
     ckpt_paths: Dict[str, str] = {}
     for name, model in teachers.items():
         stage_name = f"teacher_{name}"
         if monitor:
             monitor.stage_start(stage_name, num_epochs_teacher)
-        best_val_acc = -1.0
-        best_state = None
+        optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
         for res in train_single_teacher(
-            model,
-            train_loader_A,
-            val_loader_A,
-            device,
-            epochs=num_epochs_teacher,
-            lr=lr,
-            weight_decay=weight_decay,
-            class_weights=class_weights,
-            scheduler_patience=scheduler_patience,
-            scheduler_factor=scheduler_factor,
-            min_lr=min_lr,
+            model, train_loader_A, val_loader_A, device, epochs=num_epochs_teacher, lr=lr, weight_decay=weight_decay
         ):
             print(
                 f"[Teacher {name}] epoch={res.epoch} train_loss={res.train_loss:.4f} "
@@ -123,11 +101,8 @@ def train_teachers(
                     res.epoch,
                     {"train_loss": res.train_loss, "val_loss": res.val_loss, "val_acc": res.val_acc},
                 )
-            if res.val_acc > best_val_acc:
-                best_val_acc = res.val_acc
-                best_state = model.state_dict()
         path = f"{name}_teacher.pth"
-        torch.save(best_state or model.state_dict(), path)
+        torch.save(model.state_dict(), path)
         ckpt_paths[name] = path
         if monitor:
             monitor.stage_end(stage_name)
@@ -234,7 +209,6 @@ def train_student_stage(
     teacher_ckpts: Dict[str, str] | None = None,
     stacking_ckpt: str | None = None,
     monitor: LiveTrainingMonitor | None = None,
-    pretrain_ckpt_path: str | None = None,
 ) -> str:
     """Distill the student from frozen teachers + stacking ensemble."""
 
@@ -257,13 +231,6 @@ def train_student_stage(
             p.requires_grad = False
 
     student = StudentNet(num_classes=num_classes).to(device)
-    # Load pretrained backbone if provided
-    if pretrain_ckpt_path:
-        print(f"Loading pretrained backbone from {pretrain_ckpt_path}")
-        pretrained_state = torch.load(pretrain_ckpt_path, map_location="cpu")
-        student.backbone.load_state_dict(pretrained_state, strict=False)
-        print("✅ Pretrained backbone loaded successfully")
-
     optimizer = torch.optim.AdamW(student.parameters(), lr=lr, weight_decay=weight_decay)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, mode="min", factor=scheduler_factor, patience=scheduler_patience, min_lr=min_lr
@@ -362,15 +329,7 @@ def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMoni
         if all(os.path.exists(p) for p in paths.values()):
             return paths
         print("[Demo] Training teachers because checkpoints were not found.")
-        return train_teachers(
-            train_A,
-            val_A,
-            num_classes,
-            device,
-            teacher_pretrained=False,
-            class_weights=None,
-            monitor=monitor,
-        )
+        return train_teachers(train_A, val_A, num_classes, device, monitor=monitor)
 
     def _ensure_stacking(existing_teachers: Dict[str, str]) -> str:
         path = "stacking_model.pth"
@@ -442,10 +401,6 @@ def run_real_pipeline(
     lamb_s_adapt: float = 0.0,
     adaptive_sinkhorn_tau: float = 1.0,
     output_dir: str = "./checkpoints",
-    pretrain_ckpt_path: str | None = None,
-    teacher_pretrained: bool = True,
-    use_class_weights: bool = True,
-    force_retrain_teachers: bool = False,
     monitor: LiveTrainingMonitor | None = None,
 ) -> Dict[str, str]:
     """Run teacher/stacking/student stages on real preprocessed image data."""
@@ -462,11 +417,6 @@ def run_real_pipeline(
         max_samples_per_class=max_samples_per_class,
     )
     num_classes = meta["num_classes"]
-    class_weights = (
-        torch.tensor(meta["class_weights"], dtype=torch.float32)
-        if use_class_weights and "class_weights" in meta
-        else None
-    )
     out_dir = Path(output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -479,8 +429,7 @@ def run_real_pipeline(
             "mbv3": str(_ckpt("mbv3_teacher.pth")),
             "densenet121": str(_ckpt("densenet121_teacher.pth")),
         }
-        if not force_retrain_teachers and all(Path(p).exists() for p in paths.values()):
-            print("[Info] Found existing teacher checkpoints, skipping retrain.")
+        if all(Path(p).exists() for p in paths.values()):
             return paths
         ckpts = train_teachers(
             train_loader,
@@ -490,11 +439,6 @@ def run_real_pipeline(
             num_epochs_teacher=num_epochs_teacher,
             lr=lr,
             weight_decay=weight_decay,
-            teacher_pretrained=teacher_pretrained,
-            class_weights=class_weights,
-            scheduler_patience=student_lr_patience,
-            scheduler_factor=student_lr_factor,
-            min_lr=student_min_lr,
             monitor=monitor,
         )
         # Move to output dir
@@ -555,7 +499,6 @@ def run_real_pipeline(
             grad_clip=student_grad_clip,
             scheduler_patience=student_lr_patience,
             scheduler_factor=student_lr_factor,
-            pretrain_ckpt_path=pretrain_ckpt_path,
             min_lr=student_min_lr,
         )
         target = _ckpt(Path(student_ckpt).name)
@@ -606,31 +549,6 @@ def main():
     parser.add_argument("--lamb_s_adapt", type=float, default=0.0)
     parser.add_argument("--adaptive_sinkhorn_tau", type=float, default=1.0)
     parser.add_argument("--output_dir", type=str, default="./checkpoints")
-    parser.add_argument("--load_pretrain_ckpt", type=str, default=None, help="Path to pretrained backbone checkpoint")
-    parser.add_argument(
-        "--teacher_pretrained",
-        dest="teacher_pretrained",
-        action="store_true",
-        help="Use ImageNet-pretrained weights for teacher backbones",
-    )
-    parser.add_argument(
-        "--no_teacher_pretrained",
-        dest="teacher_pretrained",
-        action="store_false",
-        help="Disable ImageNet-pretrained weights for teacher backbones",
-    )
-    parser.add_argument(
-        "--no_class_weights",
-        dest="use_class_weights",
-        action="store_false",
-        help="Disable inverse-frequency class weights when training teachers",
-    )
-    parser.add_argument(
-        "--force_retrain_teachers",
-        action="store_true",
-        help="Ignore existing teacher checkpoints and retrain them",
-    )
-    parser.set_defaults(teacher_pretrained=True, use_class_weights=True)
     args = parser.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     monitor = LiveTrainingMonitor()
@@ -663,10 +581,6 @@ def main():
             lamb_s_adapt=args.lamb_s_adapt,
             adaptive_sinkhorn_tau=args.adaptive_sinkhorn_tau,
             output_dir=args.output_dir,
-            teacher_pretrained=args.teacher_pretrained,
-            use_class_weights=args.use_class_weights,
-            force_retrain_teachers=args.force_retrain_teachers,
-            pretrain_ckpt_path=args.load_pretrain_ckpt,
             monitor=monitor,
         )
     else:

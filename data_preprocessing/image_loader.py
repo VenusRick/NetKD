@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Callable, Deque, Dict, Iterable, List, Optional, Tuple
-from collections import deque
+from collections import deque, Counter
 import random
 
 try:
@@ -184,6 +184,71 @@ def _train_test_split(*args, **kwargs):
     return _fallback_train_test_split(*args, **kwargs)
 
 
+def _has_class_images(path: Path) -> bool:
+    """Return True if path contains class subfolders with PNG files."""
+
+    if not path.is_dir():
+        return False
+    for child in path.iterdir():
+        if child.is_dir() and any(child.glob("*.png")):
+            return True
+    return False
+
+
+def _detect_pre_split_layout(base_path: Path) -> Dict[str, Path] | None:
+    """Detect train/val/test folder layout and return the split directories if present."""
+
+    split_aliases = {
+        "train": ["train", "Train"],
+        "val": ["val", "valid", "validation", "Val", "Valid", "Validation"],
+        "test": ["test", "Test"],
+    }
+    split_dirs: Dict[str, Path] = {}
+    for key, aliases in split_aliases.items():
+        for name in aliases:
+            candidate = base_path / name
+            if candidate.is_dir():
+                split_dirs[key] = candidate
+                break
+
+    if "train" not in split_dirs or not _has_class_images(split_dirs["train"]):
+        return None
+
+    # Keep only splits that truly contain class images
+    split_dirs = {k: v for k, v in split_dirs.items() if _has_class_images(v)}
+    if len(split_dirs) <= 1:
+        return None
+    return split_dirs
+
+
+def _gather_split_images(
+    split_dir: Path,
+    class_names: List[str],
+    label_to_idx: Dict[str, int],
+    max_samples_per_class: int | None,
+    rng: random.Random,
+) -> Tuple[List[str], List[int]]:
+    """Collect image paths/labels for a specific split."""
+
+    image_paths: List[str] = []
+    labels: List[int] = []
+    for cls_name in class_names:
+        cls_dir = split_dir / cls_name
+        if not cls_dir.is_dir():
+            continue
+        imgs = sorted(cls_dir.glob("*.png"))
+        if max_samples_per_class is not None and max_samples_per_class > 0:
+            limit = min(len(imgs), max_samples_per_class)
+            if limit < len(imgs):
+                imgs = rng.sample(imgs, limit)
+                imgs.sort(key=lambda p: p.name)
+            else:
+                imgs = imgs[:limit]
+        image_paths.extend([str(p) for p in imgs])
+        labels.extend([label_to_idx[cls_name]] * len(imgs))
+    return image_paths, labels
+
+
 def load_dataset_from_folders(
     dataset_root: str,
     dataset_name: str,
@@ -221,63 +286,114 @@ def load_dataset_from_folders(
     if not base_path.exists():
         raise FileNotFoundError(f"Dataset root not found: {base_path}")
 
-    dataset_path = _detect_image_root(base_path)
-    
-    print(f"Loading dataset from: {dataset_path}")
-    
-    # Scan for class folders
-    class_folders = sorted([d for d in dataset_path.iterdir() if d.is_dir()])
-    
-    if len(class_folders) == 0:
-        raise ValueError(f"No class folders found in {dataset_path}")
-    
-    print(f"Found {len(class_folders)} classes: {[c.name for c in class_folders]}")
-    
-    # Build image paths and labels
-    image_paths = []
-    labels = []
-    label_names = []
     rng = random.Random(random_seed)
-    
-    for label_idx, class_folder in enumerate(class_folders):
-        label_names.append(class_folder.name)
-        
-        # Find all PNG images in this class folder
-        class_images = sorted(class_folder.glob("*.png"))
+    pre_split_dirs = _detect_pre_split_layout(base_path)
 
-        if max_samples_per_class is not None and max_samples_per_class > 0:
-            limit = min(len(class_images), max_samples_per_class)
-            if limit < len(class_images):
-                class_images = rng.sample(class_images, limit)
-                class_images.sort(key=lambda p: p.name)
-            else:
-                class_images = class_images[:limit]
+    if pre_split_dirs:
+        print(f"Detected pre-split layout, using provided train/val/test folders under: {base_path}")
+        # Collect class names from all splits to keep labels aligned
+        class_names = sorted(
+            {d.name for split in pre_split_dirs.values() for d in split.iterdir() if d.is_dir()}
+        )
+        label_to_idx = {name: idx for idx, name in enumerate(class_names)}
+
+        train_paths, train_labels = _gather_split_images(
+            pre_split_dirs["train"], class_names, label_to_idx, max_samples_per_class, rng
+        )
+        val_paths, val_labels = (
+            _gather_split_images(pre_split_dirs["val"], class_names, label_to_idx, max_samples_per_class, rng)
+            if "val" in pre_split_dirs
+            else ([], [])
+        )
+        test_paths, test_labels = (
+            _gather_split_images(pre_split_dirs["test"], class_names, label_to_idx, max_samples_per_class, rng)
+            if "test" in pre_split_dirs
+            else ([], [])
+        )
+
+        image_paths = train_paths + val_paths + test_paths
+        labels = train_labels + val_labels + test_labels
+        dataset_path = base_path
+        label_names = class_names
+        split_strategy = "folder_split"
+    else:
+        dataset_path = _detect_image_root(base_path)
         
-        print(f"  Class '{class_folder.name}': {len(class_images)} images")
+        print(f"Loading dataset from: {dataset_path}")
         
-        for img_path in class_images:
-            image_paths.append(str(img_path))
-            labels.append(label_idx)
+        # Scan for class folders
+        class_folders = sorted([d for d in dataset_path.iterdir() if d.is_dir()])
+        
+        if len(class_folders) == 0:
+            raise ValueError(f"No class folders found in {dataset_path}")
+        
+        print(f"Found {len(class_folders)} classes: {[c.name for c in class_folders]}")
+        
+        # Build image paths and labels
+        image_paths = []
+        labels = []
+        label_names = []
+        
+        for label_idx, class_folder in enumerate(class_folders):
+            label_names.append(class_folder.name)
+            
+            # Find all PNG images in this class folder
+            class_images = sorted(class_folder.glob("*.png"))
+
+            if max_samples_per_class is not None and max_samples_per_class > 0:
+                limit = min(len(class_images), max_samples_per_class)
+                if limit < len(class_images):
+                    class_images = rng.sample(class_images, limit)
+                    class_images.sort(key=lambda p: p.name)
+                else:
+                    class_images = class_images[:limit]
+            
+            print(f"  Class '{class_folder.name}': {len(class_images)} images")
+            
+            for img_path in class_images:
+                image_paths.append(str(img_path))
+                labels.append(label_idx)
+        
+        print(f"\nTotal images loaded: {len(image_paths)}")
+        print(f"Number of classes: {len(label_names)}")
+
+        # Split into train/val/test with support for zero-sized val/test during pretraining
+        if test_ratio <= 0:
+            train_val_paths, test_paths = image_paths, []
+            train_val_labels, test_labels = labels, []
+        else:
+            train_val_paths, test_paths, train_val_labels, test_labels = _train_test_split(
+                image_paths, labels, test_size=test_ratio, random_state=random_seed, stratify=labels
+            )
+        
+        if val_ratio <= 0:
+            train_paths, val_paths = train_val_paths, []
+            train_labels, val_labels = train_val_labels, []
+        else:
+            val_size = val_ratio / (1 - test_ratio if test_ratio < 1 else 1)  # Adjust val_ratio for remaining data
+            train_paths, val_paths, train_labels, val_labels = _train_test_split(
+                train_val_paths, train_val_labels, test_size=val_size, random_state=random_seed, stratify=train_val_labels
+            )
+
+        split_strategy = "random_split"
     
-    print(f"\nTotal images loaded: {len(image_paths)}")
-    print(f"Number of classes: {len(label_names)}")
+    # Class counts and inverse-frequency weights for imbalance handling
+    class_counts = Counter(labels)
+    counts_list = [class_counts.get(i, 0) for i in range(len(label_names))]
+    total_count = sum(counts_list)
+    class_weights = [
+        (total_count / len(label_names) / (count if count > 0 else 1)) if total_count > 0 else 1.0
+        for count in counts_list
+    ]
     
-    # Split into train/val/test
-    # First split: train+val vs test
-    train_val_paths, test_paths, train_val_labels, test_labels = _train_test_split(
-        image_paths, labels, test_size=test_ratio, random_state=random_seed, stratify=labels
-    )
-    
-    # Second split: train vs val
-    val_size = val_ratio / (1 - test_ratio)  # Adjust val_ratio for remaining data
-    train_paths, val_paths, train_labels, val_labels = _train_test_split(
-        train_val_paths, train_val_labels, test_size=val_size, random_state=random_seed, stratify=train_val_labels
-    )
-    
+    total_images = len(image_paths)
+    def _pct(n: int) -> float:
+        return (n / total_images * 100) if total_images > 0 else 0.0
+
     print(f"\nDataset split:")
-    print(f"  Train: {len(train_paths)} images ({len(train_paths)/len(image_paths)*100:.1f}%)")
-    print(f"  Val:   {len(val_paths)} images ({len(val_paths)/len(image_paths)*100:.1f}%)")
-    print(f"  Test:  {len(test_paths)} images ({len(test_paths)/len(image_paths)*100:.1f}%)")
+    print(f"  Train: {len(train_paths)} images ({_pct(len(train_paths)):.1f}%)")
+    print(f"  Val:   {len(val_paths)} images ({_pct(len(val_paths)):.1f}%)")
+    print(f"  Test:  {len(test_paths)} images ({_pct(len(test_paths)):.1f}%)")
     
     # Create datasets
     train_dataset = ImageFlowDataset(train_paths, train_labels, label_names, to_grayscale=to_grayscale)
@@ -329,15 +445,18 @@ def load_dataset_from_folders(
         "dataset_path": str(dataset_path),
         "num_classes": len(label_names),
         "class_names": label_names,
-        "total_images": len(image_paths),
+        "total_images": total_images,
         "train_size": len(train_paths),
         "val_size": len(val_paths),
         "test_size": len(test_paths),
+        "class_counts": counts_list,
+        "class_weights": class_weights,
         "image_height": height,
         "image_width": width,
         "image_channels": channels,
         "batch_size": batch_size,
         "max_samples_per_class": max_samples_per_class,
+        "split_strategy": split_strategy,
     }
     
     print(f"\nImage dimensions: {channels} x {height} x {width}")

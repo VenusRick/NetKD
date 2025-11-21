@@ -167,15 +167,23 @@ def train_single_teacher(
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
     optimizer_name: str = "adamw",
+    class_weights: torch.Tensor | None = None,
+    scheduler_patience: int = 2,
+    scheduler_factor: float = 0.5,
+    min_lr: float = 1e-6,
 ) -> Iterable[TrainResult]:
     """Train a single teacher using cross-entropy."""
 
     model.to(device)
-    criterion = nn.CrossEntropyLoss()
+    weight = class_weights.to(device) if class_weights is not None else None
+    criterion = nn.CrossEntropyLoss(weight=weight)
     if optimizer_name.lower() == "sgd":
         optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=weight_decay)
     else:
         optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode="min", factor=scheduler_factor, patience=scheduler_patience, min_lr=min_lr
+    )
 
     for epoch in range(1, epochs + 1):
         model.train()
@@ -191,6 +199,7 @@ def train_single_teacher(
 
         train_loss = float(sum(epoch_losses) / max(1, len(epoch_losses)))
         val_loss, val_acc = _evaluate(model, val_loader, device)
+        scheduler.step(val_loss)
         yield TrainResult(epoch, train_loss, val_loss, val_acc)
 
 
@@ -244,4 +253,3 @@ __all__ = [
     "train_stacking_model",
     "TrainResult",
 ]
-

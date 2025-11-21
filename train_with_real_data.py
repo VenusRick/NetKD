@@ -97,6 +97,9 @@ def parse_args():
     parser.add_argument("--lamb_f", type=float, default=0.5, help="前向KL损失权重")
     parser.add_argument("--lamb_r", type=float, default=0.5, help="反向KL损失权重")
     parser.add_argument("--lamb_s", type=float, default=0.05, help="Sinkhorn损失权重 (优化后)")
+    parser.add_argument("--lamb_hard", type=float, default=0.0, help="教师硬标签蒸馏权重 (gamma)")
+    parser.add_argument("--lamb_s_adapt", type=float, default=0.0, help="自适应Sinkhorn加权的权重系数")
+    parser.add_argument("--adaptive_sinkhorn_tau", type=float, default=1.0, help="自适应Sinkhorn权重软化温度")
     parser.add_argument("--temperature", type=float, default=3.0, help="蒸馏温度 (优化后)")
     parser.add_argument("--student_grad_clip", type=float, default=5.0, help="学生模型梯度裁剪阈值(<=0禁用)")
     parser.add_argument("--student_min_lr", type=float, default=1e-5, help="学生模型最小学习率(用于自适应降速)")
@@ -260,6 +263,9 @@ def run_pipeline(args):
             scheduler_patience=args.student_lr_patience,
             scheduler_factor=args.student_lr_factor,
             min_lr=args.student_min_lr,
+            lamb_hard=args.lamb_hard,
+            lamb_s_adapt=args.lamb_s_adapt,
+            adaptive_sinkhorn_tau=args.adaptive_sinkhorn_tau,
         )
         
         # 移动到输出目录

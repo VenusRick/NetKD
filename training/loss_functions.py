@@ -132,6 +132,10 @@ def distillation_loss(
     lamb_f: float = 0.5,
     lamb_r: float = 0.5,
     lamb_s: float = 0.1,
+    lamb_hard: float = 0.0,
+    teacher_logits_raw: list[torch.Tensor] | None = None,
+    lamb_s_adapt: float = 0.0,
+    adaptive_sinkhorn_tau: float = 1.0,
 ) -> torch.Tensor:
     """Composite distillation loss for SD-MKD with improved numerical stability.
 
@@ -145,6 +149,10 @@ def distillation_loss(
         lamb_r: Weight for reverse KL loss.
         lamb_s: Weight for Sinkhorn loss.
         cost_matrix: Precomputed class cost matrix ``[C, C]``.
+        lamb_hard: Weight for teacher hard-label CE (pseudo labels) loss.
+        teacher_logits_raw: Optional list of teacher logits for adaptive Sinkhorn.
+        lamb_s_adapt: Weight for adaptive Sinkhorn loss across teachers.
+        adaptive_sinkhorn_tau: Temperature for adaptive Sinkhorn weighting (smaller=sharper).
     """
     # Check for NaN in inputs
     if torch.isnan(student_logits).any() or torch.isnan(teacher_logits).any():
@@ -160,11 +168,38 @@ def distillation_loss(
     L_r = reverse_kl(P_t_T, P_s_T)
     L_s = sinkhorn_distance(P_t_T, P_s_T, cost_matrix)
 
-    total_loss = lamb_ce * L_ce + lamb_f * L_f + lamb_r * L_r + lamb_s * L_s
+    L_hard = torch.tensor(0.0, device=student_logits.device, dtype=student_logits.dtype)
+    if lamb_hard > 0:
+        pseudo_labels = teacher_logits.detach().argmax(dim=1)
+        L_hard = F.cross_entropy(student_logits, pseudo_labels)
+
+    L_s_adapt = torch.tensor(0.0, device=student_logits.device, dtype=student_logits.dtype)
+    if lamb_s_adapt > 0 and teacher_logits_raw:
+        P_s_temp = P_s_T  # reuse temperature-smoothed student probs
+        per_teacher_losses = []
+        for logits_t in teacher_logits_raw:
+            P_ti = softmax_with_temperature(logits_t, T).detach()
+            per_teacher_losses.append(sinkhorn_distance(P_ti, P_s_temp, cost_matrix))
+        loss_vec = torch.stack(per_teacher_losses)  # [num_teachers]
+        weights = torch.softmax(loss_vec / max(1e-6, adaptive_sinkhorn_tau), dim=0)
+        L_s_adapt = torch.sum(weights * loss_vec)
+
+    total_loss = (
+        lamb_ce * L_ce
+        + lamb_f * L_f
+        + lamb_r * L_r
+        + lamb_s * L_s
+        + lamb_hard * L_hard
+        + lamb_s_adapt * L_s_adapt
+    )
     
     # Final NaN check
     if torch.isnan(total_loss) or torch.isinf(total_loss):
-        print(f"Warning: NaN/Inf in total loss! L_ce={L_ce:.4f}, L_f={L_f:.4f}, L_r={L_r:.4f}, L_s={L_s:.4f}")
+        print(
+            "Warning: NaN/Inf in total loss! "
+            f"L_ce={L_ce:.4f}, L_f={L_f:.4f}, L_r={L_r:.4f}, L_s={L_s:.4f}, "
+            f"L_hard={L_hard:.4f}, L_s_adapt={L_s_adapt:.4f}"
+        )
         return torch.tensor(0.0, device=student_logits.device, requires_grad=True)
     
     return total_loss
