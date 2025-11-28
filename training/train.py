@@ -63,6 +63,19 @@ def _validate_classifier(model: nn.Module, loader: DataLoader, device: torch.dev
     return val_loss, val_acc
 
 
+def _maybe_data_parallel(model: nn.Module, device: torch.device, enable: bool = True) -> nn.Module:
+    """Optionally wrap model with DataParallel when explicitly allowed."""
+    model = model.to(device)
+    if enable and device.type == "cuda" and torch.cuda.device_count() > 1:
+        return nn.DataParallel(model)
+    return model
+
+
+def _unwrap_model(model: nn.Module) -> nn.Module:
+    """Return the underlying module when DataParallel is used."""
+    return model.module if isinstance(model, nn.DataParallel) else model
+
+
 # ---------------------------------------------------------------------------
 # Stage I: teacher pretraining
 # ---------------------------------------------------------------------------
@@ -73,7 +86,7 @@ def train_teachers(
     val_loader_A: DataLoader,
     num_classes: int,
     device: torch.device,
-    num_epochs_teacher: int = 1,
+    num_epochs_teacher: int = 20,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
     teacher_pretrained: bool = True,
@@ -82,16 +95,44 @@ def train_teachers(
     scheduler_factor: float = 0.5,
     min_lr: float = 1e-6,
     monitor: LiveTrainingMonitor | None = None,
+    teacher_eca: Dict[str, bool] | None = None,
+    allow_data_parallel: bool = False,
 ) -> Dict[str, str]:
     """Train three teachers independently and save checkpoints.
 
     Returns a mapping from teacher name to checkpoint path for convenience.
     """
 
+    teacher_eca = teacher_eca or {}
+    use_data_parallel = allow_data_parallel and device.type == "cuda" and torch.cuda.device_count() > 1
     teachers = {
-        "resnet50": ResNet50Teacher(num_classes, pretrained=teacher_pretrained).to(device),
-        "mbv3": MobileNetV3LargeTeacher(num_classes, pretrained=teacher_pretrained).to(device),
-        "densenet121": DenseNet121Teacher(num_classes, pretrained=teacher_pretrained).to(device),
+        "resnet50": _maybe_data_parallel(
+            ResNet50Teacher(
+                num_classes,
+                pretrained=teacher_pretrained,
+                use_eca=teacher_eca.get("resnet50", False),
+            ),
+            device,
+            enable=use_data_parallel,
+        ),
+        "mbv3": _maybe_data_parallel(
+            MobileNetV3LargeTeacher(
+                num_classes,
+                pretrained=teacher_pretrained,
+                use_eca=teacher_eca.get("mbv3", False),
+            ),
+            device,
+            enable=use_data_parallel,
+        ),
+        "densenet121": _maybe_data_parallel(
+            DenseNet121Teacher(
+                num_classes,
+                pretrained=teacher_pretrained,
+                use_eca=teacher_eca.get("densenet121", False),
+            ),
+            device,
+            enable=use_data_parallel,
+        ),
     }
     ckpt_paths: Dict[str, str] = {}
     for name, model in teachers.items():
@@ -125,9 +166,10 @@ def train_teachers(
                 )
             if res.val_acc > best_val_acc:
                 best_val_acc = res.val_acc
-                best_state = model.state_dict()
+                best_state = _unwrap_model(model).state_dict()
         path = f"{name}_teacher.pth"
-        torch.save(best_state or model.state_dict(), path)
+        core_model = _unwrap_model(model)
+        torch.save(best_state or core_model.state_dict(), path)
         ckpt_paths[name] = path
         if monitor:
             monitor.stage_end(stage_name)
@@ -149,16 +191,19 @@ def train_stacking_model_stage(
     weight_decay: float = 1e-4,
     teacher_ckpts: Dict[str, str] | None = None,
     monitor: LiveTrainingMonitor | None = None,
+    teacher_eca: Dict[str, bool] | None = None,
 ) -> str:
     """Train the stacking MLP on top of frozen teachers.
 
     Returns the stacking checkpoint path.
     """
 
+    teacher_eca = teacher_eca or {}
+
     # Load teachers
-    t1 = ResNet50Teacher(num_classes, pretrained=False)
-    t2 = MobileNetV3LargeTeacher(num_classes, pretrained=False)
-    t3 = DenseNet121Teacher(num_classes, pretrained=False)
+    t1 = ResNet50Teacher(num_classes, pretrained=False, use_eca=teacher_eca.get("resnet50", False))
+    t2 = MobileNetV3LargeTeacher(num_classes, pretrained=False, use_eca=teacher_eca.get("mbv3", False))
+    t3 = DenseNet121Teacher(num_classes, pretrained=False, use_eca=teacher_eca.get("densenet121", False))
     if teacher_ckpts:
         t1.load_state_dict(torch.load(teacher_ckpts["resnet50"], map_location="cpu"))
         t2.load_state_dict(torch.load(teacher_ckpts["mbv3"], map_location="cpu"))
@@ -224,6 +269,7 @@ def train_student_stage(
     lamb_hard: float = 0.0,
     lamb_s_adapt: float = 0.0,
     adaptive_sinkhorn_tau: float = 1.0,
+    distill_mode: str = "full",  # ce/kl/kl2/full
     num_epochs_student: int = 1,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
@@ -235,13 +281,17 @@ def train_student_stage(
     stacking_ckpt: str | None = None,
     monitor: LiveTrainingMonitor | None = None,
     pretrain_ckpt_path: str | None = None,
+    teacher_eca: Dict[str, bool] | None = None,
+    allow_data_parallel: bool = False,
 ) -> str:
     """Distill the student from frozen teachers + stacking ensemble."""
 
+    teacher_eca = teacher_eca or {}
+
     # Load frozen teachers and stacking
-    t1 = ResNet50Teacher(num_classes, pretrained=False)
-    t2 = MobileNetV3LargeTeacher(num_classes, pretrained=False)
-    t3 = DenseNet121Teacher(num_classes, pretrained=False)
+    t1 = ResNet50Teacher(num_classes, pretrained=False, use_eca=teacher_eca.get("resnet50", False))
+    t2 = MobileNetV3LargeTeacher(num_classes, pretrained=False, use_eca=teacher_eca.get("mbv3", False))
+    t3 = DenseNet121Teacher(num_classes, pretrained=False, use_eca=teacher_eca.get("densenet121", False))
     stacking = StackingModel(num_classes=num_classes)
 
     if teacher_ckpts:
@@ -256,12 +306,18 @@ def train_student_stage(
         for p in m.parameters():
             p.requires_grad = False
 
-    student = StudentNet(num_classes=num_classes).to(device)
+    student = StudentNet(num_classes=num_classes)
+    student = _maybe_data_parallel(
+        student,
+        device,
+        enable=(allow_data_parallel and device.type == "cuda" and torch.cuda.device_count() > 1),
+    )
+    student_core = _unwrap_model(student)
     # Load pretrained backbone if provided
     if pretrain_ckpt_path:
         print(f"Loading pretrained backbone from {pretrain_ckpt_path}")
         pretrained_state = torch.load(pretrain_ckpt_path, map_location="cpu")
-        student.backbone.load_state_dict(pretrained_state, strict=False)
+        student_core.backbone.load_state_dict(pretrained_state, strict=False)
         print("✅ Pretrained backbone loaded successfully")
 
     optimizer = torch.optim.AdamW(student.parameters(), lr=lr, weight_decay=weight_decay)
@@ -302,6 +358,7 @@ def train_student_stage(
                     teacher_logits_raw=[l1, l2, l3],
                     lamb_s_adapt=lamb_s_adapt,
                     adaptive_sinkhorn_tau=adaptive_sinkhorn_tau,
+                    distill_mode=distill_mode,
                 )
             optimizer.zero_grad()
             scaler.scale(loss).backward()
@@ -322,7 +379,7 @@ def train_student_stage(
             monitor.log("student", epoch, {"train_loss": train_loss, "val_loss": val_loss, "val_acc": val_acc})
 
     student_path = "student_sd_mkd.pth"
-    torch.save(student.state_dict(), student_path)
+    torch.save(student_core.state_dict(), student_path)
     if monitor:
         monitor.stage_end("student")
     return student_path
@@ -339,8 +396,19 @@ def _make_dummy_loader(num_samples: int, num_classes: int, height: int, width: i
     return DataLoader(TensorDataset(x, y), batch_size=batch_size, shuffle=True)
 
 
-def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMonitor | None = None):
+def run_demo_pipeline(
+    mode: str,
+    device: torch.device,
+    monitor: LiveTrainingMonitor | None = None,
+    teacher_eca: Dict[str, bool] | None = None,
+    allow_data_parallel: bool = False,
+):
     num_classes = 5
+    teacher_eca = teacher_eca or {
+        "resnet50": False,
+        "mbv3": False,
+        "densenet121": False,
+    }
     h = w = 32
     batch_size = 8
 
@@ -370,6 +438,8 @@ def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMoni
             teacher_pretrained=False,
             class_weights=None,
             monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=allow_data_parallel,
         )
 
     def _ensure_stacking(existing_teachers: Dict[str, str]) -> str:
@@ -384,10 +454,19 @@ def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMoni
             device,
             teacher_ckpts=existing_teachers,
             monitor=monitor,
+            teacher_eca=teacher_eca,
         )
 
     if mode == "train_teachers":
-        train_teachers(train_A, val_A, num_classes, device, monitor=monitor)
+        train_teachers(
+            train_A,
+            val_A,
+            num_classes,
+            device,
+            monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=allow_data_parallel,
+        )
     elif mode == "train_stacking":
         teacher_ckpts = _ensure_teachers()
         train_stacking_model_stage(
@@ -397,6 +476,7 @@ def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMoni
             device,
             teacher_ckpts=teacher_ckpts,
             monitor=monitor,
+            teacher_eca=teacher_eca,
         )
     elif mode == "train_student":
         teacher_ckpts = _ensure_teachers()
@@ -409,6 +489,8 @@ def run_demo_pipeline(mode: str, device: torch.device, monitor: LiveTrainingMoni
             teacher_ckpts=teacher_ckpts,
             stacking_ckpt=stacking_ckpt,
             monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=allow_data_parallel,
         )
     else:
         raise ValueError(f"Unsupported mode: {mode}")
@@ -424,7 +506,7 @@ def run_real_pipeline(
     val_ratio: float = 0.15,
     test_ratio: float = 0.15,
     max_samples_per_class: int | None = None,
-    num_epochs_teacher: int = 5,
+    num_epochs_teacher: int = 20,
     num_epochs_stacking: int = 5,
     num_epochs_student: int = 10,
     lr: float = 1e-3,
@@ -447,8 +529,16 @@ def run_real_pipeline(
     use_class_weights: bool = True,
     force_retrain_teachers: bool = False,
     monitor: LiveTrainingMonitor | None = None,
+    teacher_eca: Dict[str, bool] | None = None,
+    allow_data_parallel: bool = False,
 ) -> Dict[str, str]:
     """Run teacher/stacking/student stages on real preprocessed image data."""
+
+    teacher_eca = teacher_eca or {
+        "resnet50": False,
+        "mbv3": False,
+        "densenet121": False,
+    }
 
     # Load dataset
     train_loader, val_loader, test_loader, meta = quick_load_dataset(
@@ -494,8 +584,10 @@ def run_real_pipeline(
             class_weights=class_weights,
             scheduler_patience=student_lr_patience,
             scheduler_factor=student_lr_factor,
-            min_lr=student_min_lr,
+            min_lr=1e-6,
             monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=allow_data_parallel,
         )
         # Move to output dir
         for k, src in ckpts.items():
@@ -518,6 +610,7 @@ def run_real_pipeline(
             lr=lr,
             weight_decay=weight_decay,
             monitor=monitor,
+            teacher_eca=teacher_eca,
         )
         Path(ckpt).replace(path)
         return path
@@ -557,6 +650,8 @@ def run_real_pipeline(
             scheduler_factor=student_lr_factor,
             pretrain_ckpt_path=pretrain_ckpt_path,
             min_lr=student_min_lr,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=allow_data_parallel,
         )
         target = _ckpt(Path(student_ckpt).name)
         Path(student_ckpt).replace(target)
@@ -588,7 +683,7 @@ def main():
     parser.add_argument("--val_ratio", type=float, default=0.15)
     parser.add_argument("--test_ratio", type=float, default=0.15)
     parser.add_argument("--max_samples_per_class", type=int, default=0, help="0 for all samples")
-    parser.add_argument("--epochs_teacher", type=int, default=5)
+    parser.add_argument("--epochs_teacher", type=int, default=20)
     parser.add_argument("--epochs_stacking", type=int, default=5)
     parser.add_argument("--epochs_student", type=int, default=10)
     parser.add_argument("--lr", type=float, default=1e-3)
@@ -604,8 +699,14 @@ def main():
     parser.add_argument("--lamb_s", type=float, default=0.1)
     parser.add_argument("--lamb_hard", type=float, default=0.0)
     parser.add_argument("--lamb_s_adapt", type=float, default=0.0)
+    parser.add_argument("--distill_mode", type=str, default="full",
+                        choices=["ce", "kl", "kl2", "full"],
+                        help="Distillation mode: ce(CE only), kl(CE+FKL), kl2(CE+FKL+RKL), full(CE+FKL+RKL+Sinkhorn)")
     parser.add_argument("--adaptive_sinkhorn_tau", type=float, default=1.0)
     parser.add_argument("--output_dir", type=str, default="./checkpoints")
+    parser.add_argument("--allow_data_parallel", action="store_true", help="Enable nn.DataParallel when multiple GPUs are visible")
+    parser.add_argument("--resnet_use_eca", action="store_true", help="Enable ECA block for ResNet50 teacher")
+    parser.add_argument("--mbv3_use_eca", action="store_true", help="Enable ECA block for MobileNetV3 teacher")
     parser.add_argument("--load_pretrain_ckpt", type=str, default=None, help="Path to pretrained backbone checkpoint")
     parser.add_argument(
         "--teacher_pretrained",
@@ -634,6 +735,11 @@ def main():
     args = parser.parse_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     monitor = LiveTrainingMonitor()
+    teacher_eca = {
+        "resnet50": args.resnet_use_eca,
+        "mbv3": args.mbv3_use_eca,
+        "densenet121": False,
+    }
     if args.use_real_data:
         run_real_pipeline(
             mode=args.mode,
@@ -662,15 +768,24 @@ def main():
             lamb_hard=args.lamb_hard,
             lamb_s_adapt=args.lamb_s_adapt,
             adaptive_sinkhorn_tau=args.adaptive_sinkhorn_tau,
+            distill_mode=args.distill_mode,
             output_dir=args.output_dir,
             teacher_pretrained=args.teacher_pretrained,
             use_class_weights=args.use_class_weights,
             force_retrain_teachers=args.force_retrain_teachers,
             pretrain_ckpt_path=args.load_pretrain_ckpt,
             monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=args.allow_data_parallel,
         )
     else:
-        run_demo_pipeline(args.mode, device, monitor=monitor)
+        run_demo_pipeline(
+            args.mode,
+            device,
+            monitor=monitor,
+            teacher_eca=teacher_eca,
+            allow_data_parallel=args.allow_data_parallel,
+        )
 
 
 if __name__ == "__main__":

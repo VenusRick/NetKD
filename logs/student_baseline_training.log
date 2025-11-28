@@ -1,0 +1,9 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/walnut_data/yqm/NetKD/train_student_only.py", line 6, in <module>
+    from experiments.sd_mkd import ExperimentConfig, run_experiment
+  File "/walnut_data/yqm/NetKD/experiments/__init__.py", line 6, in <module>
+    from .sd_mkd import train_student as sd_mkd_train_student
+  File "/walnut_data/yqm/NetKD/experiments/sd_mkd.py", line 10, in <module>
+    from train_with_real_data import run_pipeline
+ModuleNotFoundError: No module named 'train_with_real_data'

@@ -1,0 +1,46 @@
+nohup: ignoring input
+等待Agent Attention修复版实验完成...
+当前时间: 21:16:45
+
+[21:16:45] Epoch 19/50 | 最新Val Acc: 87.64%
+[21:17:15] Epoch 26/50 | 最新Val Acc: 91.76%
+[21:17:45] Epoch 32/50 | 最新Val Acc: 93.64%
+[21:18:15] Epoch 39/50 | 最新Val Acc: 95.59%
+[21:18:45] Epoch 46/50 | 最新Val Acc: 95.66%
+[21:19:15] Epoch 50/50 | 最新Val Acc: 95.45%
+[21:19:45] Epoch 50/50 | 最新Val Acc: 95.45%
+[21:20:15] Epoch 50/50 | 最新Val Acc: 95.45%
+
+✓ 实验已完成! 时间: 21:20:45
+
+Agent Attention修复版结果:
+  "best_acc": 0.9595375722543352,
+  "best_epoch": 44,
+  "total_params": 9807223,
+  "training_time": 212.44837260246277,
+
+复制结果到原消融目录...
+✓ 结果已更新
+
+重新绘制对比图...
+Traceback (most recent call last):
+  File "/walnut_data/yqm/NetKD/scripts/plot_attention_results.py", line 34, in <module>
+    data[att_type] = json.load(f)
+                     ^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 97 column 13 (char 2472)
+
+==========================================
+✓ 所有任务完成!
+图表位置: docs/attention_ablation_results.png
+==========================================

@@ -1,0 +1,185 @@
+Detected pre-split layout, using provided train/val/test folders under: /walnut_data/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+[Monitor] >>> Stage 'teacher_resnet50' started (25 epochs)
+[Teacher resnet50] epoch=1 train_loss=1.1451 val_loss=2.2115 val_acc=0.1511
+[Monitor][teacher_resnet50] epoch 1/25 | train_loss=1.1451 | val_loss=2.2115 | val_acc=0.1511
+[Teacher resnet50] epoch=2 train_loss=0.7624 val_loss=2.9833 val_acc=0.2538
+[Monitor][teacher_resnet50] epoch 2/25 | train_loss=0.7624 | val_loss=2.9833 | val_acc=0.2538 | Δacc=+0.1027
+[Teacher resnet50] epoch=3 train_loss=0.6717 val_loss=1.3481 val_acc=0.5242
+[Monitor][teacher_resnet50] epoch 3/25 | train_loss=0.6717 | val_loss=1.3481 | val_acc=0.5242 | Δacc=+0.2704
+[Teacher resnet50] epoch=4 train_loss=0.6040 val_loss=0.8500 val_acc=0.7484
+[Monitor][teacher_resnet50] epoch 4/25 | train_loss=0.6040 | val_loss=0.8500 | val_acc=0.7484 | Δacc=+0.2242
+[Teacher resnet50] epoch=5 train_loss=0.5450 val_loss=0.3362 val_acc=0.9255
+[Monitor][teacher_resnet50] epoch 5/25 | train_loss=0.5450 | val_loss=0.3362 | val_acc=0.9255 | Δacc=+0.1772
+[Teacher resnet50] epoch=6 train_loss=0.5151 val_loss=0.3107 val_acc=0.9364
+[Monitor][teacher_resnet50] epoch 6/25 | train_loss=0.5151 | val_loss=0.3107 | val_acc=0.9364 | Δacc=+0.0108
+[Teacher resnet50] epoch=7 train_loss=0.4903 val_loss=0.3287 val_acc=0.9284
+[Monitor][teacher_resnet50] epoch 7/25 | train_loss=0.4903 | val_loss=0.3287 | val_acc=0.9284 | Δacc=-0.0080
+[Teacher resnet50] epoch=8 train_loss=0.4733 val_loss=0.2434 val_acc=0.9566
+[Monitor][teacher_resnet50] epoch 8/25 | train_loss=0.4733 | val_loss=0.2434 | val_acc=0.9566 | Δacc=+0.0282
+[Teacher resnet50] epoch=9 train_loss=0.4558 val_loss=0.2753 val_acc=0.9573
+[Monitor][teacher_resnet50] epoch 9/25 | train_loss=0.4558 | val_loss=0.2753 | val_acc=0.9573 | Δacc=+0.0007
+[Teacher resnet50] epoch=10 train_loss=0.4421 val_loss=0.2909 val_acc=0.9494
+[Monitor][teacher_resnet50] epoch 10/25 | train_loss=0.4421 | val_loss=0.2909 | val_acc=0.9494 | Δacc=-0.0080
+[Teacher resnet50] epoch=11 train_loss=0.4554 val_loss=0.2790 val_acc=0.9516
+[Monitor][teacher_resnet50] epoch 11/25 | train_loss=0.4554 | val_loss=0.2790 | val_acc=0.9516 | Δacc=+0.0022
+[Teacher resnet50] epoch=12 train_loss=0.4222 val_loss=0.1866 val_acc=0.9783
+[Monitor][teacher_resnet50] epoch 12/25 | train_loss=0.4222 | val_loss=0.1866 | val_acc=0.9783 | Δacc=+0.0268
+[Teacher resnet50] epoch=13 train_loss=0.4005 val_loss=0.1740 val_acc=0.9812
+[Monitor][teacher_resnet50] epoch 13/25 | train_loss=0.4005 | val_loss=0.1740 | val_acc=0.9812 | Δacc=+0.0029
+[Teacher resnet50] epoch=14 train_loss=0.3940 val_loss=0.1815 val_acc=0.9834
+[Monitor][teacher_resnet50] epoch 14/25 | train_loss=0.3940 | val_loss=0.1815 | val_acc=0.9834 | Δacc=+0.0022
+[Teacher resnet50] epoch=15 train_loss=0.3905 val_loss=0.1662 val_acc=0.9855
+[Monitor][teacher_resnet50] epoch 15/25 | train_loss=0.3905 | val_loss=0.1662 | val_acc=0.9855 | Δacc=+0.0022
+[Teacher resnet50] epoch=16 train_loss=0.3864 val_loss=0.1722 val_acc=0.9841
+[Monitor][teacher_resnet50] epoch 16/25 | train_loss=0.3864 | val_loss=0.1722 | val_acc=0.9841 | Δacc=-0.0014
+[Teacher resnet50] epoch=17 train_loss=0.3863 val_loss=0.1779 val_acc=0.9776
+[Monitor][teacher_resnet50] epoch 17/25 | train_loss=0.3863 | val_loss=0.1779 | val_acc=0.9776 | Δacc=-0.0065
+[Teacher resnet50] epoch=18 train_loss=0.3843 val_loss=0.1681 val_acc=0.9884
+[Monitor][teacher_resnet50] epoch 18/25 | train_loss=0.3843 | val_loss=0.1681 | val_acc=0.9884 | Δacc=+0.0108
+[Teacher resnet50] epoch=19 train_loss=0.3811 val_loss=0.1580 val_acc=0.9892
+[Monitor][teacher_resnet50] epoch 19/25 | train_loss=0.3811 | val_loss=0.1580 | val_acc=0.9892 | Δacc=+0.0007
+[Teacher resnet50] epoch=20 train_loss=0.3784 val_loss=0.1535 val_acc=0.9906
+[Monitor][teacher_resnet50] epoch 20/25 | train_loss=0.3784 | val_loss=0.1535 | val_acc=0.9906 | Δacc=+0.0014
+[Teacher resnet50] epoch=21 train_loss=0.3767 val_loss=0.1589 val_acc=0.9884
+[Monitor][teacher_resnet50] epoch 21/25 | train_loss=0.3767 | val_loss=0.1589 | val_acc=0.9884 | Δacc=-0.0022
+[Teacher resnet50] epoch=22 train_loss=0.3761 val_loss=0.1545 val_acc=0.9906
+[Monitor][teacher_resnet50] epoch 22/25 | train_loss=0.3761 | val_loss=0.1545 | val_acc=0.9906 | Δacc=+0.0022
+[Teacher resnet50] epoch=23 train_loss=0.3760 val_loss=0.1535 val_acc=0.9899
+[Monitor][teacher_resnet50] epoch 23/25 | train_loss=0.3760 | val_loss=0.1535 | val_acc=0.9899 | Δacc=-0.0007
+[Teacher resnet50] epoch=24 train_loss=0.3753 val_loss=0.1620 val_acc=0.9899
+[Monitor][teacher_resnet50] epoch 24/25 | train_loss=0.3753 | val_loss=0.1620 | val_acc=0.9899 | Δacc=+0.0000
+[Teacher resnet50] epoch=25 train_loss=0.3761 val_loss=0.1539 val_acc=0.9892
+[Monitor][teacher_resnet50] epoch 25/25 | train_loss=0.3761 | val_loss=0.1539 | val_acc=0.9892 | Δacc=-0.0007
+[Monitor] <<< Stage 'teacher_resnet50' finished after 25 epochs | final acc=0.9892
+[Monitor] >>> Stage 'teacher_mbv3' started (25 epochs)
+[Teacher mbv3] epoch=1 train_loss=1.2686 val_loss=2.6806 val_acc=0.1280
+[Monitor][teacher_mbv3] epoch 1/25 | train_loss=1.2686 | val_loss=2.6806 | val_acc=0.1280
+[Teacher mbv3] epoch=2 train_loss=0.8045 val_loss=2.9873 val_acc=0.1012
+[Monitor][teacher_mbv3] epoch 2/25 | train_loss=0.8045 | val_loss=2.9873 | val_acc=0.1012 | Δacc=-0.0268
+[Teacher mbv3] epoch=3 train_loss=0.6690 val_loss=2.5403 val_acc=0.0716
+[Monitor][teacher_mbv3] epoch 3/25 | train_loss=0.6690 | val_loss=2.5403 | val_acc=0.0716 | Δacc=-0.0296
+[Teacher mbv3] epoch=4 train_loss=0.5905 val_loss=2.0041 val_acc=0.1410
+[Monitor][teacher_mbv3] epoch 4/25 | train_loss=0.5905 | val_loss=2.0041 | val_acc=0.1410 | Δacc=+0.0694
+[Teacher mbv3] epoch=5 train_loss=0.5432 val_loss=1.8819 val_acc=0.2025
+[Monitor][teacher_mbv3] epoch 5/25 | train_loss=0.5432 | val_loss=1.8819 | val_acc=0.2025 | Δacc=+0.0615
+[Teacher mbv3] epoch=6 train_loss=0.5190 val_loss=2.4416 val_acc=0.1598
+[Monitor][teacher_mbv3] epoch 6/25 | train_loss=0.5190 | val_loss=2.4416 | val_acc=0.1598 | Δacc=-0.0427
+[Teacher mbv3] epoch=7 train_loss=0.4934 val_loss=2.1536 val_acc=0.3398
+[Monitor][teacher_mbv3] epoch 7/25 | train_loss=0.4934 | val_loss=2.1536 | val_acc=0.3398 | Δacc=+0.1800
+[Teacher mbv3] epoch=8 train_loss=0.4704 val_loss=2.0980 val_acc=0.2683
+[Monitor][teacher_mbv3] epoch 8/25 | train_loss=0.4704 | val_loss=2.0980 | val_acc=0.2683 | Δacc=-0.0716
+[Teacher mbv3] epoch=9 train_loss=0.4425 val_loss=2.0617 val_acc=0.4020
+[Monitor][teacher_mbv3] epoch 9/25 | train_loss=0.4425 | val_loss=2.0617 | val_acc=0.4020 | Δacc=+0.1338
+[Teacher mbv3] epoch=10 train_loss=0.4219 val_loss=2.2501 val_acc=0.3666
+[Monitor][teacher_mbv3] epoch 10/25 | train_loss=0.4219 | val_loss=2.2501 | val_acc=0.3666 | Δacc=-0.0354
+[Teacher mbv3] epoch=11 train_loss=0.4074 val_loss=2.2549 val_acc=0.3912
+[Monitor][teacher_mbv3] epoch 11/25 | train_loss=0.4074 | val_loss=2.2549 | val_acc=0.3912 | Δacc=+0.0246
+[Teacher mbv3] epoch=12 train_loss=0.4001 val_loss=2.2784 val_acc=0.4064
+[Monitor][teacher_mbv3] epoch 12/25 | train_loss=0.4001 | val_loss=2.2784 | val_acc=0.4064 | Δacc=+0.0152
+[Teacher mbv3] epoch=13 train_loss=0.3963 val_loss=2.2731 val_acc=0.4035
+[Monitor][teacher_mbv3] epoch 13/25 | train_loss=0.3963 | val_loss=2.2731 | val_acc=0.4035 | Δacc=-0.0029
+[Teacher mbv3] epoch=14 train_loss=0.3938 val_loss=2.2790 val_acc=0.3962
+[Monitor][teacher_mbv3] epoch 14/25 | train_loss=0.3938 | val_loss=2.2790 | val_acc=0.3962 | Δacc=-0.0072
+[Teacher mbv3] epoch=15 train_loss=0.3917 val_loss=2.3407 val_acc=0.3695
+[Monitor][teacher_mbv3] epoch 15/25 | train_loss=0.3917 | val_loss=2.3407 | val_acc=0.3695 | Δacc=-0.0268
+[Teacher mbv3] epoch=16 train_loss=0.3895 val_loss=2.3725 val_acc=0.3275
+[Monitor][teacher_mbv3] epoch 16/25 | train_loss=0.3895 | val_loss=2.3725 | val_acc=0.3275 | Δacc=-0.0419
+[Teacher mbv3] epoch=17 train_loss=0.3901 val_loss=2.3412 val_acc=0.3435
+[Monitor][teacher_mbv3] epoch 17/25 | train_loss=0.3901 | val_loss=2.3412 | val_acc=0.3435 | Δacc=+0.0159
+[Teacher mbv3] epoch=18 train_loss=0.3884 val_loss=2.2662 val_acc=0.3695
+[Monitor][teacher_mbv3] epoch 18/25 | train_loss=0.3884 | val_loss=2.2662 | val_acc=0.3695 | Δacc=+0.0260
+[Teacher mbv3] epoch=19 train_loss=0.3890 val_loss=2.1360 val_acc=0.3500
+[Monitor][teacher_mbv3] epoch 19/25 | train_loss=0.3890 | val_loss=2.1360 | val_acc=0.3500 | Δacc=-0.0195
+[Teacher mbv3] epoch=20 train_loss=0.3873 val_loss=2.0056 val_acc=0.3767ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).
+ ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).
+ ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).
+ ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).
+ ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).
+ 
+[Monitor][teacher_mbv3] epoch 20/25 | train_loss=0.3873 | val_loss=2.0056 | val_acc=0.3767 | Δacc=+0.0268
+[Teacher mbv3] epoch=21 train_loss=0.3877 val_loss=1.8807 val_acc=0.3847
+[Monitor][teacher_mbv3] epoch 21/25 | train_loss=0.3877 | val_loss=1.8807 | val_acc=0.3847 | Δacc=+0.0080
+[Teacher mbv3] epoch=22 train_loss=0.3874 val_loss=1.7097 val_acc=0.4129
+[Monitor][teacher_mbv3] epoch 22/25 | train_loss=0.3874 | val_loss=1.7097 | val_acc=0.4129 | Δacc=+0.0282
+[Teacher mbv3] epoch=23 train_loss=0.3872 val_loss=1.5329 val_acc=0.4888
+[Monitor][teacher_mbv3] epoch 23/25 | train_loss=0.3872 | val_loss=1.5329 | val_acc=0.4888 | Δacc=+0.0759
+[Teacher mbv3] epoch=24 train_loss=0.3870 val_loss=1.4022 val_acc=0.5625
+[Monitor][teacher_mbv3] epoch 24/25 | train_loss=0.3870 | val_loss=1.4022 | val_acc=0.5625 | Δacc=+0.0738
+[Teacher mbv3] epoch=25 train_loss=0.3872 val_loss=1.3354 val_acc=0.5886
+[Monitor][teacher_mbv3] epoch 25/25 | train_loss=0.3872 | val_loss=1.3354 | val_acc=0.5886 | Δacc=+0.0260
+[Monitor] <<< Stage 'teacher_mbv3' finished after 25 epochs | final acc=0.5886
+[Monitor] >>> Stage 'teacher_densenet121' started (25 epochs)
+Traceback (most recent call last):
+  File "/walnut_data/yqm/NetKD/training/train.py", line 762, in <module>
+    main()
+  File "/walnut_data/yqm/NetKD/training/train.py", line 722, in main
+    run_real_pipeline(
+  File "/walnut_data/yqm/NetKD/training/train.py", line 604, in run_real_pipeline
+    results = _ensure_teachers()
+              ^^^^^^^^^^^^^^^^^^
+  File "/walnut_data/yqm/NetKD/training/train.py", line 559, in _ensure_teachers
+    ckpts = train_teachers(
+            ^^^^^^^^^^^^^^^
+  File "/walnut_data/yqm/NetKD/training/train.py", line 143, in train_teachers
+    for res in train_single_teacher(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/walnut_data/yqm/NetKD/models/teacher_models.py", line 270, in train_single_teacher
+    logits = model(x)
+             ^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/parallel/data_parallel.py", line 194, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/parallel/data_parallel.py", line 213, in parallel_apply
+    return parallel_apply(
+           ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/parallel/parallel_apply.py", line 121, in parallel_apply
+    thread.join()
+  File "/root/miniconda3/lib/python3.12/threading.py", line 1149, in join
+    self._wait_for_tstate_lock()
+  File "/root/miniconda3/lib/python3.12/threading.py", line 1169, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 567706) is killed by signal: Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.
+Exception in thread Thread-1 (_pin_memory_loop):
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "/root/miniconda3/lib/python3.12/threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/pin_memory.py", line 61, in _pin_memory_loop
+    do_one_step()
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/utils/data/_utils/pin_memory.py", line 37, in do_one_step
+    r = in_queue.get(timeout=MP_STATUS_CHECK_INTERVAL)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/multiprocessing/reductions.py", line 541, in rebuild_storage_fd
+    fd = df.detach()
+         ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/resource_sharer.py", line 58, in detach
+    return reduction.recv_handle(conn)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/reduction.py", line 189, in recv_handle
+    return recvfds(s, 1)[0]
+           ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/reduction.py", line 157, in recvfds
+    msg, ancdata, flags, addr = sock.recvmsg(1, socket.CMSG_SPACE(bytes_size))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 104] Connection reset by peer
+ERROR conda.cli.main_run:execute(127): `conda run python training/train.py --use_real_data --mode train_teachers --dataset ISCXVPN2016 --dataset_root /walnut_data/yqm/Dataset --batch_size 512 --num_workers 8 --epochs_teacher 25 --output_dir checkpoints/eca_teachers_bs512 --resnet_use_eca --mbv3_use_eca --force_retrain_teachers` failed. (See above for error)

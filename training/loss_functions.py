@@ -136,6 +136,7 @@ def distillation_loss(
     teacher_logits_raw: list[torch.Tensor] | None = None,
     lamb_s_adapt: float = 0.0,
     adaptive_sinkhorn_tau: float = 1.0,
+    distill_mode: str = "full",  # ce/kl/kl2/full
 ) -> torch.Tensor:
     """Composite distillation loss for SD-MKD with improved numerical stability.
 
@@ -184,14 +185,26 @@ def distillation_loss(
         weights = torch.softmax(loss_vec / max(1e-6, adaptive_sinkhorn_tau), dim=0)
         L_s_adapt = torch.sum(weights * loss_vec)
 
-    total_loss = (
-        lamb_ce * L_ce
-        + lamb_f * L_f
-        + lamb_r * L_r
-        + lamb_s * L_s
-        + lamb_hard * L_hard
-        + lamb_s_adapt * L_s_adapt
-    )
+    # 根据distill_mode选择性计算损失
+    if distill_mode == "ce":
+        # S-CE: 仅硬标签
+        total_loss = L_ce
+    elif distill_mode == "kl":
+        # S-KL: CE + Forward KL
+        total_loss = lamb_ce * L_ce + lamb_f * L_f
+    elif distill_mode == "kl2":
+        # S-KL2: CE + Forward KL + Reverse KL
+        total_loss = lamb_ce * L_ce + lamb_f * L_f + lamb_r * L_r
+    else:  # distill_mode == "full"
+        # S-Full: 完整多分布蒸馏
+        total_loss = (
+            lamb_ce * L_ce
+            + lamb_f * L_f
+            + lamb_r * L_r
+            + lamb_s * L_s
+            + lamb_hard * L_hard
+            + lamb_s_adapt * L_s_adapt
+        )
     
     # Final NaN check
     if torch.isnan(total_loss) or torch.isinf(total_loss):

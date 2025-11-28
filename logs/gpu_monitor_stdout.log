@@ -1,0 +1,5 @@
+nohup: ignoring input
+  File "/walnut_data/yqm/NetKD/scripts/monitor_gpu.py", line 91
+    print("
+          ^
+SyntaxError: unterminated string literal (detected at line 91)

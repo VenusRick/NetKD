@@ -16,6 +16,16 @@ import torch.nn.functional as F
 import torchvision.models as models
 from torch.utils.data import DataLoader
 
+try:
+    from .eca_module import add_eca_to_densenet_v2,  ECALayer
+except ImportError:
+    ECALayer = None
+
+try:
+    from .eca_module import add_eca_to_densenet_v2,  ECALayer
+except ImportError:
+    ECALayer = None
+
 
 def _adjust_first_conv(module: nn.Module, in_channels: int = 1):
     """Replace the first convolution to accept a different number of channels."""
@@ -43,25 +53,71 @@ def _adjust_first_conv(module: nn.Module, in_channels: int = 1):
 
 
 class ResNet50Teacher(nn.Module):
-    def __init__(self, num_classes: int, pretrained: bool = False):
+    def __init__(self, num_classes: int, pretrained: bool = False, use_eca: bool = False):
         super().__init__()
         base = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1 if pretrained else None)
         _adjust_first_conv(base, in_channels=1)
         in_dim = base.fc.in_features
         base.fc = nn.Linear(in_dim, num_classes)
+        
+        if use_eca and ECALayer is not None:
+            for layer_name in ['layer1', 'layer2', 'layer3', 'layer4']:
+                layer = getattr(base, layer_name)
+                for block in layer:
+                    if hasattr(block, 'conv3'):
+                        out_ch = block.conv3.out_channels
+                        eca_layer = ECALayer(out_ch)
+                        setattr(block, 'eca', eca_layer)
+        
         self.model = base
 
     def forward(self, x):
-        return self.model(x)
+        out = self.model.conv1(x)
+        out = self.model.bn1(out)
+        out = self.model.relu(out)
+        out = self.model.maxpool(out)
+        
+        for layer_name in ['layer1', 'layer2', 'layer3', 'layer4']:
+            layer = getattr(self.model, layer_name)
+            for block in layer:
+                identity = out
+                out = block.conv1(out)
+                out = block.bn1(out)
+                out = block.relu(out)
+                out = block.conv2(out)
+                out = block.bn2(out)
+                out = block.relu(out)
+                out = block.conv3(out)
+                out = block.bn3(out)
+                if hasattr(block, 'eca'):
+                    out = block.eca(out)
+                if block.downsample is not None:
+                    identity = block.downsample(identity)
+                out += identity
+                out = block.relu(out)
+        
+        out = self.model.avgpool(out)
+        out = torch.flatten(out, 1)
+        out = self.model.fc(out)
+        return out
 
 
 class MobileNetV3LargeTeacher(nn.Module):
-    def __init__(self, num_classes: int, pretrained: bool = False):
+    def __init__(self, num_classes: int, pretrained: bool = False, use_eca: bool = False):
         super().__init__()
         base = models.mobilenet_v3_large(weights=models.MobileNet_V3_Large_Weights.IMAGENET1K_V1 if pretrained else None)
         _adjust_first_conv(base, in_channels=1)
         in_dim = base.classifier[-1].in_features
         base.classifier[-1] = nn.Linear(in_dim, num_classes)
+        
+        if use_eca and ECALayer is not None:
+            for block in base.features:
+                if hasattr(block, 'block') and len(block.block) >= 3:
+                    for layer in reversed(list(block.block)):
+                        if isinstance(layer, nn.Conv2d):
+                            setattr(block, 'eca', ECALayer(layer.out_channels))
+                            break
+        
         self.model = base
 
     def forward(self, x):
@@ -69,12 +125,31 @@ class MobileNetV3LargeTeacher(nn.Module):
 
 
 class DenseNet121Teacher(nn.Module):
-    def __init__(self, num_classes: int, pretrained: bool = False):
+    def __init__(self, num_classes: int, pretrained: bool = False, use_eca: bool = False):
         super().__init__()
         base = models.densenet121(weights=models.DenseNet121_Weights.IMAGENET1K_V1 if pretrained else None)
         _adjust_first_conv(base, in_channels=1)
         in_dim = base.classifier.in_features
         base.classifier = nn.Linear(in_dim, num_classes)
+        
+        
+        if use_eca and ECALayer is not None:
+            # Prefer the robust insertion that handles DenseNet internals.
+            try:
+                from .eca_module import add_eca_to_densenet_v2
+                base = add_eca_to_densenet_v2(base)
+            except Exception:
+                # Fallback: best-effort attach ECA to dense blocks
+                for name, module in base.features.named_children():
+                    if 'denseblock' in name:
+                        num_layers = len(list(module.children()))
+                        if num_layers > 0:
+                            first_layer = list(module.children())[0]
+                            if hasattr(first_layer, 'conv2'):
+                                growth_rate = first_layer.conv2.out_channels
+                                total_channels = 64 + num_layers * growth_rate
+                                setattr(module, 'eca', ECALayer(total_channels))
+
         self.model = base
 
     def forward(self, x):
@@ -168,6 +243,7 @@ def train_single_teacher(
     weight_decay: float = 1e-4,
     optimizer_name: str = "adamw",
     class_weights: torch.Tensor | None = None,
+    label_smoothing: float = 0.05,
     scheduler_patience: int = 2,
     scheduler_factor: float = 0.5,
     min_lr: float = 1e-6,
@@ -176,7 +252,7 @@ def train_single_teacher(
 
     model.to(device)
     weight = class_weights.to(device) if class_weights is not None else None
-    criterion = nn.CrossEntropyLoss(weight=weight)
+    criterion = nn.CrossEntropyLoss(weight=weight, label_smoothing=label_smoothing)
     if optimizer_name.lower() == "sgd":
         optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=weight_decay)
     else:
