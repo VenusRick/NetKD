@@ -1,0 +1,91 @@
+{
+  "finetune": {
+    "epochs": 50,
+    "batch_size": 256,
+    "base_lr": 0.001,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 5,
+    "label_smoothing": 0.05,
+    "optimizer": "adamw",
+    "scheduler": "cosine"
+  },
+  "stacking": {
+    "epochs": 30,
+    "batch_size": 256,
+    "base_lr": 0.0005,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 3,
+    "label_smoothing": 0.05,
+    "hidden_dim": 384
+  },
+  "dataloader": {
+    "num_workers": 8,
+    "pin_memory": true
+  },
+  "teachers": {
+    "resnet50": {
+      "class": "ResNet50Teacher",
+      "pretrained": true
+    },
+    "densenet121": {
+      "class": "DenseNet121Teacher",
+      "pretrained": true
+    },
+    "mobilenetv3": {
+      "class": "MobileNetV3LargeTeacher",
+      "pretrained": true
+    },
+    "convnextv2_tiny": {
+      "class": "ConvNeXtV2TinyTeacher",
+      "pretrained": true
+    },
+    "efficientnetv2_s": {
+      "class": "EfficientNetV2STeacher",
+      "pretrained": true
+    }
+  },
+  "eca_ablation": {
+    "teachers_to_test": [
+      "resnet50",
+      "densenet121",
+      "mobilenetv3",
+      "convnextv2_tiny",
+      "efficientnetv2_s"
+    ]
+  },
+  "stacking_sets": {
+    "baseline": [
+      "resnet50",
+      "densenet121",
+      "mobilenetv3"
+    ],
+    "replace_resnet": [
+      "convnextv2_tiny",
+      "densenet121",
+      "mobilenetv3"
+    ],
+    "replace_mobilenet": [
+      "resnet50",
+      "densenet121",
+      "efficientnetv2_s"
+    ],
+    "new_trio": [
+      "convnextv2_tiny",
+      "densenet121",
+      "efficientnetv2_s"
+    ],
+    "quad_ensemble": [
+      "resnet50",
+      "densenet121",
+      "convnextv2_tiny",
+      "efficientnetv2_s"
+    ],
+    "full_ensemble": [
+      "resnet50",
+      "densenet121",
+      "mobilenetv3",
+      "convnextv2_tiny",
+      "efficientnetv2_s"
+    ]
+  }
+}

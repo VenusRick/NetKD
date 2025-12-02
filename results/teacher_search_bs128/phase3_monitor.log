@@ -1,0 +1,22 @@
+nohup: ignoring input
+Mon Dec  1 21:37:03 CST 2025: 开始监控 Phase 2 完成状态...
+Mon Dec  1 21:37:03 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:37:33 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:38:03 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:38:33 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:39:03 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:39:33 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:40:03 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:40:34 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:41:04 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:41:34 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:42:04 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:42:34 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:43:04 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:43:34 CST 2025: Phase 2 进行中... (9/10 模型完成)
+Mon Dec  1 21:44:04 CST 2025: Phase 2 完成! 共 10 个模型
+Mon Dec  1 21:44:04 CST 2025: 启动 Phase 3 Stacking...
+Mon Dec  1 21:58:47 CST 2025: Phase 3 完成!
+Mon Dec  1 21:58:47 CST 2025: 启动 Phase 4 分析...
+Mon Dec  1 21:58:48 CST 2025: Phase 4 完成!
+Mon Dec  1 21:58:48 CST 2025: 全部实验完成!
