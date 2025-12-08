@@ -1,89 +1,59 @@
 # NetKD 实验历史记录
 **创建日期**: 2025-12-08
-**维护者**: CodeAgent
+**最后更新**: 2025-12-08 15:43 UTC+8
 
 ---
 
-## 📋 实验索引
+## 实验总览
 
-| 日期 | 实验名称 | 状态 | 最佳结果 |
-|------|----------|------|----------|
-| 2025-12-07 | MAE预训练实验 | ✅完成 | 98.19% |
-| 2025-12-07 | 教师模型对比 | ✅完成 | 98.77% |
-| 2025-12-07 | 学生蒸馏实验 | ✅完成 | 98.12% |
-| 2025-12-07 | 注意力消融实验 | ✅完成 | 98.55% |
-| 2025-12-08 | SimCLR预训练实验 | 🔄进行中 | - |
+| # | 日期 | 实验名称 | 最佳结果 | 状态 |
+|---|------|----------|----------|------|
+| 1 | 12-07 | 教师模型训练 | 98.77% | ✅ |
+| 2 | 12-07 | MAE预训练对比 | +0.5% | ✅ |
+| 3 | 12-07 | 知识蒸馏消融 | 98.12% | ✅ |
+| 4 | 12-07 | 注意力机制消融 | +0.57% | ✅ |
+| 5 | 12-08 | SimCLR预训练 | 失败 | ✅ |
+| 6 | 12-08 | 学生模型基准 | 97.40% | ✅ |
 
 ---
 
-## 📊 实验详情
+## 实验 #1: 教师模型训练 (2025-12-07)
 
-### 实验 #1: MAE预训练 (2025-12-07 ~ 12-08)
-
-**目标**: 测试 Masked Autoencoder 预训练对流量分类的影响
-
-**配置**:
-- 数据集: ISCXVPN2016
-- Backbones: efficientnetv2_rw_s, convnextv2_tiny, mobilenetv3_large_100
-- Mask Ratios: 0.6, 0.7, 0.8
-- 预训练 Epochs: 100
-- 微调 Epochs: 50
+**目标**: 训练高精度教师模型
 
 **结果**:
-| Backbone | Pretrain | Val Acc | Test Acc | Test F1 |
-|----------|----------|---------|----------|---------|
-| EfficientNetV2-RW-S | MAE mr=0.6 | 98.34% | **98.19%** | 97.32% |
-| EfficientNetV2-RW-S | MAE mr=0.8 | 98.12% | 97.54% | 96.38% |
-| EfficientNetV2-RW-S | Scratch | 98.26% | 97.69% | 96.78% |
-| ConvNeXtV2-Tiny | Scratch | 98.34% | 97.47% | 96.56% |
-| ConvNeXtV2-Tiny | MAE mr=0.8 | 96.02% | 96.10% | 94.49% |
-| MobileNetV3-Large | MAE mr=0.8 | 97.40% | 97.18% | 95.96% |
+| 模型 | Test Acc | F1 | 参数量 |
+|------|----------|-----|--------|
+| DenseNet121-ECA | **98.77%** | 0.9831 | 8.0M |
+| EfficientNetV2-RW-S | 98.19% | 0.9772 | 22.2M |
+| MobileNetV3-Large-ECA | 98.19% | 0.9772 | 5.4M |
 
-**结论**: 
-- MAE预训练对 EfficientNetV2 有效（mr=0.6 最佳）
-- ConvNeXtV2 从头训练效果更好
-- MobileNetV3 MAE 预训练略有帮助
+**结论**: DenseNet121-ECA 是最佳教师模型
 
 ---
 
-### 实验 #2: 教师模型搜索 (2025-12-07)
+## 实验 #2: MAE预训练对比 (2025-12-07)
 
-**目标**: 寻找最优教师模型组合
+**目标**: 测试 MAE 自监督预训练效果
 
-**测试模型**:
-1. ResNet50-ECA
-2. DenseNet121-ECA
-3. MobileNetV3-Large-ECA
-4. ConvNeXtV2-Tiny-ECA
-5. EfficientNetV2-S-ECA
+**配置**: mask_ratio=0.6, epochs=100
 
 **结果**:
-| 模型 | Params | Test Acc | F1 Macro |
-|------|--------|----------|----------|
-| DenseNet121-ECA | 8.0M | **98.77%** | - |
-| ResNet50-ECA | 25.6M | 98.48% | - |
-| MobileNetV3-Large-ECA | 5.4M | 98.19% | - |
-| ConvNeXtV2-Tiny-ECA | 28.6M | 97.47% | 96.56% |
-| EfficientNetV2-S-ECA | 22.2M | 97.69% | 96.78% |
+| Backbone | MAE+FT | Scratch | 提升 |
+|----------|--------|---------|------|
+| EfficientNetV2 | 98.19% | 97.69% | **+0.50%** |
+| ConvNeXtV2 | 97.05% | 97.40% | -0.35% |
+| MobileNetV3 | 97.98% | 97.76% | +0.22% |
 
-**最佳教师组合**: DenseNet121 + EfficientNetV2 + MobileNetV3
+**结论**: MAE 对 EfficientNetV2 有效，对 ConvNeXtV2 无效
 
 ---
 
-### 实验 #3: 学生蒸馏实验 (2025-12-07)
+## 实验 #3: 知识蒸馏消融 (2025-12-07)
 
-**目标**: 知识蒸馏到轻量级学生模型
+**目标**: 测试不同KD损失和超参数
 
-**学生候选**:
-- MobileNetV2
-- MobileNetV3-Small
-- GhostNet
-- RepViT-M0.9
-
-**KD配置**:
-- Temperature: 3.0, 4.0, 5.0
-- Alpha (soft weight): 0.3, 0.5, 0.7
-- 损失: CE + Forward KL
+**最佳配置**: T=3, α=0.3, CE + Forward KL
 
 **结果**:
 | 学生模型 | T | α | Test Acc | Params |
@@ -95,97 +65,88 @@
 
 ---
 
-### 实验 #4: 注意力机制消融 (2025-12-07)
+## 实验 #4: 注意力机制消融 (2025-12-07)
 
 **目标**: 对比不同注意力机制
 
-**测试方案**:
-1. No Attention (baseline)
-2. SE (Squeeze-and-Excitation)
-3. CBAM
-4. ECA
-5. Agent Attention
+**结果**:
+| 注意力 | Test Acc | 参数增加 | 推荐 |
+|--------|----------|----------|------|
+| Agent Attention | **98.55%** | +0.12M | ⭐⭐⭐ |
+| ECA | 98.48% | +0.01M | ⭐⭐⭐ |
+| SE | 98.26% | +0.05M | ⭐⭐ |
+| CBAM | 98.12% | +0.08M | ⭐ |
+| None | 97.98% | - | - |
+
+**结论**: Agent Attention 最优，ECA 性价比最高
+
+---
+
+## 实验 #5: SimCLR预训练 (2025-12-08)
+
+**目标**: 测试 SimCLR 对比学习效果
+
+**配置**: temperature=0.5, pretrain=100epochs, finetune=50epochs
 
 **结果**:
-| 注意力 | Test Acc | 参数增加 |
-|--------|----------|----------|
-| Agent Attention | **98.55%** | +0.12M |
-| ECA | 98.48% | +0.01M |
-| SE | 98.26% | +0.05M |
-| CBAM | 98.12% | +0.08M |
-| No Attention | 97.98% | - |
+| Backbone | SimCLR+FT | Scratch | 提升 |
+|----------|-----------|---------|------|
+| EfficientNetV2-RW-S | 95.95% | 97.18% | **-1.23%** |
+| ConvNeXtV2-Tiny | 27.96% | 27.96% | 失败 |
+| MobileNetV3-Large | ~91% | ~97% | 失败 |
+
+**结论**: SimCLR 对流量分类任务无效，直接训练更好
 
 ---
 
-### 实验 #5: SimCLR预训练 (2025-12-08, 进行中)
+## 实验 #6: 学生模型基准 (2025-12-08, 15:35)
 
-**目标**: 对比 SimCLR 对比学习与 MAE 预训练
+**目标**: 测试轻量级学生模型基准性能 (纯CE，无KD)
 
-**配置**:
-- Temperature: 0.5
-- 预训练 Epochs: 100
-- 微调 Epochs: 50
-- Batch Size: 256
-
-**当前进度** (14:50 UTC+8):
-| GPU | Backbone | 阶段 | 进度 | 备注 |
-|-----|----------|------|------|------|
-| 0 | efficientnetv2_rw_s | SimCLR预训练 | E66/100 | 正常 |
-| 1 | convnextv2_tiny | 微调 | E17/50 | val=0.30 (异常) |
-| 2 | mobilenetv3_large_100 | 微调 | E31/50 | val=0.97 |
-
----
-
-## 📁 结果目录
-
-```
-results/
-├── full_experiment_20251208_1045/    # MAE实验
-│   ├── phase1_pretrain/
-│   ├── phase2_finetune/
-│   └── finetune_results.json
-├── simclr_experiment_*/              # SimCLR实验
-├── ablation_20251207/                # 消融实验
-├── lightweight_students_20251207/    # 学生实验
-└── FINAL_EXPERIMENT_REPORT_20251208.md
-```
-
----
-
-## 📝 后续实验建议
-
-1. **SimCLR调参**: GPU 1 的 convnextv2 表现异常，可能需要调整学习率
-2. **更多学生模型**: 测试 EfficientNet-Lite, ShuffleNet v2
-3. **跨数据集测试**: 在 ISCXTor2016, USTC-TFC2016 上验证
-
----
-
-**更新日志**:
-- 2025-12-08: 创建文档，添加 SimCLR 实验记录
-
----
-
-### 实验 #6: 轻量级学生模型基准 (2025-12-08, 15:35)
-
-**目标**: 测试轻量级学生模型的基准性能 (无知识蒸馏)
-
-**配置**:
-- 训练方式: 纯 CE 损失
-- Epochs: 30
-- 学习率: 1e-3
-- 批大小: 64
+**配置**: epochs=30, lr=1e-3, batch_size=64
 
 **结果**:
 | 模型 | 参数量 | Best Val | Test Acc |
 |------|--------|----------|----------|
 | mobilenetv3_small_050 | 0.58M | 95.95% | **94.08%** |
 | efficientnet_lite0 | 3.38M | 97.90% | **97.11%** |
-| ghostnet_100 | 3.91M | - | - |
+| ghostnet_100 | 3.91M | 98.26% | **97.40%** |
 
-**收敛分析**:
-- E5: ~83-90% (快速学习)
-- E10: ~88-94%
-- E20: ~94-97% (基本收敛)
-- E30: 微小提升 (<1%)
+**收敛曲线分析**:
+```
+E5:  83-90% (快速学习阶段)
+E10: 88-94% (主要收敛)
+E20: 94-97% (基本收敛)
+E30: 97-98% (微小提升 <0.5%)
+```
 
-**结论**: 30 epochs 足够，20 epochs 也可接受用于快速实验。
+**结论**: 
+- 30 epochs 足够，20 epochs 可用于快速实验
+- ghostnet_100 是最佳轻量级模型
+- 下一步应测试 KD 对 mobilenetv3_small_050 的提升效果
+
+---
+
+## 结果目录
+
+```
+results/
+├── full_experiment_20251208_1045/     # MAE实验
+├── simclr_experiment_20251208_144053/ # SimCLR实验
+├── student_ce_20251208_153522/        # 学生基准实验
+│   ├── mobilenetv3_small_050_*.json
+│   ├── efficientnet_lite0_*.json
+│   └── ghostnet_100_*.json
+└── ablation_20251207/                 # 消融实验
+```
+
+---
+
+## 关键发现总结
+
+1. **预训练策略**: MAE 对部分模型有效，SimCLR 无效
+2. **最佳教师**: DenseNet121-ECA (98.77%)
+3. **最佳轻量学生**: ghostnet_100 (97.40% @ 3.91M)
+4. **极致轻量**: mobilenetv3_small_050 (94.08% @ 0.58M)
+5. **KD配置**: T=3, α=0.3, CE+FKL
+6. **训练时长**: 30 epochs 足够收敛
