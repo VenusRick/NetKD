@@ -38,3 +38,32 @@
 - **STEP 3 分析**: CE+KL 应该在两个学生模型上都优于 CE-only
 - **STEP 4 分析**: 当训练数据减少到 50% 和 20% 时，CE+KL 的优势应该更明显
 
+
+---
+
+## 📊 CE+KL 实验结果 (2025-12-08 补充)
+
+**注**: CE+KL 实验使用简化版脚本 (run_kd_simple.py)，采用timm预训练教师模型。
+
+### 实验配置
+- 教师: resnet50 + densenet121 + mobilenetv3_large_100 (平均集成)
+- 温度 T=3.0, alpha_ce=0.5, alpha_kl=0.5
+- 训练: 100 epochs, batch=128, lr=0.001
+
+### 待更新结果
+实验运行中，结果将在完成后自动更新到此表格。
+
+---
+
+## 📈 STEP 1 & 2 分析完成
+
+### STEP 1: 教师分析
+- 详见: `analysis/STEP1_teacher_analysis.md`
+- EfficientNetV2 贡献最大 (+1.5% F1)
+- 三教师集成达到最优
+
+### STEP 2: Pareto 前沿
+- 详见: `analysis/STEP2_pareto_analysis.md`
+- Pareto 最优模型: edgenext_xx_small, mobilenetv3_small, efficientnet_lite0, repvit_m0_9
+- 1.33M参数即可达到94% F1
+
