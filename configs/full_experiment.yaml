@@ -1,0 +1,109 @@
+# TrafficKD 完整实验配置
+# 请根据需要修改以下参数
+
+experiment:
+  name: "full_experiment"
+  dataset: "ISCXVPN2016"
+  dataset_root: "/workspace/yqm/Dataset"
+  output_root: "results/full_experiment"
+  num_gpus: 3
+
+# Phase 1: 预训练
+pretrain:
+  mae:
+    enabled: true
+    backbones:
+      - convnextv2_tiny
+      - efficientnetv2_rw_s
+      - mobilenetv3_large_100
+    mask_ratios: [0.6, 0.7, 0.8]
+    epochs: 100
+    batch_size: 512
+    base_lr: 0.01
+    optimizer: "adamw"
+    weight_decay: 0.05
+    warmup_epochs: 10
+    
+  simclr:
+    enabled: true
+    backbones:
+      - convnextv2_tiny
+      - efficientnetv2_rw_s
+      - mobilenetv3_large_100
+    temperatures: [0.1, 0.5]
+    epochs: 100
+    batch_size: 256
+    base_lr: 0.3
+    optimizer: "lars"
+    weight_decay: 1.0e-6
+
+# Phase 2: 微调
+finetune:
+  epochs: 50
+  batch_size: 128
+  lr_pretrained: 0.0001
+  lr_scratch: 0.001
+  optimizer: "adamw"
+  weight_decay: 0.0001
+  scheduler: "cosine"
+  
+  # 对照组
+  baselines:
+    scratch: true           # 从头训练
+    scratch_eca: true       # 从头训练+ECA
+    imagenet_pretrain: false # ImageNet预训练（如可用）
+
+# Phase 3: Stacking
+stacking:
+  enabled: true
+  epochs: 30
+  batch_size: 128
+  lr: 0.001
+  hidden_dim: 384
+  num_teachers: 3           # 选择top-3教师
+
+# Phase 4: 蒸馏
+distill:
+  enabled: true
+  epochs: 100
+  batch_size: 128
+  
+  students:
+    - name: repvit_m0_9
+      type: high_performance
+    - name: mobilenetv3_small_050
+      type: ultra_light
+    - name: mobilenetv3_small_075
+      type: light
+    - name: ghostnet_100
+      type: light
+      
+  temperatures: [2, 3, 4, 5]
+  alpha_ce_values: [0.3, 0.5, 0.7]
+  
+  # 最优超参数搜索
+  hyperparam_search: true
+  search_epochs: 30         # 超参搜索用较少epoch
+
+# 评估指标
+evaluation:
+  metrics:
+    - accuracy
+    - macro_f1
+    - params_m
+    - flops_g
+    - inference_ms
+  
+  # 推理速度测试
+  inference_test:
+    enabled: true
+    num_runs: 100
+    warmup_runs: 10
+    batch_size: 1
+
+# 日志和检查点
+logging:
+  save_every_n_epochs: 10
+  log_every_n_steps: 50
+  tensorboard: false
+  wandb: false

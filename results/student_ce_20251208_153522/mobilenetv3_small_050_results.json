@@ -1,0 +1,6 @@
+{
+  "student": "mobilenetv3_small_050",
+  "params_m": 0.575111,
+  "best_val": 0.9595083152566883,
+  "test_acc": 0.9407514450867052
+}

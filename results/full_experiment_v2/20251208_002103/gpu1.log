@@ -1,0 +1,12 @@
+[2025-12-08 00:21:06] Starting MAE pretrain: efficientnetv2_rw_s, mask=0.6
+[2025-12-08 00:21:06] Failed efficientnetv2_rw_s: Expected more than 1 value per channel when training, got input size torch.Size([1, 960, 1, 1])
+[2025-12-08 00:21:06] Starting MAE pretrain: efficientnetv2_rw_s, mask=0.7
+[2025-12-08 00:21:07] Failed efficientnetv2_rw_s: Expected more than 1 value per channel when training, got input size torch.Size([1, 960, 1, 1])
+[2025-12-08 00:21:07] Starting MAE pretrain: efficientnetv2_rw_s, mask=0.8
+[2025-12-08 00:21:07] Failed efficientnetv2_rw_s: Expected more than 1 value per channel when training, got input size torch.Size([1, 960, 1, 1])
+[2025-12-08 00:21:07] Starting MAE pretrain: efficientnetv2_rw_m, mask=0.6
+[2025-12-08 00:21:07] Failed efficientnetv2_rw_m: Expected more than 1 value per channel when training, got input size torch.Size([1, 1152, 1, 1])
+[2025-12-08 00:21:07] Starting MAE pretrain: efficientnetv2_rw_m, mask=0.7
+[2025-12-08 00:21:08] Failed efficientnetv2_rw_m: Expected more than 1 value per channel when training, got input size torch.Size([1, 1152, 1, 1])
+[2025-12-08 00:21:08] Starting MAE pretrain: efficientnetv2_rw_m, mask=0.8
+[2025-12-08 00:21:09] Failed efficientnetv2_rw_m: Expected more than 1 value per channel when training, got input size torch.Size([1, 1152, 1, 1])

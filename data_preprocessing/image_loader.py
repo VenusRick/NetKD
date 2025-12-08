@@ -466,7 +466,7 @@ def load_dataset_from_folders(
 
 def quick_load_dataset(
     dataset_name: str = "ISCXVPN2016",
-    dataset_root: str | Path = "/walnut_data/yqm/Dataset",
+    dataset_root: str | Path = "/workspace/yqm/Dataset",
     batch_size: int = 32,
     num_workers: int = 0,
     pin_memory: bool = True,

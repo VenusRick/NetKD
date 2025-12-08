@@ -1,0 +1,55 @@
+{
+  "data_root": "/workspace/yqm/Dataset",
+  "batch_size": 256,
+  "num_workers": 8,
+  "num_classes": 7,
+  "pretrain": {
+    "mae_epochs": 100,
+    "mae_batch_size": 512,
+    "mae_lr": 0.01,
+    "mae_mask_ratios": [
+      0.75,
+      0.8
+    ],
+    "contrastive_epochs": 100,
+    "contrastive_batch_size": 512,
+    "contrastive_lr": 0.01,
+    "contrastive_temperature": 0.5
+  },
+  "finetune": {
+    "epochs": 50,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 5
+  },
+  "stacking": {
+    "epochs": 30,
+    "hidden_dim": 384,
+    "lr": 0.001
+  },
+  "distill": {
+    "epochs": 100,
+    "temperatures": [
+      3,
+      4,
+      5
+    ],
+    "alphas": [
+      0.3,
+      0.5,
+      0.7
+    ],
+    "lr": 0.001
+  },
+  "new_teachers": [
+    "convnextv2_tiny",
+    "efficientnetv2_rw_s",
+    "ghostnetv2_100"
+  ],
+  "students": [
+    "ghostnet_100",
+    "mobilenetv3_small_075",
+    "repvit_m0_9",
+    "mobilenetv2_050"
+  ]
+}

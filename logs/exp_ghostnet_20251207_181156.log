@@ -1,0 +1,14 @@
+nohup: ignoring input
+Device: cuda (NVIDIA GeForce RTX 4090)
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_multi_student_distillation.py", line 228, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_multi_student_distillation.py", line 185, in main
+    train_l, val_l, test_l, meta = quick_load_dataset(
+                                   ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/data_preprocessing/image_loader.py", line 493, in quick_load_dataset
+    return load_dataset_from_folders(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/data_preprocessing/image_loader.py", line 287, in load_dataset_from_folders
+    raise FileNotFoundError(f"Dataset root not found: {base_path}")
+FileNotFoundError: Dataset root not found: /walnut_data/yqm/Dataset/ISCXVPN2016

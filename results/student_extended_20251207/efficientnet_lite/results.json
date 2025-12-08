@@ -1,0 +1,11 @@
+[
+  {
+    "model": "efficientnet_lite",
+    "params_m": 3.379399,
+    "best_epoch": 75,
+    "best_val_acc": 0.9862617498192335,
+    "test_acc": 0.9790462427745664,
+    "test_f1": 0.9685936797879797,
+    "train_time_min": 9.087236038843791
+  }
+]

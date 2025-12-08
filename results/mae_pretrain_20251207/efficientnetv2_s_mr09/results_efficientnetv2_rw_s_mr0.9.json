@@ -1,0 +1,19 @@
+{
+  "pretrain": {
+    "name": "efficientnetv2_rw_s_mr0.9",
+    "best_loss": 0.0070571561988729695
+  },
+  "pretrained_finetune": {
+    "name": "efficientnetv2_rw_s_pretrained_mr0.9",
+    "val_acc": 0.7331887201735358,
+    "test_acc": 0.7297687861271677,
+    "test_f1": 0.6678430966402752,
+    "best_epoch": 34
+  },
+  "scratch": {
+    "name": "efficientnetv2_rw_s_scratch",
+    "val_acc": 0.9812002892263196,
+    "test_acc": 0.9819364161849711,
+    "test_f1": 0.9742146371032543
+  }
+}

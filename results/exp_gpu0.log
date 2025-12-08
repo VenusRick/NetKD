@@ -1,0 +1,32 @@
+nohup: ignoring input
+[2025-12-08 00:26:32] Starting experiment on GPU 0
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+[2025-12-08 00:26:32] Data loaded
+[2025-12-08 00:26:32] ============================================================
+[2025-12-08 00:26:32] PHASE 1: TEACHER TRAINING
+[2025-12-08 00:26:32] ============================================================
+[2025-12-08 00:26:32] Training teacher: convnextv2_tiny_base
+convnextv2_tiny_base E1:   0%|          | 0/104 [00:00<?, ?it/s]convnextv2_tiny_base E1:   1%|          | 1/104 [00:03<05:14,  3.05s/it]convnextv2_tiny_base E1:   5%|▍         | 5/104 [00:03<00:47,  2.09it/s]convnextv2_tiny_base E1:   9%|▊         | 9/104 [00:03<00:21,  4.33it/s]convnextv2_tiny_base E1:  12%|█▎        | 13/104 [00:03<00:13,  6.89it/s]convnextv2_tiny_base E1:  15%|█▌        | 16/104 [00:03<00:09,  9.03it/s]convnextv2_tiny_base E1:  18%|█▊        | 19/104 [00:03<00:07, 11.19it/s]convnextv2_tiny_base E1:  21%|██        | 22/104 [00:03<00:05, 13.74it/s]convnextv2_tiny_base E1:  24%|██▍       | 25/104 [00:03<00:04, 16.00it/s]convnextv2_tiny_base E1:  27%|██▋       | 28/104 [00:04<00:04, 17.67it/s]convnextv2_tiny_base E1:  30%|██▉       | 31/104 [00:04<00:03, 19.28it/s]convnextv2_tiny_base E1:  33%|███▎      | 34/104 [00:04<00:03, 20.71it/s]convnextv2_tiny_base E1:  36%|███▌      | 37/104 [00:04<00:03, 21.71it/s]convnextv2_tiny_base E1:  38%|███▊      | 40/104 [00:04<00:02, 22.53it/s]convnextv2_tiny_base E1:  41%|████▏     | 43/104 [00:04<00:02, 23.15it/s]convnextv2_tiny_base E1:  44%|████▍     | 46/104 [00:04<00:02, 22.71it/s]convnextv2_tiny_base E1:  47%|████▋     | 49/104 [00:04<00:02, 22.31it/s]convnextv2_tiny_base E1:  50%|█████     | 52/104 [00:05<00:02, 21.92it/s]convnextv2_tiny_base E1:  53%|█████▎    | 55/104 [00:05<00:02, 22.60it/s]convnextv2_tiny_base E1:  56%|█████▌    | 58/104 [00:05<00:02, 22.14it/s]convnextv2_tiny_base E1:  59%|█████▊    | 61/104 [00:05<00:01, 21.59it/s]convnextv2_tiny_base E1:  62%|██████▏   | 64/104 [00:05<00:01, 21.15it/s]convnextv2_tiny_base E1:  64%|██████▍   | 67/104 [00:05<00:01, 20.76it/s]convnextv2_tiny_base E1:  67%|██████▋   | 70/104 [00:05<00:01, 20.92it/s]convnextv2_tiny_base E1:  70%|███████   | 73/104 [00:06<00:01, 22.47it/s]convnextv2_tiny_base E1:  73%|███████▎  | 76/104 [00:06<00:01, 23.26it/s]convnextv2_tiny_base E1:  76%|███████▌  | 79/104 [00:06<00:01, 24.52it/s]convnextv2_tiny_base E1:  79%|███████▉  | 82/104 [00:06<00:00, 24.03it/s]convnextv2_tiny_base E1:  82%|████████▏ | 85/104 [00:06<00:00, 23.60it/s]convnextv2_tiny_base E1:  85%|████████▍ | 88/104 [00:06<00:00, 22.32it/s]convnextv2_tiny_base E1:  88%|████████▊ | 91/104 [00:06<00:00, 21.59it/s]convnextv2_tiny_base E1:  90%|█████████ | 94/104 [00:06<00:00, 21.29it/s]convnextv2_tiny_base E1:  94%|█████████▍| 98/104 [00:07<00:00, 24.31it/s]convnextv2_tiny_base E1:  98%|█████████▊| 102/104 [00:07<00:00, 26.15it/s]                                                                          Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_teacher_student.py", line 443, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_teacher_student.py", line 380, in main
+    result, model = train_teacher(backbone, False, args.teacher_epochs,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_teacher_student.py", line 133, in train_teacher
+    torch.save({'model_state': model.state_dict(), 'epoch': epoch, 'val_acc': val_acc}, ckpt_path)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py", line 966, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py", line 828, in _open_zipfile_writer
+    return container(name_or_buffer)  # type: ignore[arg-type]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py", line 792, in __init__
+    torch._C.PyTorchFileWriter(
+RuntimeError: Parent directory results/teacher_student_20251208_002632/teachers does not exist.

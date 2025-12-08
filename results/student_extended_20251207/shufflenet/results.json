@@ -1,0 +1,11 @@
+[
+  {
+    "model": "shufflenet",
+    "params_m": 9.807223,
+    "best_epoch": 4,
+    "best_val_acc": 0.7317425885755604,
+    "test_acc": 0.7319364161849711,
+    "test_f1": 0.6862110125268007,
+    "train_time_min": 9.403762193520864
+  }
+]

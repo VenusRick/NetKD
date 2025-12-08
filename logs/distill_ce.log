@@ -1,0 +1,7 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/training/train.py", line 792, in <module>
+    main()
+  File "/workspace/yqm/NetKD/training/train.py", line 744, in main
+    run_real_pipeline(
+TypeError: run_real_pipeline() got an unexpected keyword argument 'distill_mode'

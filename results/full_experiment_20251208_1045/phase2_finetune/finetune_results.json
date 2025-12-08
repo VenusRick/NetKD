@@ -1,0 +1,110 @@
+[
+  {
+    "name": "convnextv2_tiny_scratch",
+    "backbone": "convnextv2_tiny",
+    "val_acc": 0.9833694866232827,
+    "test_acc": 0.9747109826589595,
+    "test_f1": 0.9656060649079917,
+    "params_m": 27.868807,
+    "pretrain": "scratch"
+  },
+  {
+    "name": "convnextv2_tiny_mae_mr0.6",
+    "backbone": "convnextv2_tiny",
+    "val_acc": 0.5712219812002892,
+    "test_acc": 0.5469653179190751,
+    "test_f1": 0.38082267412325665,
+    "params_m": 27.868807,
+    "pretrain": "mae_mr0.6"
+  },
+  {
+    "name": "convnextv2_tiny_mae_mr0.7",
+    "backbone": "convnextv2_tiny",
+    "val_acc": 0.5813449023861171,
+    "test_acc": 0.569364161849711,
+    "test_f1": 0.3760913277326122,
+    "params_m": 27.868807,
+    "pretrain": "mae_mr0.7"
+  },
+  {
+    "name": "convnextv2_tiny_mae_mr0.8",
+    "backbone": "convnextv2_tiny",
+    "val_acc": 0.9602313810556761,
+    "test_acc": 0.9609826589595376,
+    "test_f1": 0.9449416515277623,
+    "params_m": 27.868807,
+    "pretrain": "mae_mr0.8"
+  },
+  {
+    "name": "efficientnetv2_rw_s_scratch",
+    "backbone": "efficientnetv2_rw_s",
+    "val_acc": 0.982646420824295,
+    "test_acc": 0.976878612716763,
+    "test_f1": 0.9677554080068962,
+    "params_m": 22.160415,
+    "pretrain": "scratch"
+  },
+  {
+    "name": "efficientnetv2_rw_s_mae_mr0.6",
+    "backbone": "efficientnetv2_rw_s",
+    "val_acc": 0.9833694866232827,
+    "test_acc": 0.9819364161849711,
+    "test_f1": 0.973226389869257,
+    "params_m": 22.160415,
+    "pretrain": "mae_mr0.6"
+  },
+  {
+    "name": "efficientnetv2_rw_s_mae_mr0.7",
+    "backbone": "efficientnetv2_rw_s",
+    "val_acc": 0.9125090383224873,
+    "test_acc": 0.916907514450867,
+    "test_f1": 0.8927975397276894,
+    "params_m": 22.160415,
+    "pretrain": "mae_mr0.7"
+  },
+  {
+    "name": "efficientnetv2_rw_s_mae_mr0.8",
+    "backbone": "efficientnetv2_rw_s",
+    "val_acc": 0.9812002892263196,
+    "test_acc": 0.9754335260115607,
+    "test_f1": 0.9638030195909678,
+    "params_m": 22.160415,
+    "pretrain": "mae_mr0.8"
+  },
+  {
+    "name": "mobilenetv3_large_100_scratch",
+    "backbone": "mobilenetv3_large_100",
+    "val_acc": 0.9746926970354303,
+    "test_acc": 0.9674855491329479,
+    "test_f1": 0.9583201776966226,
+    "params_m": 4.210711,
+    "pretrain": "scratch"
+  },
+  {
+    "name": "mobilenetv3_large_100_mae_mr0.6",
+    "backbone": "mobilenetv3_large_100",
+    "val_acc": 0.9739696312364425,
+    "test_acc": 0.9689306358381503,
+    "test_f1": 0.9562866061748615,
+    "params_m": 4.210711,
+    "pretrain": "mae_mr0.6"
+  },
+  {
+    "name": "mobilenetv3_large_100_mae_mr0.7",
+    "backbone": "mobilenetv3_large_100",
+    "val_acc": 0.9674620390455532,
+    "test_acc": 0.9595375722543352,
+    "test_f1": 0.9482916040345593,
+    "params_m": 4.210711,
+    "pretrain": "mae_mr0.7"
+  },
+  {
+    "name": "mobilenetv3_large_100_mae_mr0.8",
+    "backbone": "mobilenetv3_large_100",
+    "val_acc": 0.9739696312364425,
+    "test_acc": 0.971820809248555,
+    "test_f1": 0.959566332047353,
+    "params_m": 4.210711,
+    "pretrain": "mae_mr0.8"
+  }
+]

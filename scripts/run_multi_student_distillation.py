@@ -184,7 +184,7 @@ def main():
     # Load dataset
     train_l, val_l, test_l, meta = quick_load_dataset(
         dataset_name=CONFIG["dataset"],
-        dataset_root="/walnut_data/yqm/Dataset",
+        dataset_root="/workspace/yqm/Dataset",
         batch_size=CONFIG["batch_size"],
         num_workers=CONFIG["num_workers"]
     )

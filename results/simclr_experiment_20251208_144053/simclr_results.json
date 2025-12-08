@@ -1,0 +1,17 @@
+[
+  {
+    "backbone": "efficientnetv2_rw_s",
+    "simclr_pretrain_loss": 5.5282748845907355,
+    "simclr_finetune": {
+      "val_acc": 0.9595083152566883,
+      "test_acc": 0.9595375722543352,
+      "test_f1": 0.9444673129408901
+    },
+    "scratch": {
+      "val_acc": 0.9783080260303688,
+      "test_acc": 0.971820809248555,
+      "test_f1": 0.9572120870764032
+    },
+    "improvement": -0.012283236994219737
+  }
+]

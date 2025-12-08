@@ -1,0 +1,11 @@
+[
+  {
+    "model": "mobilenetv2",
+    "params_m": 2.232263,
+    "best_epoch": 66,
+    "best_val_acc": 0.9848156182212582,
+    "test_acc": 0.9783236994219653,
+    "test_f1": 0.9727081956572917,
+    "train_time_min": 9.432542343934378
+  }
+]

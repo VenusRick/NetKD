@@ -1,0 +1,27 @@
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+[2025-12-08 00:21:06] Starting MAE pretrain: convnextv2_tiny, mask=0.6
+MAE convnextv2_tiny E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:09] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:09] Starting MAE pretrain: convnextv2_tiny, mask=0.7
+MAE convnextv2_tiny E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:09] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:09] Starting MAE pretrain: convnextv2_tiny, mask=0.8
+MAE convnextv2_tiny E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:10] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:10] Starting MAE pretrain: convnextv2_small, mask=0.6
+MAE convnextv2_small E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                               [2025-12-08 00:21:10] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:10] Starting MAE pretrain: convnextv2_small, mask=0.7
+MAE convnextv2_small E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                               [2025-12-08 00:21:11] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:11] Starting MAE pretrain: convnextv2_small, mask=0.8
+MAE convnextv2_small E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                               [2025-12-08 00:21:12] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:12] Starting MAE pretrain: convnextv2_nano, mask=0.6
+MAE convnextv2_nano E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:14] Starting MAE pretrain: convnextv2_nano, mask=0.7
+MAE convnextv2_nano E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:14] Starting MAE pretrain: convnextv2_nano, mask=0.8
+MAE convnextv2_nano E1:   0%|          | 0/26 [00:00<?, ?it/s]                                                              [2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+GPU0 MAE done

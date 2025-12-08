@@ -1,0 +1,6 @@
+{
+  "student": "efficientnet_lite0",
+  "params_m": 3.379399,
+  "best_val": 0.9790310918293564,
+  "test_acc": 0.9710982658959537
+}
