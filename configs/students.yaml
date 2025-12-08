@@ -1,0 +1,217 @@
+# =============================================================================
+# 学生模型配置 (Student Model Configuration)
+# =============================================================================
+# 本配置文件定义了所有可用的学生模型候选及其蒸馏配置
+# 用于 Student 2.0 实验
+
+# -----------------------------------------------------------------------------
+# 数据集配置
+# -----------------------------------------------------------------------------
+dataset:
+  name: "ISCXVPN2016"
+  root: "/workspace/yqm/Dataset/ISCXVPN2016"
+  num_classes: 7
+  input_channels: 1
+  input_size: 40
+
+# -----------------------------------------------------------------------------
+# 默认训练参数
+# -----------------------------------------------------------------------------
+defaults:
+  training:
+    epochs: 100
+    batch_size: 128
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    optimizer: "adamw"
+    scheduler: "cosine"
+    warmup_epochs: 5
+    label_smoothing: 0.1
+    grad_clip: 1.0
+    seed: 42
+    num_workers: 4
+    device: "cuda"
+
+# -----------------------------------------------------------------------------
+# 学生模型候选 (Student Candidates)
+# -----------------------------------------------------------------------------
+students:
+  mobilenetv2:
+    class: "MobileNetV2Student"
+    backbone: "mobilenetv2"
+    width_mult: 1.0
+    description: "MobileNetV2 - 经典轻量级网络"
+    expected_params_m: 2.23
+    notes: "已验证，测试精度 97.98%"
+
+  mobilenetv3_small:
+    class: "MobileNetV3SmallStudent"
+    backbone: "mobilenetv3_small"
+    width_mult: 1.0
+    description: "MobileNetV3-Small - 最轻量级学生"
+    expected_params_m: 1.52
+    notes: "已验证，测试精度 97.98%"
+
+  ghostnet_v1_1_0x:
+    class: "GhostNetStudent"
+    backbone: "ghostnet_v1"
+    width_mult: 1.0
+    description: "GhostNet V1 - 幽灵卷积轻量网络"
+    expected_params_m: 3.91
+    notes: "已验证，测试精度 97.25%"
+
+  ghostnetv3_0_75x:
+    class: "GhostNetV3Student"
+    backbone: "ghostnetv3"
+    width_mult: 0.75
+    description: "GhostNetV3 0.75x - 新一代幽灵网络 (Student 2.0)"
+    expected_params_m: 3.0
+    notes: "待验证"
+
+  repvit_tiny_m0_9:
+    class: "RepViTStudent"
+    backbone: "repvit_m0_9"
+    width_mult: 1.0
+    description: "RepViT-M0.9 - 轻量级视觉Transformer (Student 2.0)"
+    expected_params_m: 5.0
+    notes: "待验证"
+
+# -----------------------------------------------------------------------------
+# 知识蒸馏配置 (KD Configurations)
+# -----------------------------------------------------------------------------
+kd_configs:
+  ce_only:
+    name: "CE Only (Baseline)"
+    use_ce: true
+    use_fkl: false
+    use_rkl: false
+    use_sinkhorn: false
+    alpha_ce: 1.0
+    alpha_fkl: 0.0
+    alpha_rkl: 0.0
+    alpha_sinkhorn: 0.0
+    temperature: 1.0
+    description: "仅使用交叉熵损失，无蒸馏"
+
+  ce_kl:
+    name: "CE + Forward KL"
+    use_ce: true
+    use_fkl: true
+    use_rkl: false
+    use_sinkhorn: false
+    alpha_ce: 0.5
+    alpha_fkl: 0.5
+    alpha_rkl: 0.0
+    alpha_sinkhorn: 0.0
+    temperature: 3.0
+    description: "交叉熵 + 前向KL散度 (当前最佳配置)"
+
+  ce_symmetric_kl:
+    name: "CE + Symmetric KL"
+    use_ce: true
+    use_fkl: true
+    use_rkl: true
+    use_sinkhorn: false
+    alpha_ce: 0.5
+    alpha_fkl: 0.25
+    alpha_rkl: 0.25
+    alpha_sinkhorn: 0.0
+    temperature: 3.0
+    description: "交叉熵 + 对称KL散度"
+
+  traffic_kd_full:
+    name: "TrafficKD Full"
+    use_ce: true
+    use_fkl: true
+    use_rkl: true
+    use_sinkhorn: true
+    alpha_ce: 1.0
+    alpha_fkl: 1.0
+    alpha_rkl: 1.0
+    alpha_sinkhorn: 0.1
+    temperature: 3.0
+    description: "完整TrafficKD: CE + FKL + RKL + Sinkhorn"
+
+# -----------------------------------------------------------------------------
+# 数据采样配置 (Data Subsampling for Efficiency Experiments)
+# -----------------------------------------------------------------------------
+data_subsample:
+  fractions:
+    - 1.0    # 100% 数据
+    - 0.5    # 50% 数据
+    - 0.2    # 20% 数据
+  description: "用于验证 TrafficKD 在数据稀缺场景下的优势"
+
+# -----------------------------------------------------------------------------
+# 实验矩阵 (Experiment Matrix)
+# -----------------------------------------------------------------------------
+experiment_matrix:
+  # 主要实验：所有学生 × traffic_kd_full
+  primary:
+    students:
+      - mobilenetv2
+      - mobilenetv3_small
+      - ghostnetv3_0_75x
+      - repvit_tiny_m0_9
+    teacher_sets:
+      - baseline              # ResNet50 + DenseNet121 + MobileNetV3
+      - replace_resnet        # ConvNeXtV2 + DenseNet121 + MobileNetV3
+    kd_configs:
+      - traffic_kd_full
+
+  # 消融实验：选定学生 × 所有KD配置
+  ablation:
+    students:
+      - mobilenetv2
+      - mobilenetv3_small
+    teacher_sets:
+      - replace_resnet
+    kd_configs:
+      - ce_only
+      - ce_kl
+      - ce_symmetric_kl
+      - traffic_kd_full
+
+  # 数据效率实验
+  data_efficiency:
+    students:
+      - mobilenetv2
+      - ghostnetv3_0_75x
+    teacher_sets:
+      - replace_resnet
+    kd_configs:
+      - ce_only
+      - traffic_kd_full
+    data_fractions:
+      - 1.0
+      - 0.5
+      - 0.2
+
+# -----------------------------------------------------------------------------
+# 评估指标 (Evaluation Metrics)
+# -----------------------------------------------------------------------------
+metrics:
+  primary:
+    - accuracy
+    - f1_macro
+    - f1_weighted
+  secondary:
+    - precision_macro
+    - recall_macro
+    - per_class_f1
+  efficiency:
+    - params_m
+    - flops_g
+    - latency_ms
+    - throughput_samples_per_s
+
+# -----------------------------------------------------------------------------
+# 输出配置 (Output Configuration)
+# -----------------------------------------------------------------------------
+output:
+  checkpoint_dir: "checkpoints/student_kd"
+  results_dir: "results/student_kd"
+  log_dir: "logs/student_kd"
+  analysis_dir: "analysis/summary"
+  save_best_only: true
+  save_format: "pytorch"
