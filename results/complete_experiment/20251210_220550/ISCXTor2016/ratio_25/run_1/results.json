@@ -1,0 +1,36 @@
+{
+  "dataset": "ISCXTor2016",
+  "data_ratio": 0.25,
+  "run_id": 1,
+  "timestamp": "2025-12-11T00:31:48.857120",
+  "num_classes": 8,
+  "train_samples_used": 2913,
+  "teachers": {
+    "densenet121": {
+      "val_acc": 0.8447802197802198,
+      "test_acc": 0.8401920438957476,
+      "test_f1": 0.8312864231565356
+    },
+    "mobilenetv3": {
+      "val_acc": 0.14423076923076922,
+      "test_acc": 0.1262002743484225,
+      "test_f1": 0.028014616321559074
+    },
+    "convnextv2_tiny": {
+      "val_acc": 0.9745879120879121,
+      "test_acc": 0.967764060356653,
+      "test_f1": 0.9657417184793551
+    }
+  },
+  "stacking": {
+    "test_acc": 0.9574759945130316,
+    "test_f1": 0.9542871147680696
+  },
+  "student": {
+    "test_acc": 0.6515775034293553,
+    "test_f1": 0.6336422911354742,
+    "test_precision": 0.6421527293865861,
+    "test_recall": 0.6294846053514307,
+    "params_m": 4.725056
+  }
+}

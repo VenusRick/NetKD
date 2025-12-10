@@ -1,144 +1,117 @@
 # NetKD - 网络流量知识蒸馏框架
 
-基于ECA增强的多教师知识蒸馏框架，用于加密网络流量分类。
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/pytorch-2.0+-red.svg)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+基于多教师知识蒸馏的加密网络流量分类框架，支持自动化实验、模型集成和高效部署。
 
 ---
 
 ## 🎯 核心特性
 
-- **ECA增强教师集成**: 支持5种教师架构
-  - ResNet50-ECA, DenseNet121-ECA, MobileNetV3-ECA (现有)
-  - ConvNeXtV2-Tiny-ECA, EfficientNetV2-S-ECA (新增)
-- **灵活教师组合**: YAML配置驱动的教师搜索实验
-- **动态Stacking集成**: 支持任意数量教师的MLP融合
-- **自适应知识蒸馏**: SD-MKD (Self-Distillation Multi-Knowledge Distillation)
-- **Agent Attention机制**: 高性能注意力模块用于学生网络
+### 教师模型
+- **5种教师架构**: DenseNet121, MobileNetV3, ConvNeXtV2-Tiny, ResNet50, EfficientNetV2-S
+- **ECA注意力增强**: 显著提升模型性能
+- **动态Stacking集成**: 智能组合多个教师模型
+
+### 学生模型
+- **轻量级架构**: RepViT-M0.9 (4.72M参数)
+- **知识蒸馏**: CE + Forward/Reverse KL + Sinkhorn损失
+- **高性能压缩**: 保持>98%准确率，减少80%参数
+
+### 自动化工具
+- **完整实验流程**: 数据比例实验 (100%/75%/50%/25%)
+- **实时监控**: 自动进度跟踪和报告生成
+- **分析工具**: 教师多样性分析、贡献度评估
 
 ---
 
-## 📊 模型性能总览
+## 📊 最新实验结果 (2025-12-11)
 
-### 教师模型
+### 🏆 最佳性能
 
-| 模型 | 验证准确率 | 参数量 | 模型大小 |
-|------|----------|--------|---------|
-| **DenseNet121-ECA** | **98.77%** ⭐ | 8M | 28MB |
-| ResNet50-ECA | 98.48% | 25M | 91MB |
-| MobileNetV3-ECA | 98.19% | 4.2M | 17MB |
-| ConvNeXtV2-Tiny-ECA | *待验证* | 28.6M | - |
-| EfficientNetV2-S-ECA | *待验证* | 21.5M | - |
+| 指标 | 值 | 模型/数据集 |
+|------|-----|-----------|
+| **学生准确率** | **99.25%** ± 0.30% | RepViT-M0.9 @ ISCXTor2016 |
+| **Stacking准确率** | **99.82%** ± 0.14% | 三教师集成 @ ISCXTor2016 |
+| **参数压缩** | **80%+** | RepViT-M0.9 (4.72M) |
 
-### 学生模型
+### 📈 数据效率
 
-| 蒸馏模式 | 测试准确率 | 知识保留率 |
-|---------|----------|----------|
-| **S-KL** | **97.11%** ⭐ | 98.39% |
-| S-CE | 97.04% | 98.32% |
+| 数据集 | 100%数据 | 50%数据 | 性能下降 |
+|--------|---------|---------|---------|
+| ISCXTor2016 | 99.25% | 89.83% | -9.42% |
+| ISCXVPN2016 | 97.54% | 92.85% | -4.70% |
 
-### 注意力机制对比
-
-| 注意力类型 | 测试准确率 | 参数量 |
-|-----------|----------|--------|
-| **Agent Attention** | **98.55%** ⭐ | 9.8M |
-| CBAM | 98.05% | 480K |
-| Baseline (无) | 97.83% | 349K |
+**详细结果**: 查看 `results/complete_experiment/FINAL_REPORT.md`
 
 ---
 
 ## 🚀 快速开始
 
-### 环境配置
+### 1. 环境配置
 ```bash
+# 创建环境
 conda create -n netkd python=3.12 -y
 conda activate netkd
+
+# 安装依赖
 pip install -r requirements.txt
 ```
 
-### 数据准备
+### 2. 数据准备
 ```
-Dataset/ISCXVPN2016/{train,valid,test}/class_name/*.png
+Dataset/
+├── ISCXVPN2016/
+│   ├── train/class_name/*.png
+│   ├── valid/class_name/*.png
+│   └── test/class_name/*.png
+└── ISCXTor2016/...
 ```
 
-### 训练流程
-
+### 3. 运行完整实验
 ```bash
-# 1. 训练教师模型
-python training/train.py --use_real_data --mode train_teachers \
-  --dataset ISCXVPN2016 --dataset_root /walnut_data/yqm/Dataset \
-  --batch_size 256 --epochs_teacher 25 --resnet_use_eca --mbv3_use_eca
+# 完整流程: 教师训练 → Stacking → 学生蒸馏
+python scripts/run_complete_experiment.py \
+  --datasets ISCXVPN2016 ISCXTor2016 \
+  --ratios 1.0 0.75 0.5 0.25 \
+  --runs 3 \
+  --gpu 0
+```
 
-# 2. 训练Stacking集成
-python training/train.py --use_real_data --mode train_stacking \
-  --dataset ISCXVPN2016 --dataset_root /walnut_data/yqm/Dataset \
-  --batch_size 256 --epochs_stacking 5
+### 4. 监控实验进度
+```bash
+# 实时查看进度
+python scripts/monitor_and_summarize.py
 
-# 3. 训练学生模型
-python training/train.py --use_real_data --mode train_student \
-  --dataset ISCXVPN2016 --dataset_root /walnut_data/yqm/Dataset \
-  --batch_size 128 --epochs_student 100
+# 启动自动监控 (每5分钟更新)
+bash scripts/auto_monitor_loop.sh
+```
+
+### 5. 生成实验报告
+```bash
+python scripts/generate_final_report.py
+# 输出: results/complete_experiment/FINAL_REPORT.md
 ```
 
 ---
 
-## 🔬 教师搜索实验 (Teacher Search)
+## 🛠️ 核心工具
 
-### 教师搜索流程
+### 监控与报告
+| 脚本 | 功能 |
+|------|------|
+| `monitor_and_summarize.py` | 实时进度监控 |
+| `auto_monitor_loop.sh` | 自动循环监控 |
+| `generate_final_report.py` | 完整实验报告生成 |
 
-使用配置驱动的教师搜索实验，寻找最优教师组合：
-
-```bash
-# 1. 训练单个教师
-python experiments/teacher_search/run_train_teacher.py \
-  --teacher convnextv2_tiny_eca \
-  --dataset ISCXVPN2016 \
-  --epochs 50
-
-# 2. 训练教师组合的Stacking
-python experiments/teacher_search/run_train_stacking.py \
-  --teacher_set new_trio \
-  --dataset ISCXVPN2016 \
-  --epochs 30
-
-# 3. 汇总实验结果
-python analysis/summarize_teacher_search.py \
-  --results_dir results/teacher_search \
-  --output report.md
-```
-
-### 配置文件
-
-教师配置位于 `configs/teachers.yaml`：
-
-```yaml
-teacher_candidates:
-  resnet50_eca:
-    class: ResNet50Teacher
-    pretrained: true
-    use_eca: true
-
-  convnextv2_tiny_eca:
-    class: ConvNeXtV2TinyTeacher
-    pretrained: true
-    use_eca: true
-
-teacher_sets:
-  baseline:
-    teachers: [resnet50_eca, densenet121_eca, mobilenetv3_large_eca]
-  
-  new_trio:
-    teachers: [convnextv2_tiny_eca, densenet121_eca, efficientnetv2_s_eca]
-```
-
-### 支持的教师组合
-
-| 组合名称 | 教师模型 | 描述 |
-|---------|---------|------|
-| `baseline` | ResNet50 + DenseNet121 + MobileNetV3 | 原始三教师 |
-| `replace_resnet` | ConvNeXtV2 + DenseNet121 + MobileNetV3 | 替换ResNet |
-| `replace_mobilenet` | ResNet50 + DenseNet121 + EfficientNetV2 | 替换MobileNet |
-| `new_trio` | ConvNeXtV2 + DenseNet121 + EfficientNetV2 | 全新组合 |
-| `quad_ensemble` | ResNet50 + DenseNet121 + ConvNeXtV2 + EfficientNetV2 | 四教师 |
-| `full_ensemble` | 全部5个教师 | 完整组合 |
+### 分析工具
+| 脚本 | 功能 |
+|------|------|
+| `compute_disagreement.py` | 教师多样性分析 |
+| `leave_one_out_stacking.py` | 教师贡献度评估 |
+| `check_teacher2.0_progress.py` | 任务进度检查 |
 
 ---
 
@@ -146,86 +119,129 @@ teacher_sets:
 
 ```
 NetKD/
-├── configs/                    # 配置文件
-│   └── teachers.yaml          # 教师模型配置
-├── training/                   # 训练核心
-│   ├── train.py               # 三阶段训练主入口
-│   ├── engine.py              # 训练/验证引擎
-│   └── loss_functions.py      # 知识蒸馏损失函数
 ├── models/                    # 模型定义
-│   ├── teacher_models.py      # 教师模型 (5种架构)
-│   ├── teacher_registry.py    # 教师注册表 (工厂模式)
-│   ├── student_model.py       # 学生模型
-│   └── eca_module.py          # ECA注意力
-├── experiments/               # 实验框架
-│   └── teacher_search/        # 教师搜索实验
-│       ├── run_train_teacher.py    # 单教师训练
-│       ├── run_train_stacking.py   # Stacking训练
-│       ├── metrics.py              # 评估指标
-│       └── result_schema.py        # 结果数据结构
-├── analysis/                  # 结果分析
-│   └── summarize_teacher_search.py  # 结果汇总
-├── data_preprocessing/        # 数据处理
-│   └── image_loader.py        # 图像加载器
-├── scripts/                   # 辅助脚本
-│   ├── run_full_training.sh   # 完整训练流程
-│   ├── run_ablation_experiments.sh  # 蒸馏消融
-│   ├── plot_*.py              # 结果可视化
-│   └── balance_dataset.py     # 数据平衡
-├── checkpoints/               # 模型权重
-│   ├── *_teacher.pth          # 教师模型
-│   ├── stacking_model.pth     # Stacking模型
-│   ├── student_sd_mkd.pth     # 学生模型
-│   ├── teacher_search/        # 教师搜索实验结果
-│   ├── ablation/              # 蒸馏消融结果
-│   └── attention_ablation/    # 注意力消融结果
+│   ├── teacher_models.py     # 教师模型
+│   ├── student_models_v2.py  # 学生模型
+│   └── teacher_registry.py   # 模型注册
+├── training/                  # 训练模块
+│   ├── train.py              # 主训练脚本
+│   └── loss_functions.py     # 损失函数 (含Sinkhorn)
+├── scripts/                   # 实验脚本
+│   ├── run_complete_experiment.py
+│   ├── monitor_and_summarize.py
+│   └── generate_final_report.py
+├── analysis/                  # 分析工具
+│   └── compute_disagreement.py
+├── configs/                   # 配置文件
+│   ├── teachers.yaml
+│   └── students.yaml
 ├── results/                   # 实验结果
-│   └── teacher_search/        # 教师搜索结果JSON
-├── docs/                      # 文档与图表
-├── logs/                      # 训练日志
-├── runs/                      # TensorBoard
-└── trash/                     # 归档文件
+│   └── complete_experiment/
+│       └── FINAL_REPORT.md   # 📊 最新报告
+└── docs/                      # 文档
+    ├── INDEX.md              # 文档索引
+    ├── 01_AGENT_HANDOVER_GUIDE.md
+    ├── 02_EXPERIMENT_RESULTS.md
+    └── 03_MODEL_ARCHITECTURE.md
 ```
 
 ---
 
-## �� 消融实验
+## 📖 文档
 
-### 蒸馏模式消融
-```bash
-bash scripts/run_ablation_experiments.sh
-# 输出: checkpoints/ablation/s_{ce,kl,kl2}/
-```
+### 新手入门
+- 📘 **[文档索引](docs/INDEX.md)** - 所有文档导航
+- 🚀 **[Agent交接指南](docs/01_AGENT_HANDOVER_GUIDE.md)** - 快速上手
+- 📊 **[实验结果](docs/02_EXPERIMENT_RESULTS.md)** - 当前进度
 
-### 教师ECA消融
-通过 `configs/teachers.yaml` 中的 `ablation_experiments` 配置进行。
-
-### 结果可视化
-```bash
-python scripts/plot_distillation_results.py
-python scripts/plot_attention_performance_final.py
-python analysis/summarize_teacher_search.py --latex  # 生成LaTeX表格
-```
+### 高级主题
+- 🏗️ **[模型架构](docs/03_MODEL_ARCHITECTURE.md)** - 详细设计
+- 📋 **[TODO列表](docs/TODO_Teacher2.0_Student2.0.md)** - 开发计划
+- 📈 **[完整实验计划](docs/COMPLETE_EXPERIMENT_PLAN.md)** - Phase 1-4
 
 ---
 
-## 📈 性能基准
+## 🔬 实验配置
 
-- **GPU**: NVIDIA RTX 4090 (单卡)
-- **总训练时间**: ~1小时 (单教师)
-- **最佳知识保留率**: 98.39%
-- **参数压缩率**: >97%
+### 教师模型配置
+| 模型 | 参数量 | 注意力 | 预训练 |
+|------|--------|--------|--------|
+| DenseNet121-ECA | 8.0M | ECA | ✓ |
+| MobileNetV3-Large-ECA | 5.4M | ECA | ✓ |
+| ConvNeXtV2-Tiny-ECA | 28.6M | ECA | ✓ |
+
+配置文件: `configs/teachers.yaml`
+
+### 学生模型配置
+| 模型 | 参数量 | 适用场景 |
+|------|--------|---------|
+| RepViT-M0.9 | 4.72M | 高性能 |
+| GhostNet-1.0x | 3.90M | 轻量级 |
+| MobileNetV3-Small | 1.02M | 极致轻量 |
+
+配置文件: `configs/students.yaml`
+
+### 知识蒸馏配置
+- **Temperature**: 3.0
+- **Alpha (CE权重)**: 0.3-0.5
+- **损失函数**: CE + Forward KL + Reverse KL + Sinkhorn
+- **训练轮数**: 25-30 epochs
 
 ---
 
-## 📧 联系方式
+## 📈 数据集支持
 
-- **Email**: yuqiming24@nudt.edu.cn
+| 数据集 | 类别数 | 样本数 | 图像尺寸 | 状态 |
+|--------|--------|--------|---------|------|
+| ISCXVPN2016 | 7 | 13K+ | 40×40 灰度 | ✅ |
+| ISCXTor2016 | 8 | 11K+ | 40×40 灰度 | ✅ |
+| USTC-TFC2016 | 10 | 15K+ | 40×40 灰度 | ⏳ |
+| CICIoT2022 | 6 | 18K+ | 40×40 灰度 | ⏳ |
+| CrossPlatform-Android | 124 | 40K+ | 40×40 灰度 | 🔧 |
+| CrossPlatform-iOS | 124 | 48K+ | 40×40 灰度 | 🔧 |
+
+数据集路径: `/workspace/yqm/Dataset/`
+
+---
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request！
+
+---
 
 ## 📄 许可证
 
-MIT License - 详见 [LICENSE](LICENSE)
+MIT License
 
 ---
 
-**最后更新**: 2025-12-01
+## 📮 联系方式
+
+- **GitHub**: [VenusRick/NetKD](https://github.com/VenusRick/NetKD)
+- **分支**: Ubuntu
+
+---
+
+## 🔖 版本历史
+
+### v0.3.0 (2025-12-11)
+- ✅ 完整实验系统 (6数据集×4比例×3轮)
+- ✅ 自动监控和报告生成
+- ✅ 教师多样性分析工具
+- ✅ Leave-One-Out贡献度分析
+- ✅ 文档整理和索引
+
+### v0.2.0 (2025-12-08)
+- ✅ MAE预训练实验
+- ✅ 新增ConvNeXtV2和EfficientNetV2教师
+- ✅ RepViT学生模型
+
+### v0.1.0 (2025-12-07)
+- ✅ 基础框架
+- ✅ DenseNet121-ECA教师
+- ✅ SD-MKD知识蒸馏
+
+---
+
+*最后更新: 2025-12-11*

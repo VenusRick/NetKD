@@ -1,37 +1,53 @@
-# 虚拟环境
-.venv/
-venv/
-env/
-
-# 模型权重文件
-*.pth
-*.ckpt
-*.pt
-
-# Python 缓存
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
+*.egg-info/
+dist/
+build/
 
-# 实验结果目录（只保留 JSON 结果）
-results/**/*.pth
-checkpoints/**/*.pth
-trash/
+# Jupyter
+.ipynb_checkpoints/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
-
-# 系统文件
-.DS_Store
 *.swp
 *.swo
 
-# 日志
+# Logs
 *.log
+nohup.out
+logs/*.log
 
-# 数据
+# Checkpoints and Models
+*.pth
+*.pt
+runs/
+checkpoints/
+
+# Results (keep structure, ignore large files)
+results/**/models/
+results/**/*.pth
+results/**/*.png
+results/**/*.jpg
+
+# Data
+Dataset/
 data/
-dataset/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Specific large files
+densenet121_teacher.pth
+mbv3_teacher.pth

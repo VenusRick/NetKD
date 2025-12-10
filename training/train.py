@@ -531,6 +531,7 @@ def run_real_pipeline(
     monitor: LiveTrainingMonitor | None = None,
     teacher_eca: Dict[str, bool] | None = None,
     allow_data_parallel: bool = False,
+    distill_mode: str = "full",
 ) -> Dict[str, str]:
     """Run teacher/stacking/student stages on real preprocessed image data."""
 
