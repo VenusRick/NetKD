@@ -97,116 +97,130 @@ python scripts/generate_final_report.py
 
 ---
 
+## 📁 项目结构
+
+```
+NetKD/
+├── README.md                  # 项目说明
+├── LICENSE                    # MIT许可证
+├── requirements.txt           # Python依赖
+│
+├── models/                    # 模型定义
+│   ├── teacher_models.py     # 教师模型 (5种架构)
+│   ├── student_models_v2.py  # 学生模型
+│   ├── teacher_registry.py   # 教师注册表
+│   ├── student_registry.py   # 学生注册表
+│   ├── eca_module.py         # ECA注意力模块
+│   └── attention_modules.py  # 其他注意力模块
+│
+├── training/                  # 训练模块
+│   ├── train.py              # 主训练脚本 (3阶段流程)
+│   ├── loss_functions.py     # 损失函数 (CE/KL/Sinkhorn)
+│   ├── stacking.py           # Stacking集成
+│   ├── engine.py             # 训练引擎
+│   └── evaluation.py         # 模型评估
+│
+├── scripts/                   # 实验脚本
+│   ├── run_complete_experiment.py    # 完整实验入口
+│   ├── monitor_and_summarize.py      # 进度监控
+│   ├── generate_final_report.py      # 报告生成
+│   ├── leave_one_out_stacking.py     # 教师贡献分析
+│   └── archive/                      # 归档的旧脚本
+│
+├── analysis/                  # 分析工具
+│   ├── compute_disagreement.py       # 教师多样性分析
+│   ├── pareto_analysis.py            # 帕累托分析
+│   └── teacher_analysis.py           # 教师性能分析
+│
+├── data_preprocessing/        # 数据处理
+│   ├── image_loader.py       # 图像加载器
+│   ├── dataset.py            # 数据集类
+│   └── augmentation.py       # 数据增强
+│
+├── configs/                   # 配置文件
+│   ├── teachers.yaml         # 教师模型配置
+│   ├── students.yaml         # 学生模型配置
+│   └── full_experiment.yaml  # 完整实验配置
+│
+├── docs/                      # 文档
+│   ├── INDEX.md              # 📚 文档索引
+│   ├── 01_AGENT_HANDOVER_GUIDE.md
+│   ├── 02_EXPERIMENT_RESULTS.md
+│   ├── 03_MODEL_ARCHITECTURE.md
+│   └── archive/              # 归档的旧文档
+│
+├── results/                   # 实验结果
+│   └── complete_experiment/
+│       └── FINAL_REPORT.md   # 最新报告
+│
+├── logs/                      # 训练日志
+├── runs/                      # TensorBoard日志
+├── util/                      # 工具函数
+└── experiments/               # 实验配置
+```
+
+---
+
 ## 🛠️ 核心工具
 
 ### 监控与报告
 | 脚本 | 功能 |
 |------|------|
-| `monitor_and_summarize.py` | 实时进度监控 |
-| `auto_monitor_loop.sh` | 自动循环监控 |
-| `generate_final_report.py` | 完整实验报告生成 |
+| `scripts/monitor_and_summarize.py` | 实时进度监控 |
+| `scripts/auto_monitor_loop.sh` | 自动循环监控 |
+| `scripts/generate_final_report.py` | 完整实验报告生成 |
 
 ### 分析工具
 | 脚本 | 功能 |
 |------|------|
-| `compute_disagreement.py` | 教师多样性分析 |
-| `leave_one_out_stacking.py` | 教师贡献度评估 |
-| `check_teacher2.0_progress.py` | 任务进度检查 |
-
----
-
-## 📁 项目结构
-
-```
-NetKD/
-├── models/                    # 模型定义
-│   ├── teacher_models.py     # 教师模型
-│   ├── student_models_v2.py  # 学生模型
-│   └── teacher_registry.py   # 模型注册
-├── training/                  # 训练模块
-│   ├── train.py              # 主训练脚本
-│   └── loss_functions.py     # 损失函数 (含Sinkhorn)
-├── scripts/                   # 实验脚本
-│   ├── run_complete_experiment.py
-│   ├── monitor_and_summarize.py
-│   └── generate_final_report.py
-├── analysis/                  # 分析工具
-│   └── compute_disagreement.py
-├── configs/                   # 配置文件
-│   ├── teachers.yaml
-│   └── students.yaml
-├── results/                   # 实验结果
-│   └── complete_experiment/
-│       └── FINAL_REPORT.md   # 📊 最新报告
-└── docs/                      # 文档
-    ├── INDEX.md              # 文档索引
-    ├── 01_AGENT_HANDOVER_GUIDE.md
-    ├── 02_EXPERIMENT_RESULTS.md
-    └── 03_MODEL_ARCHITECTURE.md
-```
+| `analysis/compute_disagreement.py` | 教师多样性分析 |
+| `scripts/leave_one_out_stacking.py` | 教师贡献度评估 |
 
 ---
 
 ## 📖 文档
 
-### 新手入门
 - 📘 **[文档索引](docs/INDEX.md)** - 所有文档导航
 - 🚀 **[Agent交接指南](docs/01_AGENT_HANDOVER_GUIDE.md)** - 快速上手
 - 📊 **[实验结果](docs/02_EXPERIMENT_RESULTS.md)** - 当前进度
-
-### 高级主题
 - 🏗️ **[模型架构](docs/03_MODEL_ARCHITECTURE.md)** - 详细设计
 - 📋 **[TODO列表](docs/TODO_Teacher2.0_Student2.0.md)** - 开发计划
-- 📈 **[完整实验计划](docs/COMPLETE_EXPERIMENT_PLAN.md)** - Phase 1-4
 
 ---
 
 ## 🔬 实验配置
 
-### 教师模型配置
-| 模型 | 参数量 | 注意力 | 预训练 |
-|------|--------|--------|--------|
-| DenseNet121-ECA | 8.0M | ECA | ✓ |
-| MobileNetV3-Large-ECA | 5.4M | ECA | ✓ |
-| ConvNeXtV2-Tiny-ECA | 28.6M | ECA | ✓ |
+### 教师模型
+| 模型 | 参数量 | 注意力 |
+|------|--------|--------|
+| DenseNet121-ECA | 8.0M | ECA |
+| MobileNetV3-Large-ECA | 5.4M | ECA |
+| ConvNeXtV2-Tiny-ECA | 28.6M | ECA |
 
-配置文件: `configs/teachers.yaml`
-
-### 学生模型配置
+### 学生模型
 | 模型 | 参数量 | 适用场景 |
 |------|--------|---------|
 | RepViT-M0.9 | 4.72M | 高性能 |
 | GhostNet-1.0x | 3.90M | 轻量级 |
 | MobileNetV3-Small | 1.02M | 极致轻量 |
 
-配置文件: `configs/students.yaml`
-
-### 知识蒸馏配置
+### 知识蒸馏超参数
 - **Temperature**: 3.0
 - **Alpha (CE权重)**: 0.3-0.5
 - **损失函数**: CE + Forward KL + Reverse KL + Sinkhorn
-- **训练轮数**: 25-30 epochs
 
 ---
 
 ## 📈 数据集支持
 
-| 数据集 | 类别数 | 样本数 | 图像尺寸 | 状态 |
-|--------|--------|--------|---------|------|
-| ISCXVPN2016 | 7 | 13K+ | 40×40 灰度 | ✅ |
-| ISCXTor2016 | 8 | 11K+ | 40×40 灰度 | ✅ |
-| USTC-TFC2016 | 10 | 15K+ | 40×40 灰度 | ⏳ |
-| CICIoT2022 | 6 | 18K+ | 40×40 灰度 | ⏳ |
-| CrossPlatform-Android | 124 | 40K+ | 40×40 灰度 | 🔧 |
-| CrossPlatform-iOS | 124 | 48K+ | 40×40 灰度 | 🔧 |
-
-数据集路径: `/workspace/yqm/Dataset/`
-
----
-
-## 🤝 贡献
-
-欢迎提交Issue和Pull Request！
+| 数据集 | 类别数 | 图像尺寸 | 状态 |
+|--------|--------|---------|------|
+| ISCXVPN2016 | 7 | 40×40 灰度 | ✅ 完成 |
+| ISCXTor2016 | 8 | 40×40 灰度 | ✅ 完成 |
+| USTC-TFC2016 | 10 | 40×40 灰度 | ⏳ 进行中 |
+| CICIoT2022 | 6 | 40×40 灰度 | ⏳ 待开始 |
+| CrossPlatform-Android | 124 | 40×40 灰度 | 🔧 待调整 |
+| CrossPlatform-iOS | 124 | 40×40 灰度 | 🔧 待调整 |
 
 ---
 
@@ -225,23 +239,23 @@ MIT License
 
 ## 🔖 版本历史
 
+### v0.4.0 (2025-12-16)
+- ✅ 项目结构整理和文档优化
+- ✅ 归档冗余脚本和过时文档
+- ✅ 清理备份文件和临时目录
+
 ### v0.3.0 (2025-12-11)
 - ✅ 完整实验系统 (6数据集×4比例×3轮)
 - ✅ 自动监控和报告生成
 - ✅ 教师多样性分析工具
-- ✅ Leave-One-Out贡献度分析
-- ✅ 文档整理和索引
 
 ### v0.2.0 (2025-12-08)
 - ✅ MAE预训练实验
 - ✅ 新增ConvNeXtV2和EfficientNetV2教师
-- ✅ RepViT学生模型
 
 ### v0.1.0 (2025-12-07)
-- ✅ 基础框架
-- ✅ DenseNet121-ECA教师
-- ✅ SD-MKD知识蒸馏
+- ✅ 基础框架和DenseNet121-ECA教师
 
 ---
 
-*最后更新: 2025-12-11*
+*最后更新: 2025-12-16*

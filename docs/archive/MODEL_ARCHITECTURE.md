@@ -1,177 +1,190 @@
-# NetKD 模型架构参考
-**创建日期**: 2025-12-08
-**最后更新**: 2025-12-08 15:43 UTC+8
+# 🏗️ NetKD 模型架构指南
 
----
-
-## 系统架构
+## 1. 整体架构
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      NetKD Framework                        │
+│                    NetKD 知识蒸馏框架                        │
 ├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │  Teacher 1  │  │  Teacher 2  │  │  Teacher 3  │         │
-│  │ DenseNet121 │  │  ResNet50   │  │ MobileNetV3 │         │
-│  │    +ECA     │  │             │  │    +ECA     │         │
-│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘         │
-│         │                │                │                 │
-│         └────────────────┼────────────────┘                 │
-│                          ▼                                  │
-│              ┌───────────────────────┐                      │
-│              │   Knowledge Distill   │                      │
-│              │  T=3, α=0.3, CE+FKL   │                      │
-│              └───────────┬───────────┘                      │
-│                          ▼                                  │
-│              ┌───────────────────────┐                      │
-│              │      Student          │                      │
-│              │  GhostNet/MobileNet   │                      │
-│              └───────────────────────┘                      │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
+│  │ Teacher 1   │    │ Teacher 2   │    │ Teacher 3   │     │
+│  │ EfficientV2 │    │ ConvNeXtV2  │    │ MobileNetV3 │     │
+│  │   21.5M     │    │   28.6M     │    │    5.5M     │     │
+│  └──────┬──────┘    └──────┬──────┘    └──────┬──────┘     │
+│         │                  │                  │             │
+│         └──────────────────┼──────────────────┘             │
+│                            │                                 │
+│                    ┌───────▼───────┐                        │
+│                    │   Stacking    │                        │
+│                    │   Ensemble    │                        │
+│                    │   (学习权重)   │                        │
+│                    └───────┬───────┘                        │
+│                            │                                 │
+│              ┌─────────────▼─────────────┐                  │
+│              │    Knowledge Distillation │                  │
+│              │    CE + KL (T=3)          │                  │
+│              └─────────────┬─────────────┘                  │
+│                            │                                 │
+│  ┌─────────────────────────▼─────────────────────────────┐  │
+│  │                    Student Models                      │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐  │  │
+│  │  │EdgeNeXt  │ │MobileV3  │ │MobileOne │ │ RepViT   │  │  │
+│  │  │  1.33M   │ │  1.52M   │ │  2.08M   │ │  4.72M   │  │  │
+│  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘  │  │
+│  └───────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
----
+## 2. 教师模型详情
 
-## 教师模型推荐
+| 模型 | 参数量 | 特点 | 贡献度 |
+|------|--------|------|--------|
+| efficientnetv2_rw_s | 21.5M | SE注意力 + 复合缩放 | +1.5% F1 |
+| convnextv2_tiny | 28.6M | 现代化设计 + LayerNorm | +1.0% F1 |
+| mobilenetv3_large_100 | 5.5M | 轻量级 + 硬件友好 | +0.5% F1 |
 
-| 模型 | 参数量 | Test Acc | 推荐场景 | 路径 |
-|------|--------|----------|----------|------|
-| DenseNet121-ECA | 8.0M | **98.77%** | 首选教师 | checkpoints/densenet121_teacher.pth |
-| ResNet50 | 23.5M | 98.19% | 高容量 | checkpoints/resnet50_teacher.pth |
-| MobileNetV3-Large | 5.4M | 98.19% | 轻量教师 | checkpoints/mbv3_teacher.pth |
+**总计**: 55.6M 参数 → 集成后 F1: 98%
 
----
+## 3. 学生模型推荐
 
-## 学生模型推荐
+### Pareto 最优模型
 
-### 性能排行 (无KD基准)
+| 场景 | 推荐模型 | 参数量 | F1 Score | 压缩比 |
+|------|----------|--------|----------|--------|
+| IoT/嵌入式 | edgenext_xx_small | 1.33M | 94.0% | 42x |
+| 移动端 | mobilenetv3_small | 1.52M | 96.2% | 37x |
+| 边缘服务器 | mobileone_s0 | 2.08M | 95.5% | 27x |
+| 云端/高性能 | repvit_m0_9 | 4.72M | 97.4% | 12x |
 
-| 排名 | 模型 | 参数量 | Test Acc | 场景 |
-|------|------|--------|----------|------|
-| 1 | ghostnet_100 | 3.91M | **97.40%** | 精度优先 |
-| 2 | efficientnet_lite0 | 3.38M | 97.11% | 均衡推荐 |
-| 3 | mobilenetv3_small_050 | 0.58M | 94.08% | 极致轻量 |
-
-### timm 可用模型名
+### 选择指南
 
 ```python
-# 轻量级 (<1M)
-'mobilenetv3_small_050'   # 0.58M
-'mobilenetv3_small_075'   # 1.0M
-
-# 中等 (1-5M)
-'mobilenetv3_small_100'   # 1.5M
-'efficientnet_lite0'      # 3.38M
-'ghostnet_100'            # 3.91M
-
-# 较大 (5-10M)
-'mobilenetv3_large_100'   # 5.4M
-'efficientnet_lite1'      # 5.4M
+def recommend_student(latency_budget_ms, memory_budget_mb):
+    """根据部署约束推荐学生模型"""
+    if latency_budget_ms < 5 and memory_budget_mb < 10:
+        return "edgenext_xx_small"  # 1.33M, 极致轻量
+    elif latency_budget_ms < 10 and memory_budget_mb < 20:
+        return "mobilenetv3_small"  # 1.52M, 最佳性价比
+    elif latency_budget_ms < 20 and memory_budget_mb < 30:
+        return "mobileone_s0"  # 2.08M, 平衡选择
+    else:
+        return "repvit_m0_9"  # 4.72M, 最高性能
 ```
 
----
+## 4. 知识蒸馏配置
 
-## 知识蒸馏配置
+### 最佳配置 (CE + KL)
+
+```python
+KD_CONFIG = {
+    "temperature": 3.0,      # 软化温度
+    "alpha_ce": 0.5,         # CE损失权重
+    "alpha_kl": 0.5,         # KL损失权重
+}
+```
 
 ### 损失函数
 
+```python
+def kd_loss(student_logits, teacher_logits, labels, T=3.0, alpha=0.5):
+    # 硬标签损失
+    ce_loss = F.cross_entropy(student_logits, labels)
+    
+    # 软标签损失
+    student_soft = F.log_softmax(student_logits / T, dim=1)
+    teacher_soft = F.softmax(teacher_logits / T, dim=1)
+    kl_loss = F.kl_div(student_soft, teacher_soft, reduction='batchmean') * (T * T)
+    
+    return alpha * ce_loss + (1 - alpha) * kl_loss
 ```
-Total Loss = α × L_soft + (1-α) × L_hard
 
-L_soft = KL(σ(z_s/T) || σ(z_t/T)) × T²
-L_hard = CE(z_s, y)
-```
+## 5. 训练配置
 
 ### 推荐超参数
 
-| 参数 | 推荐值 | 说明 |
-|------|--------|------|
-| Temperature (T) | 3.0 | 软化程度 |
-| Alpha (α) | 0.3 | soft loss 权重 |
-| Loss Type | CE + Forward KL | 最优组合 |
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| batch_size | 128 | RTX 4090 单卡最优 |
+| learning_rate | 0.001 | AdamW 初始学习率 |
+| weight_decay | 1e-4 | L2正则化 |
+| epochs | 100 | 约40-60 epoch收敛 |
+| warmup_epochs | 5 | 学习率预热 |
+| scheduler | cosine | 余弦退火 |
 
----
+### 数据增强
 
-## 注意力模块
-
-| 注意力 | 准确率提升 | 参数增加 | 推荐度 |
-|--------|------------|----------|--------|
-| Agent Attention | +0.57% | +0.12M | ⭐⭐⭐ |
-| ECA | +0.50% | +0.01M | ⭐⭐⭐ |
-| SE | +0.28% | +0.05M | ⭐⭐ |
-| CBAM | +0.14% | +0.08M | ⭐ |
-
----
-
-## 训练配置推荐
-
-### 学生训练 (纯CE)
 ```python
-epochs = 30        # 20 epochs 可用于快速实验
-lr = 1e-3
-batch_size = 64
-optimizer = AdamW(weight_decay=0.01)
+train_transform = transforms.Compose([
+    transforms.RandomHorizontalFlip(0.5),
+    transforms.RandomRotation(10),
+    transforms.ColorJitter(brightness=0.1, contrast=0.1),
+    transforms.Normalize(mean=[0.5], std=[0.5])
+])
 ```
 
-### 学生蒸馏 (KD)
-```python
-epochs = 30
-lr = 1e-4          # 蒸馏用较小学习率
-temperature = 3.0
-alpha = 0.3
-```
+## 6. 快速开始
 
----
-
-## 最佳配置组合
-
-### 场景1: 高精度部署 (>97%)
-```
-教师: DenseNet121-ECA
-学生: ghostnet_100
-KD: T=3, α=0.3
-预期: ~98% @ 3.91M params
-```
-
-### 场景2: 边缘设备 (1-4M)
-```
-教师: DenseNet121-ECA
-学生: efficientnet_lite0
-KD: T=3, α=0.3
-预期: ~97.5% @ 3.38M params
-```
-
-### 场景3: 极致轻量 (<1M)
-```
-教师: DenseNet121-ECA
-学生: mobilenetv3_small_050
-KD: T=4, α=0.3
-预期: ~95-96% @ 0.58M params
-```
-
----
-
-## 快速启动命令
+### 训练学生模型
 
 ```bash
-cd /workspace/yqm/NetKD
+# CE-only baseline
+python scripts/run_kd_simple.py \
+    --student mobilenetv3_small \
+    --train_fraction 1.0 \
+    --gpu 0
 
-# 单个学生训练
-python -u scripts/simple_student_kd.py --gpu 0 --student ghostnet_100
+# CE+KL 知识蒸馏
+python scripts/run_kd_simple.py \
+    --student mobilenetv3_small \
+    --use_kd \
+    --train_fraction 1.0 \
+    --gpu 0
+```
 
-# 3 GPU 并行
-nohup python -u scripts/simple_student_kd.py --gpu 0 --student mobilenetv3_small_050 > logs/gpu0.log 2>&1 &
-nohup python -u scripts/simple_student_kd.py --gpu 1 --student ghostnet_100 > logs/gpu1.log 2>&1 &
-nohup python -u scripts/simple_student_kd.py --gpu 2 --student efficientnet_lite0 > logs/gpu2.log 2>&1 &
+### 批量实验
+
+```bash
+# 运行所有配置
+bash scripts/run_kd_parallel.sh
+```
+
+## 7. 性能基准
+
+### ISCXVPN2016 数据集
+
+| 模型 | 参数量 | 100%数据 | 50%数据 | 20%数据 |
+|------|--------|----------|---------|---------|
+| repvit_m0_9 (CE) | 4.72M | 97.4% | 91.9% | 83.6% |
+| mobilenetv3_small (CE) | 1.52M | 96.2% | 86.4% | 77.4% |
+
+### 数据效率
+
+- repvit_m0_9: 50%数据仅下降 5.5% F1
+- mobilenetv3_small: 50%数据下降 9.8% F1
+- **结论**: 较大模型对数据量更鲁棒
+
+## 8. 文件结构
+
+```
+NetKD/
+├── models/
+│   ├── teacher_models.py      # 教师模型定义
+│   ├── student_models_v2.py   # 学生模型定义
+│   └── stacking.py            # Stacking集成
+├── scripts/
+│   ├── run_kd_simple.py       # 简化版KD训练
+│   ├── run_kd_parallel.sh     # 并行实验脚本
+│   └── run_simclr_bs128.py    # SimCLR预训练
+├── analysis/
+│   ├── teacher_analysis.py    # STEP 1 教师分析
+│   ├── pareto_analysis.py     # STEP 2 Pareto分析
+│   └── analyze_step3_step4.py # STEP 3&4 分析
+└── results/
+    ├── kd_ablation_*/         # 消融实验结果
+    └── kd_simple_*/           # KD实验结果
 ```
 
 ---
 
-## 关键代码文件
-
-| 文件 | 功能 |
-|------|------|
-| `data_preprocessing/image_loader.py` | 数据加载 |
-| `models/teacher_models.py` | 教师模型 |
-| `models/student_model.py` | 学生模型 |
-| `scripts/simple_student_kd.py` | 简单训练脚本 |
+**最后更新**: 2025-12-08
+**作者**: CodeAgent
