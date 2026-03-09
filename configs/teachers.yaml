@@ -1,0 +1,153 @@
+# =============================================================================
+# 教师模型配置 (Teacher Model Configuration)
+# =============================================================================
+# 本配置文件定义了所有可用的教师模型候选及其组合
+# 用于教师搜索实验，寻找最优的教师组合
+
+# -----------------------------------------------------------------------------
+# 默认训练参数
+# -----------------------------------------------------------------------------
+defaults:
+  training:
+    epochs: 50
+    batch_size: 256
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    optimizer: adamw
+    scheduler: cosine
+    label_smoothing: 0.05
+    warmup_epochs: 5
+    
+  stacking:
+    epochs: 30
+    hidden_dim: 384
+    learning_rate: 0.001
+    weight_decay: 0.0001
+
+# -----------------------------------------------------------------------------
+# 教师模型候选 (Teacher Candidates)
+# -----------------------------------------------------------------------------
+teacher_candidates:
+  resnet50_eca:
+    class: ResNet50Teacher
+    pretrained: true
+    use_eca: true
+    description: "ResNet-50 with ECA attention - baseline teacher"
+    expected_accuracy: 0.9848
+    params_m: 25.6
+    
+  densenet121_eca:
+    class: DenseNet121Teacher
+    pretrained: true
+    use_eca: true
+    description: "DenseNet-121 with ECA attention - highest accuracy teacher"
+    expected_accuracy: 0.9877
+    params_m: 8.0
+    
+  mobilenetv3_large_eca:
+    class: MobileNetV3LargeTeacher
+    pretrained: true
+    use_eca: true
+    description: "MobileNetV3-Large with ECA - lightweight teacher"
+    expected_accuracy: 0.9819
+    params_m: 5.4
+  
+  convnextv2_tiny_eca:
+    class: ConvNeXtV2TinyTeacher
+    pretrained: true
+    use_eca: true
+    description: "ConvNeXtV2-Tiny with ECA - modern CNN architecture"
+    expected_accuracy: null
+    params_m: 28.6
+    notes: "基于FCMAE预训练，适合小数据集"
+    
+  efficientnetv2_s_eca:
+    class: EfficientNetV2STeacher
+    pretrained: true
+    use_eca: true
+    description: "EfficientNetV2-S with ECA - efficient scaling"
+    expected_accuracy: null
+    params_m: 21.5
+    notes: "Progressive learning，适合渐进式训练"
+
+# -----------------------------------------------------------------------------
+# 教师组合 (Teacher Sets)
+# -----------------------------------------------------------------------------
+teacher_sets:
+  baseline:
+    name: "Baseline Teacher Set"
+    teachers:
+      - resnet50_eca
+      - densenet121_eca
+      - mobilenetv3_large_eca
+    description: "原始三教师组合"
+    
+  replace_resnet:
+    name: "Replace ResNet50 with ConvNeXtV2"
+    teachers:
+      - convnextv2_tiny_eca
+      - densenet121_eca
+      - mobilenetv3_large_eca
+    description: "用 ConvNeXtV2-Tiny 替换 ResNet-50"
+    
+  replace_mobilenet:
+    name: "Replace MobileNetV3 with EfficientNetV2"
+    teachers:
+      - resnet50_eca
+      - densenet121_eca
+      - efficientnetv2_s_eca
+    description: "用 EfficientNetV2-S 替换 MobileNetV3"
+    
+  new_trio:
+    name: "New Teacher Trio"
+    teachers:
+      - convnextv2_tiny_eca
+      - densenet121_eca
+      - efficientnetv2_s_eca
+    description: "全新教师组合：ConvNeXtV2 + DenseNet121 + EfficientNetV2"
+    
+  quad_ensemble:
+    name: "Four Teacher Ensemble"
+    teachers:
+      - resnet50_eca
+      - densenet121_eca
+      - convnextv2_tiny_eca
+      - efficientnetv2_s_eca
+    description: "四教师组合，测试是否增加多样性有益"
+    
+  full_ensemble:
+    name: "Full Five Teacher Ensemble"
+    teachers:
+      - resnet50_eca
+      - densenet121_eca
+      - mobilenetv3_large_eca
+      - convnextv2_tiny_eca
+      - efficientnetv2_s_eca
+    description: "全部五个教师的完整组合"
+
+# -----------------------------------------------------------------------------
+# 评估指标 (Evaluation Metrics)
+# -----------------------------------------------------------------------------
+metrics:
+  primary:
+    - accuracy
+    - f1_macro
+    - f1_weighted
+  secondary:
+    - precision_macro
+    - recall_macro
+    - confusion_matrix
+  ensemble_specific:
+    - disagreement_rate
+    - oracle_accuracy
+    - diversity_score
+
+# -----------------------------------------------------------------------------
+# 输出配置 (Output Configuration)
+# -----------------------------------------------------------------------------
+output:
+  checkpoint_dir: "checkpoints/teacher_search"
+  results_dir: "results/teacher_search"
+  log_dir: "logs/teacher_search"
+  save_best_only: true
+  save_format: "pytorch"

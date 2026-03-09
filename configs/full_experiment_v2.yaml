@@ -1,0 +1,61 @@
+# TrafficKD 完整实验配置 V2
+# 创建时间: 2025-12-08 00:05
+
+experiment:
+  name: "traffickd_full_v2"
+  dataset: "ISCXVPN2016"
+  dataset_root: "/workspace/yqm/Dataset"
+  output_root: "results/full_experiment_v2"
+  num_gpus: 3
+
+pretrain:
+  mae:
+    enabled: true
+    backbones:
+      - convnextv2_tiny
+      - convnextv2_small
+      - convnextv2_nano
+      - efficientnetv2_rw_s
+      - efficientnetv2_rw_m
+      - ghostnetv2_100
+      - ghostnetv3_100
+      - repvit_m1_0
+    mask_ratios: [0.6, 0.7, 0.8]
+    epochs: 100
+    batch_size: 512
+    base_lr: 0.01
+
+  simclr:
+    enabled: true
+    backbones:
+      - convnextv2_tiny
+      - efficientnetv2_rw_s
+      - ghostnetv3_100
+    temperatures: [0.1, 0.5]
+    epochs: 100
+    batch_size: 256
+
+finetune:
+  epochs: 50
+  batch_size: 128
+  eca_ablation: true
+
+stacking:
+  enabled: true
+  epochs: 30
+  num_teachers: 3
+
+distill:
+  enabled: true
+  epochs: 100
+  students:
+    - repvit_m0_9
+    - repvit_m1_0
+    - ghostnetv3_100
+    - ghostnet_100
+    - mobilenetv3_small_075
+    - mobilenetv3_small_050
+    - mobilenetv2_050
+    - mobilenetv2_035
+  temperatures: [2, 3, 4, 5]
+  alpha_ce_values: [0.3, 0.5, 0.7]

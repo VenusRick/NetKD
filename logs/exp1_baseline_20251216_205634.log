@@ -1,0 +1,14 @@
+/workspace/yqm/NetKD/scripts/exp1_student_baseline.py:171: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+Using device: cuda:0
+Loading data...
+Classes: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+Train samples: 13281, Val: 1383, Test: 1384
+Number of classes: 7
+
+Training MobileNetV2
+  Parameters: 2.23M (trainable: 2.23M)
+/workspace/yqm/NetKD/scripts/exp1_student_baseline.py:115: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+  Epoch 1/50: Loss=2.0187, Train Acc=54.53%, Val Acc=72.38%
+  Epoch 2/50: Loss=1.0196, Train Acc=74.72%, Val Acc=80.69%

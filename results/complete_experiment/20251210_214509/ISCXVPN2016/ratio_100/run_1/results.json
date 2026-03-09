@@ -1,0 +1,36 @@
+{
+  "dataset": "ISCXVPN2016",
+  "data_ratio": 1.0,
+  "run_id": 1,
+  "timestamp": "2025-12-10T21:45:09.535367",
+  "num_classes": 7,
+  "train_samples_used": 13281,
+  "teachers": {
+    "densenet121": {
+      "val_acc": 0.9869848156182213,
+      "test_acc": 0.9819364161849711,
+      "test_f1": 0.9712696834570185
+    },
+    "mobilenetv3": {
+      "val_acc": 0.9812002892263196,
+      "test_acc": 0.9754335260115607,
+      "test_f1": 0.963842794143389
+    },
+    "convnextv2_tiny": {
+      "val_acc": 0.9804772234273319,
+      "test_acc": 0.9754335260115607,
+      "test_f1": 0.9635309231132151
+    }
+  },
+  "stacking": {
+    "test_acc": 0.9826589595375722,
+    "test_f1": 0.9765558029981615
+  },
+  "student": {
+    "test_acc": 0.9783236994219653,
+    "test_f1": 0.9702107115382176,
+    "test_precision": 0.9686594518071016,
+    "test_recall": 0.971833766114646,
+    "params_m": 4.724286
+  }
+}

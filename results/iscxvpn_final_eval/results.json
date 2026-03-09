@@ -1,0 +1,146 @@
+[
+  {
+    "model": "repvit_m0_9_frac1.0",
+    "run": 1,
+    "accuracy": 0.052745664739884394,
+    "f1_macro": 0.0655634408832095,
+    "precision": 0.07487696882781668,
+    "recall": 0.10760721674660241
+  },
+  {
+    "model": "repvit_m0_9_frac1.0",
+    "run": 2,
+    "accuracy": 0.052745664739884394,
+    "f1_macro": 0.0655634408832095,
+    "precision": 0.07487696882781668,
+    "recall": 0.10760721674660241
+  },
+  {
+    "model": "repvit_m0_9_frac1.0",
+    "run": 3,
+    "accuracy": 0.052745664739884394,
+    "f1_macro": 0.0655634408832095,
+    "precision": 0.07487696882781668,
+    "recall": 0.10760721674660241
+  },
+  {
+    "model": "repvit_m0_9_frac0.5",
+    "run": 1,
+    "accuracy": 0.0708092485549133,
+    "f1_macro": 0.04091597261082709,
+    "precision": 0.0426895523699329,
+    "recall": 0.16486783392602325
+  },
+  {
+    "model": "repvit_m0_9_frac0.5",
+    "run": 2,
+    "accuracy": 0.0708092485549133,
+    "f1_macro": 0.04091597261082709,
+    "precision": 0.0426895523699329,
+    "recall": 0.16486783392602325
+  },
+  {
+    "model": "repvit_m0_9_frac0.5",
+    "run": 3,
+    "accuracy": 0.0708092485549133,
+    "f1_macro": 0.04091597261082709,
+    "precision": 0.0426895523699329,
+    "recall": 0.16486783392602325
+  },
+  {
+    "model": "repvit_m0_9_frac0.2",
+    "run": 1,
+    "accuracy": 0.07658959537572255,
+    "f1_macro": 0.020325982742090125,
+    "precision": 0.010941370767960364,
+    "recall": 0.14285714285714285
+  },
+  {
+    "model": "repvit_m0_9_frac0.2",
+    "run": 2,
+    "accuracy": 0.07658959537572255,
+    "f1_macro": 0.020325982742090125,
+    "precision": 0.010941370767960364,
+    "recall": 0.14285714285714285
+  },
+  {
+    "model": "repvit_m0_9_frac0.2",
+    "run": 3,
+    "accuracy": 0.07658959537572255,
+    "f1_macro": 0.020325982742090125,
+    "precision": 0.010941370767960364,
+    "recall": 0.14285714285714285
+  },
+  {
+    "model": "mobilenetv3_small_frac1.0",
+    "run": 1,
+    "accuracy": 0.13078034682080925,
+    "f1_macro": 0.08293552973577954,
+    "precision": 0.09410648800448754,
+    "recall": 0.14318523292234112
+  },
+  {
+    "model": "mobilenetv3_small_frac1.0",
+    "run": 2,
+    "accuracy": 0.13078034682080925,
+    "f1_macro": 0.08293552973577954,
+    "precision": 0.09410648800448754,
+    "recall": 0.14318523292234112
+  },
+  {
+    "model": "mobilenetv3_small_frac1.0",
+    "run": 3,
+    "accuracy": 0.13078034682080925,
+    "f1_macro": 0.08293552973577954,
+    "precision": 0.09410648800448754,
+    "recall": 0.14318523292234112
+  },
+  {
+    "model": "mobilenetv3_small_frac0.5",
+    "run": 1,
+    "accuracy": 0.125,
+    "f1_macro": 0.032833473673782754,
+    "precision": 0.16053338846392393,
+    "recall": 0.1435472739820566
+  },
+  {
+    "model": "mobilenetv3_small_frac0.5",
+    "run": 2,
+    "accuracy": 0.125,
+    "f1_macro": 0.032833473673782754,
+    "precision": 0.16053338846392393,
+    "recall": 0.1435472739820566
+  },
+  {
+    "model": "mobilenetv3_small_frac0.5",
+    "run": 3,
+    "accuracy": 0.125,
+    "f1_macro": 0.032833473673782754,
+    "precision": 0.16053338846392393,
+    "recall": 0.1435472739820566
+  },
+  {
+    "model": "mobilenetv3_small_frac0.2",
+    "run": 1,
+    "accuracy": 0.30057803468208094,
+    "f1_macro": 0.0915400006592454,
+    "precision": 0.09628645491241147,
+    "recall": 0.15455050470578421
+  },
+  {
+    "model": "mobilenetv3_small_frac0.2",
+    "run": 2,
+    "accuracy": 0.30057803468208094,
+    "f1_macro": 0.0915400006592454,
+    "precision": 0.09628645491241147,
+    "recall": 0.15455050470578421
+  },
+  {
+    "model": "mobilenetv3_small_frac0.2",
+    "run": 3,
+    "accuracy": 0.30057803468208094,
+    "f1_macro": 0.0915400006592454,
+    "precision": 0.09628645491241147,
+    "recall": 0.15455050470578421
+  }
+]

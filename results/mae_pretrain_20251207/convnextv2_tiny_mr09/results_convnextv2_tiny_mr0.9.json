@@ -1,0 +1,19 @@
+{
+  "pretrain": {
+    "name": "convnextv2_tiny_mr0.9",
+    "best_loss": 0.017027315826943286
+  },
+  "pretrained_finetune": {
+    "name": "convnextv2_tiny_pretrained_mr0.9",
+    "val_acc": 0.6471438900939985,
+    "test_acc": 0.6408959537572254,
+    "test_f1": 0.6229456138374989,
+    "best_epoch": 50
+  },
+  "scratch": {
+    "name": "convnextv2_tiny_scratch",
+    "val_acc": 0.9746926970354303,
+    "test_acc": 0.9747109826589595,
+    "test_f1": 0.9653064660704421
+  }
+}

@@ -1,0 +1,535 @@
+[2025-12-08 00:42:59] ================================================================================
+[2025-12-08 00:42:59] TrafficKD 完整实验流程
+[2025-12-08 00:42:59] Output: results/full_pipeline_20251208_004257/gpu1_scratch
+[2025-12-08 00:42:59] GPU: 1
+[2025-12-08 00:42:59] ================================================================================
+[2025-12-08 00:42:59] Loading dataset...
+[2025-12-08 00:42:59] Dataset loaded: train=13281, val=1383, test=1384
+[2025-12-08 00:42:59] 
+================================================================================
+[2025-12-08 00:42:59] PHASE 2: 教师模型训练
+[2025-12-08 00:42:59] ================================================================================
+[2025-12-08 00:42:59] [Finetune] Starting: convnextv2_tiny_scratch
+[2025-12-08 00:43:33]   [Finetune] Epoch 5/50, Loss: 1.7533, Val: 28.85%
+[2025-12-08 00:43:47]   [Finetune] Epoch 10/50, Loss: 1.7461, Val: 30.08%
+[2025-12-08 00:43:59]   [Finetune] Epoch 15/50, Loss: 1.7520, Val: 28.85%
+[2025-12-08 00:44:14]   [Finetune] Epoch 20/50, Loss: 1.6919, Val: 32.75%
+[2025-12-08 00:44:27]   [Finetune] Epoch 25/50, Loss: 1.6583, Val: 32.75%
+[2025-12-08 00:44:39]   [Finetune] Epoch 30/50, Loss: 1.6578, Val: 32.83%
+[2025-12-08 00:44:51]   [Finetune] Epoch 35/50, Loss: 1.6515, Val: 33.04%
+[2025-12-08 00:45:03]   [Finetune] Epoch 40/50, Loss: nan, Val: 33.04%
+[2025-12-08 00:45:14]   [Finetune] Epoch 45/50, Loss: nan, Val: 33.04%
+[2025-12-08 00:45:26]   [Finetune] Epoch 50/50, Loss: nan, Val: 33.04%
+[2025-12-08 00:45:28] [Finetune] Completed convnextv2_tiny_scratch: Val=33.12%, Test=33.38%, F1=15.99%
+[2025-12-08 00:45:28] [Finetune] Starting: convnextv2_tiny_scratch_eca
+[2025-12-08 00:45:41]   [Finetune] Epoch 5/50, Loss: 1.7269, Val: 30.08%
+[2025-12-08 00:45:55]   [Finetune] Epoch 10/50, Loss: 1.7655, Val: 28.85%
+[2025-12-08 00:46:08]   [Finetune] Epoch 15/50, Loss: 1.3393, Val: 53.94%
+[2025-12-08 00:46:22]   [Finetune] Epoch 20/50, Loss: 1.2161, Val: 62.33%
+[2025-12-08 00:46:37]   [Finetune] Epoch 25/50, Loss: 0.9350, Val: 72.16%
+[2025-12-08 00:46:50]   [Finetune] Epoch 30/50, Loss: 0.7559, Val: 79.25%
+[2025-12-08 00:47:02]   [Finetune] Epoch 35/50, Loss: 0.5824, Val: 87.49%
+[2025-12-08 00:47:14]   [Finetune] Epoch 40/50, Loss: 0.4630, Val: 90.96%
+[2025-12-08 00:47:28]   [Finetune] Epoch 45/50, Loss: 0.4146, Val: 93.06%
+[2025-12-08 00:47:40]   [Finetune] Epoch 50/50, Loss: 0.3974, Val: 93.13%
+[2025-12-08 00:47:40] [Finetune] Completed convnextv2_tiny_scratch_eca: Val=93.13%, Test=92.85%, F1=90.79%
+[2025-12-08 00:47:40] [Finetune] Starting: efficientnetv2_rw_s_scratch
+[2025-12-08 00:48:00]   [Finetune] Epoch 5/50, Loss: 0.7582, Val: 83.30%
+[2025-12-08 00:48:18]   [Finetune] Epoch 10/50, Loss: 0.4492, Val: 94.00%
+[2025-12-08 00:48:37]   [Finetune] Epoch 15/50, Loss: 0.3902, Val: 94.79%
+[2025-12-08 00:48:55]   [Finetune] Epoch 20/50, Loss: 0.3144, Val: 96.67%
+[2025-12-08 00:49:13]   [Finetune] Epoch 25/50, Loss: 0.3023, Val: 96.82%
+[2025-12-08 00:49:30]   [Finetune] Epoch 30/50, Loss: 0.2973, Val: 97.40%
+[2025-12-08 00:49:48]   [Finetune] Epoch 35/50, Loss: 0.2792, Val: 97.98%
+[2025-12-08 00:50:05]   [Finetune] Epoch 40/50, Loss: 0.2706, Val: 98.12%
+[2025-12-08 00:50:23]   [Finetune] Epoch 45/50, Loss: 0.2690, Val: 98.19%
+[2025-12-08 00:50:40]   [Finetune] Epoch 50/50, Loss: 0.2664, Val: 98.26%
+[2025-12-08 00:50:41] [Finetune] Completed efficientnetv2_rw_s_scratch: Val=98.26%, Test=97.47%, F1=96.53%
+[2025-12-08 00:50:41] [Finetune] Starting: efficientnetv2_rw_s_scratch_eca
+[2025-12-08 00:50:59]   [Finetune] Epoch 5/50, Loss: 0.8530, Val: 64.14%
+[2025-12-08 00:51:17]   [Finetune] Epoch 10/50, Loss: 0.5427, Val: 88.50%
+[2025-12-08 00:51:36]   [Finetune] Epoch 15/50, Loss: 0.3832, Val: 95.23%
+[2025-12-08 00:51:54]   [Finetune] Epoch 20/50, Loss: 0.3486, Val: 96.60%
+[2025-12-08 00:52:13]   [Finetune] Epoch 25/50, Loss: 0.3018, Val: 96.96%
+[2025-12-08 00:52:31]   [Finetune] Epoch 30/50, Loss: 0.3028, Val: 97.04%
+[2025-12-08 00:52:50]   [Finetune] Epoch 35/50, Loss: 0.2807, Val: 97.76%
+[2025-12-08 00:53:08]   [Finetune] Epoch 40/50, Loss: 0.2727, Val: 98.05%
+[2025-12-08 00:53:28]   [Finetune] Epoch 45/50, Loss: 0.2672, Val: 98.34%
+[2025-12-08 00:53:48]   [Finetune] Epoch 50/50, Loss: 0.2672, Val: 98.55%
+[2025-12-08 00:53:49] [Finetune] Completed efficientnetv2_rw_s_scratch_eca: Val=98.55%, Test=97.62%, F1=96.73%
+[2025-12-08 00:53:49] [Finetune] Starting: ghostnetv2_100_scratch
+[2025-12-08 00:54:17]   [Finetune] Epoch 5/50, Loss: 0.4502, Val: 93.13%
+[2025-12-08 00:54:36]   [Finetune] Epoch 10/50, Loss: 0.3384, Val: 96.02%
+[2025-12-08 00:54:53]   [Finetune] Epoch 15/50, Loss: 0.2881, Val: 96.96%
+[2025-12-08 00:55:10]   [Finetune] Epoch 20/50, Loss: 0.2740, Val: 97.76%
+[2025-12-08 00:55:28]   [Finetune] Epoch 25/50, Loss: 0.2650, Val: 97.40%
+[2025-12-08 00:55:45]   [Finetune] Epoch 30/50, Loss: 0.2591, Val: 97.83%
+[2025-12-08 00:56:02]   [Finetune] Epoch 35/50, Loss: 0.2562, Val: 97.83%
+[2025-12-08 00:56:21]   [Finetune] Epoch 40/50, Loss: 0.2557, Val: 97.90%
+[2025-12-08 00:56:36]   [Finetune] Epoch 45/50, Loss: 0.2557, Val: 97.83%
+[2025-12-08 00:56:53]   [Finetune] Epoch 50/50, Loss: 0.2555, Val: 97.83%
+[2025-12-08 00:56:53] [Finetune] Completed ghostnetv2_100_scratch: Val=97.98%, Test=97.11%, F1=96.29%
+[2025-12-08 00:56:53] [Finetune] Starting: ghostnetv2_100_scratch_eca
+[2025-12-08 00:57:11]   [Finetune] Epoch 5/50, Loss: 0.4824, Val: 93.35%
+[2025-12-08 00:57:29]   [Finetune] Epoch 10/50, Loss: 0.3257, Val: 96.46%
+[2025-12-08 00:57:47]   [Finetune] Epoch 15/50, Loss: 0.2990, Val: 97.11%
+[2025-12-08 00:58:07]   [Finetune] Epoch 20/50, Loss: 0.2797, Val: 97.76%
+[2025-12-08 00:58:25]   [Finetune] Epoch 25/50, Loss: 0.2715, Val: 98.19%
+[2025-12-08 00:58:43]   [Finetune] Epoch 30/50, Loss: 0.2659, Val: 98.05%
+[2025-12-08 00:59:00]   [Finetune] Epoch 35/50, Loss: 0.2603, Val: 98.26%
+[2025-12-08 00:59:16]   [Finetune] Epoch 40/50, Loss: 0.2574, Val: 98.34%
+[2025-12-08 00:59:33]   [Finetune] Epoch 45/50, Loss: 0.2565, Val: 98.34%
+[2025-12-08 00:59:51]   [Finetune] Epoch 50/50, Loss: 0.2564, Val: 98.34%
+[2025-12-08 00:59:52] [Finetune] Completed ghostnetv2_100_scratch_eca: Val=98.41%, Test=97.40%, F1=96.47%
+[2025-12-08 00:59:52] 
+================================================================================
+[2025-12-08 00:59:52] PHASE 3: Stacking集成
+[2025-12-08 00:59:52] ================================================================================
+[2025-12-08 00:59:52] [Stacking] Training with teachers: ['convnextv2_tiny_scratch_eca', 'efficientnetv2_rw_s_scratch_eca', 'ghostnetv2_100_scratch_eca']
+[2025-12-08 01:00:57] [Stacking] Completed: Val=98.70%, Test=97.83%, F1=96.99%
+[2025-12-08 01:00:57] 
+================================================================================
+[2025-12-08 01:00:57] PHASE 4: 知识蒸馏学生模型
+[2025-12-08 01:00:57] ================================================================================
+[2025-12-08 01:00:57] [Distill] Starting: ghostnet_100_T3_a0.3
+[2025-12-08 01:01:37]   [Distill] Epoch 10/100, Val: 95.37%
+[2025-12-08 01:02:17]   [Distill] Epoch 20/100, Val: 97.32%
+[2025-12-08 01:02:55]   [Distill] Epoch 30/100, Val: 97.61%
+[2025-12-08 01:03:35]   [Distill] Epoch 40/100, Val: 97.61%
+[2025-12-08 01:04:14]   [Distill] Epoch 50/100, Val: 98.12%
+[2025-12-08 01:04:53]   [Distill] Epoch 60/100, Val: 98.26%
+[2025-12-08 01:05:31]   [Distill] Epoch 70/100, Val: 98.26%
+[2025-12-08 01:06:10]   [Distill] Epoch 80/100, Val: 98.48%
+[2025-12-08 01:06:48]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 01:07:27]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 01:07:27] [Distill] Completed ghostnet_100_T3_a0.3: Test=98.05%, F1=97.53%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:07:27] [Distill] Starting: ghostnet_100_T3_a0.5
+[2025-12-08 01:08:06]   [Distill] Epoch 10/100, Val: 94.65%
+[2025-12-08 01:08:45]   [Distill] Epoch 20/100, Val: 95.73%
+[2025-12-08 01:09:24]   [Distill] Epoch 30/100, Val: 96.46%
+[2025-12-08 01:10:02]   [Distill] Epoch 40/100, Val: 97.18%
+[2025-12-08 01:10:42]   [Distill] Epoch 50/100, Val: 97.40%
+[2025-12-08 01:11:21]   [Distill] Epoch 60/100, Val: 98.34%
+[2025-12-08 01:11:59]   [Distill] Epoch 70/100, Val: 98.26%
+[2025-12-08 01:12:37]   [Distill] Epoch 80/100, Val: 98.26%
+[2025-12-08 01:13:16]   [Distill] Epoch 90/100, Val: 98.41%
+[2025-12-08 01:13:55]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 01:13:55] [Distill] Completed ghostnet_100_T3_a0.5: Test=97.33%, F1=95.74%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:13:55] [Distill] Starting: ghostnet_100_T3_a0.7
+[2025-12-08 01:14:34]   [Distill] Epoch 10/100, Val: 94.36%
+[2025-12-08 01:15:12]   [Distill] Epoch 20/100, Val: 96.60%
+[2025-12-08 01:15:52]   [Distill] Epoch 30/100, Val: 97.11%
+[2025-12-08 01:16:33]   [Distill] Epoch 40/100, Val: 98.05%
+[2025-12-08 01:17:11]   [Distill] Epoch 50/100, Val: 98.19%
+[2025-12-08 01:17:49]   [Distill] Epoch 60/100, Val: 98.41%
+[2025-12-08 01:18:28]   [Distill] Epoch 70/100, Val: 98.34%
+[2025-12-08 01:19:06]   [Distill] Epoch 80/100, Val: 98.41%
+[2025-12-08 01:19:45]   [Distill] Epoch 90/100, Val: 98.26%
+[2025-12-08 01:20:23]   [Distill] Epoch 100/100, Val: 98.41%
+[2025-12-08 01:20:24] [Distill] Completed ghostnet_100_T3_a0.7: Test=97.54%, F1=96.81%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:20:24] [Distill] Starting: ghostnet_100_T4_a0.3
+[2025-12-08 01:21:03]   [Distill] Epoch 10/100, Val: 96.24%
+[2025-12-08 01:21:43]   [Distill] Epoch 20/100, Val: 97.04%
+[2025-12-08 01:22:22]   [Distill] Epoch 30/100, Val: 96.89%
+[2025-12-08 01:23:01]   [Distill] Epoch 40/100, Val: 97.98%
+[2025-12-08 01:23:39]   [Distill] Epoch 50/100, Val: 98.34%
+[2025-12-08 01:24:18]   [Distill] Epoch 60/100, Val: 98.12%
+[2025-12-08 01:24:58]   [Distill] Epoch 70/100, Val: 98.19%
+[2025-12-08 01:25:36]   [Distill] Epoch 80/100, Val: 98.34%
+[2025-12-08 01:26:16]   [Distill] Epoch 90/100, Val: 98.26%
+[2025-12-08 01:26:55]   [Distill] Epoch 100/100, Val: 98.41%
+[2025-12-08 01:26:55] [Distill] Completed ghostnet_100_T4_a0.3: Test=97.11%, F1=95.97%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:26:55] [Distill] Starting: ghostnet_100_T4_a0.5
+[2025-12-08 01:27:32]   [Distill] Epoch 10/100, Val: 96.24%
+[2025-12-08 01:28:09]   [Distill] Epoch 20/100, Val: 97.54%
+[2025-12-08 01:28:47]   [Distill] Epoch 30/100, Val: 97.25%
+[2025-12-08 01:29:27]   [Distill] Epoch 40/100, Val: 98.41%
+[2025-12-08 01:30:06]   [Distill] Epoch 50/100, Val: 98.19%
+[2025-12-08 01:30:44]   [Distill] Epoch 60/100, Val: 98.05%
+[2025-12-08 01:31:21]   [Distill] Epoch 70/100, Val: 98.19%
+[2025-12-08 01:32:00]   [Distill] Epoch 80/100, Val: 98.05%
+[2025-12-08 01:32:38]   [Distill] Epoch 90/100, Val: 98.12%
+[2025-12-08 01:33:16]   [Distill] Epoch 100/100, Val: 98.12%
+[2025-12-08 01:33:16] [Distill] Completed ghostnet_100_T4_a0.5: Test=97.33%, F1=96.07%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:33:16] [Distill] Starting: ghostnet_100_T4_a0.7
+[2025-12-08 01:33:54]   [Distill] Epoch 10/100, Val: 92.99%
+[2025-12-08 01:34:33]   [Distill] Epoch 20/100, Val: 96.75%
+[2025-12-08 01:35:12]   [Distill] Epoch 30/100, Val: 97.83%
+[2025-12-08 01:35:53]   [Distill] Epoch 40/100, Val: 97.83%
+[2025-12-08 01:36:30]   [Distill] Epoch 50/100, Val: 97.98%
+[2025-12-08 01:37:09]   [Distill] Epoch 60/100, Val: 98.05%
+[2025-12-08 01:37:48]   [Distill] Epoch 70/100, Val: 98.05%
+[2025-12-08 01:38:29]   [Distill] Epoch 80/100, Val: 98.05%
+[2025-12-08 01:39:09]   [Distill] Epoch 90/100, Val: 98.12%
+[2025-12-08 01:39:48]   [Distill] Epoch 100/100, Val: 98.12%
+[2025-12-08 01:39:48] [Distill] Completed ghostnet_100_T4_a0.7: Test=97.04%, F1=95.79%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:39:48] [Distill] Starting: ghostnet_100_T5_a0.3
+[2025-12-08 01:40:28]   [Distill] Epoch 10/100, Val: 93.93%
+[2025-12-08 01:41:09]   [Distill] Epoch 20/100, Val: 96.75%
+[2025-12-08 01:41:48]   [Distill] Epoch 30/100, Val: 97.69%
+[2025-12-08 01:42:27]   [Distill] Epoch 40/100, Val: 97.32%
+[2025-12-08 01:43:06]   [Distill] Epoch 50/100, Val: 98.12%
+[2025-12-08 01:43:46]   [Distill] Epoch 60/100, Val: 98.26%
+[2025-12-08 01:44:24]   [Distill] Epoch 70/100, Val: 98.12%
+[2025-12-08 01:45:01]   [Distill] Epoch 80/100, Val: 98.26%
+[2025-12-08 01:45:41]   [Distill] Epoch 90/100, Val: 98.41%
+[2025-12-08 01:46:20]   [Distill] Epoch 100/100, Val: 98.34%
+[2025-12-08 01:46:20] [Distill] Completed ghostnet_100_T5_a0.3: Test=97.62%, F1=96.68%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:46:20] [Distill] Starting: ghostnet_100_T5_a0.5
+[2025-12-08 01:47:00]   [Distill] Epoch 10/100, Val: 96.38%
+[2025-12-08 01:47:42]   [Distill] Epoch 20/100, Val: 96.46%
+[2025-12-08 01:48:27]   [Distill] Epoch 30/100, Val: 97.54%
+[2025-12-08 01:49:12]   [Distill] Epoch 40/100, Val: 97.54%
+[2025-12-08 01:49:58]   [Distill] Epoch 50/100, Val: 98.12%
+[2025-12-08 01:50:37]   [Distill] Epoch 60/100, Val: 98.12%
+[2025-12-08 01:51:15]   [Distill] Epoch 70/100, Val: 98.05%
+[2025-12-08 01:51:54]   [Distill] Epoch 80/100, Val: 98.05%
+[2025-12-08 01:52:33]   [Distill] Epoch 90/100, Val: 98.12%
+[2025-12-08 01:53:13]   [Distill] Epoch 100/100, Val: 98.12%
+[2025-12-08 01:53:13] [Distill] Completed ghostnet_100_T5_a0.5: Test=97.69%, F1=96.73%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:53:13] [Distill] Starting: ghostnet_100_T5_a0.7
+[2025-12-08 01:53:52]   [Distill] Epoch 10/100, Val: 96.02%
+[2025-12-08 01:54:30]   [Distill] Epoch 20/100, Val: 97.04%
+[2025-12-08 01:55:10]   [Distill] Epoch 30/100, Val: 97.83%
+[2025-12-08 01:55:49]   [Distill] Epoch 40/100, Val: 98.19%
+[2025-12-08 01:56:28]   [Distill] Epoch 50/100, Val: 98.26%
+[2025-12-08 01:57:06]   [Distill] Epoch 60/100, Val: 98.63%
+[2025-12-08 01:57:45]   [Distill] Epoch 70/100, Val: 98.48%
+[2025-12-08 01:58:24]   [Distill] Epoch 80/100, Val: 98.41%
+[2025-12-08 01:59:03]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 01:59:41]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 01:59:41] [Distill] Completed ghostnet_100_T5_a0.7: Test=97.47%, F1=96.45%, Params=3.91M, FLOPs=7.82G
+[2025-12-08 01:59:41] [Distill] Starting: mobilenetv3_small_075_T3_a0.3
+[2025-12-08 02:00:10]   [Distill] Epoch 10/100, Val: 91.68%
+[2025-12-08 02:00:38]   [Distill] Epoch 20/100, Val: 94.22%
+[2025-12-08 02:01:06]   [Distill] Epoch 30/100, Val: 95.52%
+[2025-12-08 02:01:35]   [Distill] Epoch 40/100, Val: 96.46%
+[2025-12-08 02:02:02]   [Distill] Epoch 50/100, Val: 97.11%
+[2025-12-08 02:02:31]   [Distill] Epoch 60/100, Val: 97.61%
+[2025-12-08 02:02:59]   [Distill] Epoch 70/100, Val: 97.54%
+[2025-12-08 02:03:27]   [Distill] Epoch 80/100, Val: 97.61%
+[2025-12-08 02:03:56]   [Distill] Epoch 90/100, Val: 97.47%
+[2025-12-08 02:04:24]   [Distill] Epoch 100/100, Val: 97.54%
+[2025-12-08 02:04:24] [Distill] Completed mobilenetv3_small_075_T3_a0.3: Test=96.82%, F1=95.60%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:04:24] [Distill] Starting: mobilenetv3_small_075_T3_a0.5
+[2025-12-08 02:04:54]   [Distill] Epoch 10/100, Val: 87.56%
+[2025-12-08 02:05:22]   [Distill] Epoch 20/100, Val: 94.50%
+[2025-12-08 02:05:51]   [Distill] Epoch 30/100, Val: 96.38%
+[2025-12-08 02:06:19]   [Distill] Epoch 40/100, Val: 97.04%
+[2025-12-08 02:06:48]   [Distill] Epoch 50/100, Val: 96.67%
+[2025-12-08 02:07:16]   [Distill] Epoch 60/100, Val: 97.54%
+[2025-12-08 02:07:45]   [Distill] Epoch 70/100, Val: 97.47%
+[2025-12-08 02:08:13]   [Distill] Epoch 80/100, Val: 97.83%
+[2025-12-08 02:08:41]   [Distill] Epoch 90/100, Val: 97.69%
+[2025-12-08 02:09:09]   [Distill] Epoch 100/100, Val: 97.61%
+[2025-12-08 02:09:09] [Distill] Completed mobilenetv3_small_075_T3_a0.5: Test=97.04%, F1=95.89%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:09:09] [Distill] Starting: mobilenetv3_small_075_T3_a0.7
+[2025-12-08 02:09:37]   [Distill] Epoch 10/100, Val: 86.70%
+[2025-12-08 02:10:05]   [Distill] Epoch 20/100, Val: 93.56%
+[2025-12-08 02:10:35]   [Distill] Epoch 30/100, Val: 95.52%
+[2025-12-08 02:11:03]   [Distill] Epoch 40/100, Val: 96.96%
+[2025-12-08 02:11:33]   [Distill] Epoch 50/100, Val: 97.47%
+[2025-12-08 02:12:02]   [Distill] Epoch 60/100, Val: 97.76%
+[2025-12-08 02:12:30]   [Distill] Epoch 70/100, Val: 97.61%
+[2025-12-08 02:12:57]   [Distill] Epoch 80/100, Val: 97.76%
+[2025-12-08 02:13:25]   [Distill] Epoch 90/100, Val: 97.83%
+[2025-12-08 02:13:53]   [Distill] Epoch 100/100, Val: 97.98%
+[2025-12-08 02:13:53] [Distill] Completed mobilenetv3_small_075_T3_a0.7: Test=96.97%, F1=95.34%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:13:53] [Distill] Starting: mobilenetv3_small_075_T4_a0.3
+[2025-12-08 02:14:22]   [Distill] Epoch 10/100, Val: 89.30%
+[2025-12-08 02:14:50]   [Distill] Epoch 20/100, Val: 95.16%
+[2025-12-08 02:15:18]   [Distill] Epoch 30/100, Val: 96.46%
+[2025-12-08 02:15:46]   [Distill] Epoch 40/100, Val: 97.18%
+[2025-12-08 02:16:14]   [Distill] Epoch 50/100, Val: 97.25%
+[2025-12-08 02:16:44]   [Distill] Epoch 60/100, Val: 97.54%
+[2025-12-08 02:17:12]   [Distill] Epoch 70/100, Val: 97.61%
+[2025-12-08 02:17:40]   [Distill] Epoch 80/100, Val: 97.61%
+[2025-12-08 02:18:10]   [Distill] Epoch 90/100, Val: 97.98%
+[2025-12-08 02:18:38]   [Distill] Epoch 100/100, Val: 97.90%
+[2025-12-08 02:18:38] [Distill] Completed mobilenetv3_small_075_T4_a0.3: Test=97.40%, F1=95.99%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:18:38] [Distill] Starting: mobilenetv3_small_075_T4_a0.5
+[2025-12-08 02:19:07]   [Distill] Epoch 10/100, Val: 92.12%
+[2025-12-08 02:19:35]   [Distill] Epoch 20/100, Val: 94.43%
+[2025-12-08 02:20:04]   [Distill] Epoch 30/100, Val: 96.60%
+[2025-12-08 02:20:32]   [Distill] Epoch 40/100, Val: 96.89%
+[2025-12-08 02:21:00]   [Distill] Epoch 50/100, Val: 97.18%
+[2025-12-08 02:21:27]   [Distill] Epoch 60/100, Val: 97.54%
+[2025-12-08 02:21:55]   [Distill] Epoch 70/100, Val: 97.61%
+[2025-12-08 02:22:23]   [Distill] Epoch 80/100, Val: 97.47%
+[2025-12-08 02:22:51]   [Distill] Epoch 90/100, Val: 97.40%
+[2025-12-08 02:23:20]   [Distill] Epoch 100/100, Val: 97.54%
+[2025-12-08 02:23:20] [Distill] Completed mobilenetv3_small_075_T4_a0.5: Test=96.68%, F1=95.40%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:23:20] [Distill] Starting: mobilenetv3_small_075_T4_a0.7
+[2025-12-08 02:23:49]   [Distill] Epoch 10/100, Val: 89.80%
+[2025-12-08 02:24:17]   [Distill] Epoch 20/100, Val: 93.13%
+[2025-12-08 02:24:45]   [Distill] Epoch 30/100, Val: 93.20%
+[2025-12-08 02:25:13]   [Distill] Epoch 40/100, Val: 95.37%
+[2025-12-08 02:25:41]   [Distill] Epoch 50/100, Val: 96.75%
+[2025-12-08 02:26:09]   [Distill] Epoch 60/100, Val: 96.67%
+[2025-12-08 02:26:38]   [Distill] Epoch 70/100, Val: 97.04%
+[2025-12-08 02:27:06]   [Distill] Epoch 80/100, Val: 97.32%
+[2025-12-08 02:27:34]   [Distill] Epoch 90/100, Val: 97.25%
+[2025-12-08 02:28:02]   [Distill] Epoch 100/100, Val: 97.25%
+[2025-12-08 02:28:02] [Distill] Completed mobilenetv3_small_075_T4_a0.7: Test=96.89%, F1=96.12%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:28:02] [Distill] Starting: mobilenetv3_small_075_T5_a0.3
+[2025-12-08 02:28:30]   [Distill] Epoch 10/100, Val: 92.84%
+[2025-12-08 02:28:58]   [Distill] Epoch 20/100, Val: 95.73%
+[2025-12-08 02:29:26]   [Distill] Epoch 30/100, Val: 96.82%
+[2025-12-08 02:29:55]   [Distill] Epoch 40/100, Val: 96.31%
+[2025-12-08 02:30:23]   [Distill] Epoch 50/100, Val: 97.32%
+[2025-12-08 02:30:52]   [Distill] Epoch 60/100, Val: 97.40%
+[2025-12-08 02:31:21]   [Distill] Epoch 70/100, Val: 97.90%
+[2025-12-08 02:31:49]   [Distill] Epoch 80/100, Val: 97.83%
+[2025-12-08 02:32:18]   [Distill] Epoch 90/100, Val: 97.83%
+[2025-12-08 02:32:46]   [Distill] Epoch 100/100, Val: 97.76%
+[2025-12-08 02:32:46] [Distill] Completed mobilenetv3_small_075_T5_a0.3: Test=97.04%, F1=95.60%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:32:46] [Distill] Starting: mobilenetv3_small_075_T5_a0.5
+[2025-12-08 02:33:14]   [Distill] Epoch 10/100, Val: 91.25%
+[2025-12-08 02:33:43]   [Distill] Epoch 20/100, Val: 95.44%
+[2025-12-08 02:34:11]   [Distill] Epoch 30/100, Val: 95.88%
+[2025-12-08 02:34:39]   [Distill] Epoch 40/100, Val: 96.82%
+[2025-12-08 02:35:07]   [Distill] Epoch 50/100, Val: 96.89%
+[2025-12-08 02:35:36]   [Distill] Epoch 60/100, Val: 97.32%
+[2025-12-08 02:36:05]   [Distill] Epoch 70/100, Val: 97.25%
+[2025-12-08 02:36:33]   [Distill] Epoch 80/100, Val: 97.40%
+[2025-12-08 02:37:01]   [Distill] Epoch 90/100, Val: 97.54%
+[2025-12-08 02:37:28]   [Distill] Epoch 100/100, Val: 97.47%
+[2025-12-08 02:37:29] [Distill] Completed mobilenetv3_small_075_T5_a0.5: Test=96.89%, F1=96.02%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:37:29] [Distill] Starting: mobilenetv3_small_075_T5_a0.7
+[2025-12-08 02:37:57]   [Distill] Epoch 10/100, Val: 89.30%
+[2025-12-08 02:38:25]   [Distill] Epoch 20/100, Val: 95.23%
+[2025-12-08 02:38:52]   [Distill] Epoch 30/100, Val: 97.11%
+[2025-12-08 02:39:20]   [Distill] Epoch 40/100, Val: 97.54%
+[2025-12-08 02:39:48]   [Distill] Epoch 50/100, Val: 97.47%
+[2025-12-08 02:40:20]   [Distill] Epoch 60/100, Val: 97.61%
+[2025-12-08 02:40:51]   [Distill] Epoch 70/100, Val: 98.12%
+[2025-12-08 02:41:21]   [Distill] Epoch 80/100, Val: 97.90%
+[2025-12-08 02:41:52]   [Distill] Epoch 90/100, Val: 97.98%
+[2025-12-08 02:42:22]   [Distill] Epoch 100/100, Val: 97.83%
+[2025-12-08 02:42:22] [Distill] Completed mobilenetv3_small_075_T5_a0.7: Test=97.04%, F1=95.90%, Params=1.02M, FLOPs=2.05G
+[2025-12-08 02:42:22] [Distill] Starting: repvit_m0_9_T3_a0.3
+[2025-12-08 02:43:12]   [Distill] Epoch 10/100, Val: 97.18%
+[2025-12-08 02:43:57]   [Distill] Epoch 20/100, Val: 97.90%
+[2025-12-08 02:44:41]   [Distill] Epoch 30/100, Val: 97.98%
+[2025-12-08 02:45:25]   [Distill] Epoch 40/100, Val: 98.34%
+[2025-12-08 02:46:10]   [Distill] Epoch 50/100, Val: 98.48%
+[2025-12-08 02:46:55]   [Distill] Epoch 60/100, Val: 98.55%
+[2025-12-08 02:47:41]   [Distill] Epoch 70/100, Val: 98.48%
+[2025-12-08 02:48:26]   [Distill] Epoch 80/100, Val: 98.48%
+[2025-12-08 02:49:12]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 02:49:56]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 02:49:56] [Distill] Completed repvit_m0_9_T3_a0.3: Test=98.12%, F1=97.39%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 02:49:56] [Distill] Starting: repvit_m0_9_T3_a0.5
+[2025-12-08 02:50:42]   [Distill] Epoch 10/100, Val: 97.40%
+[2025-12-08 02:51:25]   [Distill] Epoch 20/100, Val: 97.40%
+[2025-12-08 02:52:10]   [Distill] Epoch 30/100, Val: 98.12%
+[2025-12-08 02:52:55]   [Distill] Epoch 40/100, Val: 97.98%
+[2025-12-08 02:53:40]   [Distill] Epoch 50/100, Val: 98.19%
+[2025-12-08 02:54:26]   [Distill] Epoch 60/100, Val: 98.19%
+[2025-12-08 02:55:11]   [Distill] Epoch 70/100, Val: 98.12%
+[2025-12-08 02:55:56]   [Distill] Epoch 80/100, Val: 98.26%
+[2025-12-08 02:56:41]   [Distill] Epoch 90/100, Val: 98.34%
+[2025-12-08 02:57:25]   [Distill] Epoch 100/100, Val: 98.19%
+[2025-12-08 02:57:26] [Distill] Completed repvit_m0_9_T3_a0.5: Test=97.98%, F1=97.13%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 02:57:26] [Distill] Starting: repvit_m0_9_T3_a0.7
+[2025-12-08 02:58:12]   [Distill] Epoch 10/100, Val: 96.75%
+[2025-12-08 02:58:57]   [Distill] Epoch 20/100, Val: 98.12%
+[2025-12-08 02:59:42]   [Distill] Epoch 30/100, Val: 98.12%
+[2025-12-08 03:00:27]   [Distill] Epoch 40/100, Val: 97.90%
+[2025-12-08 03:01:12]   [Distill] Epoch 50/100, Val: 98.55%
+[2025-12-08 03:01:58]   [Distill] Epoch 60/100, Val: 98.48%
+[2025-12-08 03:02:43]   [Distill] Epoch 70/100, Val: 98.63%
+[2025-12-08 03:03:28]   [Distill] Epoch 80/100, Val: 98.70%
+[2025-12-08 03:04:14]   [Distill] Epoch 90/100, Val: 98.70%
+[2025-12-08 03:04:57]   [Distill] Epoch 100/100, Val: 98.63%
+[2025-12-08 03:04:57] [Distill] Completed repvit_m0_9_T3_a0.7: Test=97.69%, F1=97.11%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:04:57] [Distill] Starting: repvit_m0_9_T4_a0.3
+[2025-12-08 03:05:43]   [Distill] Epoch 10/100, Val: 95.73%
+[2025-12-08 03:06:26]   [Distill] Epoch 20/100, Val: 97.98%
+[2025-12-08 03:07:11]   [Distill] Epoch 30/100, Val: 97.83%
+[2025-12-08 03:07:55]   [Distill] Epoch 40/100, Val: 98.12%
+[2025-12-08 03:08:40]   [Distill] Epoch 50/100, Val: 98.12%
+[2025-12-08 03:09:25]   [Distill] Epoch 60/100, Val: 98.12%
+[2025-12-08 03:10:11]   [Distill] Epoch 70/100, Val: 98.12%
+[2025-12-08 03:10:53]   [Distill] Epoch 80/100, Val: 98.19%
+[2025-12-08 03:11:36]   [Distill] Epoch 90/100, Val: 98.19%
+[2025-12-08 03:12:20]   [Distill] Epoch 100/100, Val: 98.19%
+[2025-12-08 03:12:20] [Distill] Completed repvit_m0_9_T4_a0.3: Test=97.69%, F1=96.82%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:12:20] [Distill] Starting: repvit_m0_9_T4_a0.5
+[2025-12-08 03:13:01]   [Distill] Epoch 10/100, Val: 95.88%
+[2025-12-08 03:13:45]   [Distill] Epoch 20/100, Val: 98.05%
+[2025-12-08 03:14:27]   [Distill] Epoch 30/100, Val: 97.76%
+[2025-12-08 03:15:09]   [Distill] Epoch 40/100, Val: 98.26%
+[2025-12-08 03:15:52]   [Distill] Epoch 50/100, Val: 98.41%
+[2025-12-08 03:16:36]   [Distill] Epoch 60/100, Val: 98.48%
+[2025-12-08 03:17:18]   [Distill] Epoch 70/100, Val: 98.48%
+[2025-12-08 03:18:00]   [Distill] Epoch 80/100, Val: 98.48%
+[2025-12-08 03:18:42]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 03:19:22]   [Distill] Epoch 100/100, Val: 98.41%
+[2025-12-08 03:19:23] [Distill] Completed repvit_m0_9_T4_a0.5: Test=97.76%, F1=97.00%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:19:23] [Distill] Starting: repvit_m0_9_T4_a0.7
+[2025-12-08 03:20:07]   [Distill] Epoch 10/100, Val: 97.04%
+[2025-12-08 03:20:50]   [Distill] Epoch 20/100, Val: 97.32%
+[2025-12-08 03:21:33]   [Distill] Epoch 30/100, Val: 97.90%
+[2025-12-08 03:22:16]   [Distill] Epoch 40/100, Val: 98.48%
+[2025-12-08 03:23:01]   [Distill] Epoch 50/100, Val: 98.41%
+[2025-12-08 03:23:43]   [Distill] Epoch 60/100, Val: 98.34%
+[2025-12-08 03:24:25]   [Distill] Epoch 70/100, Val: 98.41%
+[2025-12-08 03:25:08]   [Distill] Epoch 80/100, Val: 98.41%
+[2025-12-08 03:25:50]   [Distill] Epoch 90/100, Val: 98.41%
+[2025-12-08 03:26:34]   [Distill] Epoch 100/100, Val: 98.41%
+[2025-12-08 03:26:34] [Distill] Completed repvit_m0_9_T4_a0.7: Test=97.98%, F1=97.00%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:26:34] [Distill] Starting: repvit_m0_9_T5_a0.3
+[2025-12-08 03:27:19]   [Distill] Epoch 10/100, Val: 97.32%
+[2025-12-08 03:28:02]   [Distill] Epoch 20/100, Val: 96.82%
+[2025-12-08 03:28:46]   [Distill] Epoch 30/100, Val: 98.34%
+[2025-12-08 03:29:28]   [Distill] Epoch 40/100, Val: 98.41%
+[2025-12-08 03:30:09]   [Distill] Epoch 50/100, Val: 98.70%
+[2025-12-08 03:30:49]   [Distill] Epoch 60/100, Val: 98.48%
+[2025-12-08 03:31:31]   [Distill] Epoch 70/100, Val: 98.55%
+[2025-12-08 03:32:12]   [Distill] Epoch 80/100, Val: 98.48%
+[2025-12-08 03:32:54]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 03:33:36]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 03:33:36] [Distill] Completed repvit_m0_9_T5_a0.3: Test=97.98%, F1=97.34%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:33:36] [Distill] Starting: repvit_m0_9_T5_a0.5
+[2025-12-08 03:34:20]   [Distill] Epoch 10/100, Val: 96.67%
+[2025-12-08 03:35:02]   [Distill] Epoch 20/100, Val: 97.69%
+[2025-12-08 03:35:45]   [Distill] Epoch 30/100, Val: 98.26%
+[2025-12-08 03:36:28]   [Distill] Epoch 40/100, Val: 98.63%
+[2025-12-08 03:37:10]   [Distill] Epoch 50/100, Val: 98.12%
+[2025-12-08 03:37:53]   [Distill] Epoch 60/100, Val: 98.41%
+[2025-12-08 03:38:36]   [Distill] Epoch 70/100, Val: 98.48%
+[2025-12-08 03:39:18]   [Distill] Epoch 80/100, Val: 98.41%
+[2025-12-08 03:40:00]   [Distill] Epoch 90/100, Val: 98.55%
+[2025-12-08 03:40:42]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 03:40:42] [Distill] Completed repvit_m0_9_T5_a0.5: Test=97.83%, F1=97.10%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:40:42] [Distill] Starting: repvit_m0_9_T5_a0.7
+[2025-12-08 03:41:25]   [Distill] Epoch 10/100, Val: 96.89%
+[2025-12-08 03:42:09]   [Distill] Epoch 20/100, Val: 97.61%
+[2025-12-08 03:42:52]   [Distill] Epoch 30/100, Val: 97.76%
+[2025-12-08 03:43:35]   [Distill] Epoch 40/100, Val: 98.05%
+[2025-12-08 03:44:15]   [Distill] Epoch 50/100, Val: 98.34%
+[2025-12-08 03:44:57]   [Distill] Epoch 60/100, Val: 98.34%
+[2025-12-08 03:45:42]   [Distill] Epoch 70/100, Val: 98.55%
+[2025-12-08 03:46:24]   [Distill] Epoch 80/100, Val: 98.48%
+[2025-12-08 03:47:06]   [Distill] Epoch 90/100, Val: 98.48%
+[2025-12-08 03:47:49]   [Distill] Epoch 100/100, Val: 98.48%
+[2025-12-08 03:47:49] [Distill] Completed repvit_m0_9_T5_a0.7: Test=98.05%, F1=97.02%, Params=4.72M, FLOPs=9.45G
+[2025-12-08 03:47:49] [Distill] Starting: mobilenetv2_050_T3_a0.3
+[2025-12-08 03:48:19]   [Distill] Epoch 10/100, Val: 93.35%
+[2025-12-08 03:48:47]   [Distill] Epoch 20/100, Val: 96.31%
+[2025-12-08 03:49:15]   [Distill] Epoch 30/100, Val: 96.46%
+[2025-12-08 03:49:43]   [Distill] Epoch 40/100, Val: 96.96%
+[2025-12-08 03:50:11]   [Distill] Epoch 50/100, Val: 96.96%
+[2025-12-08 03:50:39]   [Distill] Epoch 60/100, Val: 96.67%
+[2025-12-08 03:51:07]   [Distill] Epoch 70/100, Val: 96.82%
+[2025-12-08 03:51:35]   [Distill] Epoch 80/100, Val: 96.82%
+[2025-12-08 03:52:06]   [Distill] Epoch 90/100, Val: 96.82%
+[2025-12-08 03:52:33]   [Distill] Epoch 100/100, Val: 96.82%
+[2025-12-08 03:52:34] [Distill] Completed mobilenetv2_050_T3_a0.3: Test=95.88%, F1=94.71%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 03:52:34] [Distill] Starting: mobilenetv2_050_T3_a0.5
+[2025-12-08 03:53:02]   [Distill] Epoch 10/100, Val: 93.78%
+[2025-12-08 03:53:30]   [Distill] Epoch 20/100, Val: 96.89%
+[2025-12-08 03:53:58]   [Distill] Epoch 30/100, Val: 96.82%
+[2025-12-08 03:54:26]   [Distill] Epoch 40/100, Val: 97.18%
+[2025-12-08 03:54:54]   [Distill] Epoch 50/100, Val: 97.11%
+[2025-12-08 03:55:22]   [Distill] Epoch 60/100, Val: 97.40%
+[2025-12-08 03:55:50]   [Distill] Epoch 70/100, Val: 97.32%
+[2025-12-08 03:56:18]   [Distill] Epoch 80/100, Val: 97.47%
+[2025-12-08 03:56:46]   [Distill] Epoch 90/100, Val: 97.32%
+[2025-12-08 03:57:13]   [Distill] Epoch 100/100, Val: 97.11%
+[2025-12-08 03:57:13] [Distill] Completed mobilenetv2_050_T3_a0.5: Test=96.46%, F1=94.88%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 03:57:13] [Distill] Starting: mobilenetv2_050_T3_a0.7
+[2025-12-08 03:57:41]   [Distill] Epoch 10/100, Val: 90.82%
+[2025-12-08 03:58:09]   [Distill] Epoch 20/100, Val: 94.72%
+[2025-12-08 03:58:37]   [Distill] Epoch 30/100, Val: 96.17%
+[2025-12-08 03:59:05]   [Distill] Epoch 40/100, Val: 96.31%
+[2025-12-08 03:59:33]   [Distill] Epoch 50/100, Val: 97.04%
+[2025-12-08 04:00:01]   [Distill] Epoch 60/100, Val: 97.98%
+[2025-12-08 04:00:29]   [Distill] Epoch 70/100, Val: 97.69%
+[2025-12-08 04:00:57]   [Distill] Epoch 80/100, Val: 97.76%
+[2025-12-08 04:01:25]   [Distill] Epoch 90/100, Val: 97.90%
+[2025-12-08 04:01:53]   [Distill] Epoch 100/100, Val: 97.83%
+[2025-12-08 04:01:53] [Distill] Completed mobilenetv2_050_T3_a0.7: Test=96.97%, F1=95.53%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:01:53] [Distill] Starting: mobilenetv2_050_T4_a0.3
+[2025-12-08 04:02:21]   [Distill] Epoch 10/100, Val: 91.11%
+[2025-12-08 04:02:49]   [Distill] Epoch 20/100, Val: 95.44%
+[2025-12-08 04:03:17]   [Distill] Epoch 30/100, Val: 96.02%
+[2025-12-08 04:03:45]   [Distill] Epoch 40/100, Val: 96.67%
+[2025-12-08 04:04:13]   [Distill] Epoch 50/100, Val: 96.75%
+[2025-12-08 04:04:40]   [Distill] Epoch 60/100, Val: 97.40%
+[2025-12-08 04:05:09]   [Distill] Epoch 70/100, Val: 97.54%
+[2025-12-08 04:05:37]   [Distill] Epoch 80/100, Val: 97.47%
+[2025-12-08 04:06:04]   [Distill] Epoch 90/100, Val: 97.47%
+[2025-12-08 04:06:32]   [Distill] Epoch 100/100, Val: 97.54%
+[2025-12-08 04:06:32] [Distill] Completed mobilenetv2_050_T4_a0.3: Test=96.53%, F1=95.53%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:06:32] [Distill] Starting: mobilenetv2_050_T4_a0.5
+[2025-12-08 04:07:01]   [Distill] Epoch 10/100, Val: 93.13%
+[2025-12-08 04:07:29]   [Distill] Epoch 20/100, Val: 96.17%
+[2025-12-08 04:07:57]   [Distill] Epoch 30/100, Val: 95.73%
+[2025-12-08 04:08:24]   [Distill] Epoch 40/100, Val: 96.53%
+[2025-12-08 04:08:52]   [Distill] Epoch 50/100, Val: 96.75%
+[2025-12-08 04:09:19]   [Distill] Epoch 60/100, Val: 97.18%
+[2025-12-08 04:09:47]   [Distill] Epoch 70/100, Val: 96.89%
+[2025-12-08 04:10:15]   [Distill] Epoch 80/100, Val: 96.89%
+[2025-12-08 04:10:43]   [Distill] Epoch 90/100, Val: 96.89%
+[2025-12-08 04:11:11]   [Distill] Epoch 100/100, Val: 96.89%
+[2025-12-08 04:11:11] [Distill] Completed mobilenetv2_050_T4_a0.5: Test=96.46%, F1=95.05%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:11:11] [Distill] Starting: mobilenetv2_050_T4_a0.7
+[2025-12-08 04:11:40]   [Distill] Epoch 10/100, Val: 92.91%
+[2025-12-08 04:12:08]   [Distill] Epoch 20/100, Val: 95.81%
+[2025-12-08 04:12:36]   [Distill] Epoch 30/100, Val: 96.67%
+[2025-12-08 04:13:04]   [Distill] Epoch 40/100, Val: 96.89%
+[2025-12-08 04:13:32]   [Distill] Epoch 50/100, Val: 96.82%
+[2025-12-08 04:14:01]   [Distill] Epoch 60/100, Val: 96.96%
+[2025-12-08 04:14:28]   [Distill] Epoch 70/100, Val: 97.32%
+[2025-12-08 04:14:57]   [Distill] Epoch 80/100, Val: 97.25%
+[2025-12-08 04:15:25]   [Distill] Epoch 90/100, Val: 97.04%
+[2025-12-08 04:15:54]   [Distill] Epoch 100/100, Val: 97.18%
+[2025-12-08 04:15:54] [Distill] Completed mobilenetv2_050_T4_a0.7: Test=96.10%, F1=94.75%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:15:54] [Distill] Starting: mobilenetv2_050_T5_a0.3
+[2025-12-08 04:16:22]   [Distill] Epoch 10/100, Val: 92.48%
+[2025-12-08 04:16:51]   [Distill] Epoch 20/100, Val: 95.73%
+[2025-12-08 04:17:19]   [Distill] Epoch 30/100, Val: 96.24%
+[2025-12-08 04:17:47]   [Distill] Epoch 40/100, Val: 97.18%
+[2025-12-08 04:18:15]   [Distill] Epoch 50/100, Val: 96.75%
+[2025-12-08 04:18:42]   [Distill] Epoch 60/100, Val: 96.82%
+[2025-12-08 04:19:10]   [Distill] Epoch 70/100, Val: 97.04%
+[2025-12-08 04:19:37]   [Distill] Epoch 80/100, Val: 97.11%
+[2025-12-08 04:20:05]   [Distill] Epoch 90/100, Val: 97.04%
+[2025-12-08 04:20:35]   [Distill] Epoch 100/100, Val: 97.18%
+[2025-12-08 04:20:35] [Distill] Completed mobilenetv2_050_T5_a0.3: Test=96.53%, F1=95.03%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:20:35] [Distill] Starting: mobilenetv2_050_T5_a0.5
+[2025-12-08 04:21:03]   [Distill] Epoch 10/100, Val: 92.34%
+[2025-12-08 04:21:30]   [Distill] Epoch 20/100, Val: 95.52%
+[2025-12-08 04:21:58]   [Distill] Epoch 30/100, Val: 96.60%
+[2025-12-08 04:22:26]   [Distill] Epoch 40/100, Val: 96.96%
+[2025-12-08 04:22:56]   [Distill] Epoch 50/100, Val: 96.53%
+[2025-12-08 04:23:28]   [Distill] Epoch 60/100, Val: 97.40%
+[2025-12-08 04:24:03]   [Distill] Epoch 70/100, Val: 97.47%
+[2025-12-08 04:24:37]   [Distill] Epoch 80/100, Val: 97.69%
+[2025-12-08 04:25:06]   [Distill] Epoch 90/100, Val: 97.61%
+[2025-12-08 04:25:40]   [Distill] Epoch 100/100, Val: 97.54%
+[2025-12-08 04:25:40] [Distill] Completed mobilenetv2_050_T5_a0.5: Test=97.04%, F1=96.08%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:25:40] [Distill] Starting: mobilenetv2_050_T5_a0.7
+[2025-12-08 04:26:12]   [Distill] Epoch 10/100, Val: 93.42%
+[2025-12-08 04:26:40]   [Distill] Epoch 20/100, Val: 97.18%
+[2025-12-08 04:27:09]   [Distill] Epoch 30/100, Val: 96.96%
+[2025-12-08 04:27:37]   [Distill] Epoch 40/100, Val: 97.32%
+[2025-12-08 04:28:05]   [Distill] Epoch 50/100, Val: 97.18%
+[2025-12-08 04:28:32]   [Distill] Epoch 60/100, Val: 97.54%
+[2025-12-08 04:29:00]   [Distill] Epoch 70/100, Val: 97.61%
+[2025-12-08 04:29:28]   [Distill] Epoch 80/100, Val: 97.69%
+[2025-12-08 04:29:57]   [Distill] Epoch 90/100, Val: 97.54%
+[2025-12-08 04:30:26]   [Distill] Epoch 100/100, Val: 97.54%
+[2025-12-08 04:30:26] [Distill] Completed mobilenetv2_050_T5_a0.7: Test=96.82%, F1=95.53%, Params=0.70M, FLOPs=1.39G
+[2025-12-08 04:30:26] 
+================================================================================
+[2025-12-08 04:30:26] PHASE 5: 生成报告
+[2025-12-08 04:30:26] ================================================================================
+[2025-12-08 04:30:26] Report saved to results/full_pipeline_20251208_004257/gpu1_scratch/FINAL_REPORT.md
+[2025-12-08 04:30:26] 
+================================================================================
+[2025-12-08 04:30:26] 实验完成!
+[2025-12-08 04:30:26] 结果保存在: results/full_pipeline_20251208_004257/gpu1_scratch
+[2025-12-08 04:30:26] ================================================================================

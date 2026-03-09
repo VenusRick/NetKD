@@ -1,0 +1,23 @@
+nohup: ignoring input
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+加载教师模型: efficientnetv2_rw_s
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_parallel_gpu12.py", line 163, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_parallel_gpu12.py", line 135, in main
+    teacher = load_teacher(teacher_path, teacher_backbone, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_parallel_gpu12.py", line 33, in load_teacher
+    model.load_state_dict(ckpt['model_state_dict'])
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2624, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for EfficientNet:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([7, 1792]) from checkpoint, the shape in current model is torch.Size([12, 1792]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([7]) from checkpoint, the shape in current model is torch.Size([12]).

@@ -1,0 +1,34 @@
+nohup: ignoring input
+/workspace/yqm/NetKD/scripts/run_kd_ablation.py:109: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+Device: cuda
+KD Config: ce_only
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Loading teachers...
+E1:   0%|          | 0/104 [00:00<?, ?it/s]/workspace/yqm/NetKD/scripts/run_kd_ablation.py:125: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+                                           Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_ablation.py", line 242, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_ablation.py", line 216, in main
+    results = train_with_kd_config(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_kd_ablation.py", line 132, in train_with_kd_config
+    t_logits = stacking(t_stack)
+               ^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/models/teacher_models.py", line 417, in forward
+    raise ValueError(
+ValueError: Expected 3 teacher logits, got 1

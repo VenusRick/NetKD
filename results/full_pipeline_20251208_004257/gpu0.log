@@ -1,0 +1,42 @@
+/workspace/yqm/NetKD/scripts/full_pipeline_experiment.py:356: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+[2025-12-08 00:42:59] ================================================================================
+[2025-12-08 00:42:59] TrafficKD 完整实验流程
+[2025-12-08 00:42:59] Output: results/full_pipeline_20251208_004257/gpu0_full
+[2025-12-08 00:42:59] GPU: 0
+[2025-12-08 00:42:59] ================================================================================
+[2025-12-08 00:42:59] Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+[2025-12-08 00:43:00] Dataset loaded: train=13281, val=1383, test=1384
+[2025-12-08 00:43:00] 
+================================================================================
+[2025-12-08 00:43:00] PHASE 1: 预训练方法对比
+[2025-12-08 00:43:00] ================================================================================
+[2025-12-08 00:43:00] [MAE] Starting pretraining: convnextv2_tiny_mae_mask0.75
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+convnextv2_tiny_mae_mask0.75 E1:   0%|          | 0/26 [00:00<?, ?it/s]/workspace/yqm/NetKD/scripts/full_pipeline_experiment.py:369: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+                                                                       Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/full_pipeline_experiment.py", line 1239, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/full_pipeline_experiment.py", line 1007, in main
+    result = train_mae(test_backbone, mask_ratio, CONFIG, args.gpu,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/full_pipeline_experiment.py", line 372, in train_mae
+    loss = F.mse_loss(reconstructed * mask, x * mask)
+                      ~~~~~~~~~~~~~~^~~~~~
+RuntimeError: The size of tensor a (64) must match the size of tensor b (40) at non-singleton dimension 3

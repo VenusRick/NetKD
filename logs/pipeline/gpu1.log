@@ -1,0 +1,78 @@
+nohup: ignoring input
+
+============================================================
+Dataset: CICIoT2022 | GPU: cuda:1
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'CICIoT2022', 'dataset_path': '/workspace/yqm/Dataset/CICIoT2022', 'num_classes': 6, 'class_names': ['Audio', 'Cameras', 'Flood', 'Home Automation', 'Hydra', 'Nmap'], 'total_images': 22634, 'train_size': 18734, 'val_size': 1949, 'test_size': 1951, 'class_counts': [2650, 3074, 6961, 2687, 298, 6964], 'class_weights': [1.4235220125786163, 1.2271741487746692, 0.5419240530575109, 1.403920109167597, 12.658836689038031, 0.5416905992724488], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 586, Val: 61, Test: 61
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in CICIoT2022: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+Dataset: CrossPlatform-Android | GPU: cuda:1
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'CrossPlatform-Android', 'dataset_path': '/workspace/yqm/Dataset/CrossPlatform-Android', 'num_classes': 181, 'class_names': ['HinKhoj.Dictionary', 'bibleverses.bibleverse.bible.biblia.verse.devotion', 'bubei.tingshu', 'club.fromfactory', 'cn.cntvnews', 'com.Dominos', 'com.Qunar', 'com.Splitwise.SplitwiseMobile', 'com.UCMobile', 'com.abtnprojects.ambatana', 'com.aikan', 'com.akosha.directtalk', 'com.alibaba.aliexpresshd', 'com.amazon.kindle', 'com.amazon.mShop.android.shopping', 'com.amazon.tahoe', 'com.application.zomato', 'com.appsilo.paheli', 'com.aranoah.healthkart.plus', 'com.audible.application', 'com.babycenter.pregnancytracker', 'com.baidu.BaiduMap', 'com.baidu.homework', 'com.baidu.wenku', 'com.bsbportal.music', 'com.bt.bms', 'com.byjus.thelearningapp', 'com.carmax.carmax', 'com.carwale', 'com.changba', 'com.contextlogic.wish', 'com.coomix.app.bus', 'com.culiu.qqpurchase', 'com.cuvora.carinfo', 'com.dccomics.comics', 'com.dewmobile.kuaiya', 'com.dianping.v1', 'com.done.faasos', 'com.duomi.android', 'com.duowan.kiwi', 'com.duowan.mobile', 'com.ea.simcitymobile.tx', 'com.esbook.reader', 'com.espn.score_center', 'com.fenbi.android.solar', 'com.fitbit.FitbitMobile', 'com.fitness.center.seven.minute.workout', 'com.flipkart.android', 'com.foxsports.videogo', 'com.gaana', 'com.girnarsoft.cardekho', 'com.goodrx', 'com.google.android.apps.tachyon', 'com.google.samples.apps.cardboarddemo', 'com.handsgo.jiakao.android', 'com.happyelements.AndroidAnimal.qq', 'com.happyelements.AndroidClover.www', 'com.healthifyme.basic', 'com.hunantv.imgo.activity', 'com.hzfb.racing8.tx', 'com.iconology.comics', 'com.ifeng.fhdt', 'com.ifeng.news2', 'com.immomo.momo', 'com.imo.android.imoim', 'com.indeed.android.jobsearch', 'com.iooly.android.lockscreen', 'com.itings.myradio', 'com.jardogs.fmhmobile', 'com.jb.go.musicplayer.mp3player', 'com.jifen.qukan', 'com.jiubang.fastestflashlight', 'com.jiubang.go.music', 'com.kuaikan.comic', 'com.lanjingren.ivwen', 'com.lazyswipe', 'com.lenovo.anyshare.gps', 'com.letv.android.client', 'com.lumoslabs.lumosity', 'com.match.android.matchmobile', 'com.mfw.roadbook', 'com.moji.mjweather', 'com.msm.lhmsappolice', 'com.mt.mtxx.mtxx', 'com.narendramodiapp', 'com.naver.linewebtoon', 'com.netease.newsreader.activity', 'com.newsdog', 'com.okcupid.okcupid', 'com.olx.southasia', 'com.ophone.reader.ui', 'com.outfit7.mytalkinghank', 'com.outfit7.talkingtom', 'com.pandora.android', 'com.particlenews.newsbreak', 'com.paytmmall', 'com.pinterest', 'com.poker.clubs.wallpapers.cute.anime.girl', 'com.powertools.booster', 'com.practo.fabric', 'com.qidian.QDReader', 'com.qihoo.video', 'com.qiyi.video', 'com.qq.reader', 'com.qzone', 'com.reddit.frontpage', 'com.renren.mobile.android', 'com.sdu.didi.psnger', 'com.sephora', 'com.seven.fitness.workout', 'com.sharper.yoga', 'com.shopclues', 'com.shuqi.controller', 'com.sina.news', 'com.sina.weibo', 'com.smartkeyboard.emoji', 'com.snapdeal.main', 'com.sohu.sohuvideo', 'com.spotify.music', 'com.ss.android.article.master', 'com.ss.android.article.news', 'com.steam.photoeditor', 'com.szzc.ucar.pilot', 'com.tekoia.sure.activities', 'com.tencent.mobileqq', 'com.tencent.mtt', 'com.tencent.news', 'com.tencent.qqlive', 'com.tencent.qqmusic', 'com.tencent.radio', 'com.tencent.reading', 'com.tencent.tmgp.huluwa', 'com.thestore.main', 'com.tiexue.mobile.topnews', 'com.tieyou.train.ark', 'com.tilzmatictech.mobile.navigation.delhimetronavigator', 'com.timesgroup.magicbricks', 'com.toi.reader.activities', 'com.tongcheng.android', 'com.tool.power', 'com.trackview', 'com.trulia.android', 'com.tuniu.app.ui', 'com.ushaqi.zhuishushenqi', 'com.wSugarMommasDating_4791482', 'com.winit.starnews.hin', 'com.xiachufang', 'com.ximalaya.ting.android', 'com.xpro.camera.lite', 'com.xunlei.downloadprovider', 'com.ygkj.chelaile.standard', 'com.yoga.pro.google.paid', 'com.youdao.dict', 'com.zalebox.room.painting.ideas.s1', 'com.zhejiangdaily', 'com.zhihu.android', 'com.zillow.android.zillowmap', 'com.zoneyet.gaga', 'ctrip.android.view', 'dating.app.chat.flirt.wgbcv', 'dev.gautam.bbkiwines', 'easypedeometer.herzberg.com.stepcounter', 'fakevideocall.chase.pawpatrol', 'fakevideocall.jojo.siwacall', 'fm.castbox.audiobook.radio.podcast', 'fm.qingting.qtradio', 'fm.xiami.main', 'im.yixin', 'in.AajTak.headlines', 'in.amazon.mShop.android.shopping', 'in.lucidify.remindme', 'mitmdump-arao-droid-2017-10-12-01-53-1507773234-10.101.2.3-8082', 'mitmdump-chris-app-2017-09-14-06-13-1505369624-10.101.2.6-8092', 'mitmdump-chris-app-2017-09-15-21-17-1505510278-10.101.2.6-8093', 'naukriApp.appModules.login', 'net.cybrook.trackview', 'net.zedge.android', 'pl.planmieszkania.android', 'sina.mobile.tianqitong', 'tv.danmaku.bili', 'tv.peel.app'], 'total_images': 54011, 'train_size': 44700, 'val_size': 4655, 'test_size': 4656, 'class_counts': [202, 181, 315, 288, 348, 360, 206, 312, 302, 311, 294, 328, 281, 422, 270, 376, 376, 434, 380, 259, 299, 267, 350, 234, 319, 335, 364, 350, 287, 273, 288, 267, 264, 262, 226, 266, 287, 412, 287, 256, 364, 228, 278, 329, 259, 456, 408, 382, 390, 396, 242, 346, 353, 259, 331, 226, 244, 326, 318, 294, 255, 385, 359, 320, 378, 222, 218, 323, 256, 375, 282, 254, 357, 342, 261, 362, 342, 390, 252, 421, 300, 284, 202, 266, 327, 196, 346, 375, 522, 324, 289, 232, 200, 278, 275, 225, 581, 305, 220, 382, 371, 232, 280, 354, 280, 356, 228, 246, 233, 212, 279, 351, 281, 298, 277, 215, 273, 270, 324, 335, 227, 250, 245, 316, 281, 227, 288, 300, 220, 246, 255, 261, 194, 248, 230, 444, 365, 290, 282, 306, 571, 325, 327, 348, 228, 192, 280, 233, 243, 252, 273, 295, 214, 208, 348, 342, 288, 223, 250, 189, 347, 236, 239, 246, 396, 306, 279, 342, 233, 248, 308, 149, 242, 310, 303, 163, 261, 341, 259, 245, 709], 'class_weights': [1.4772441332531043, 1.6486370989896524, 0.9473121108480225, 1.0361226212400245, 0.8574807899917445, 0.8288980969920197, 1.4485597811511024, 0.9564208811446381, 0.988090446745454, 0.9594961894441385, 1.0149772616228812, 0.9097662040156314, 1.0619335050431569, 0.7071168599931922, 1.1051974626560264, 0.7936258375455508, 0.7936258375455508, 0.6875652417445325, 0.7852718813608608, 1.1521363510313787, 0.9980043977161441, 1.1176154116746333, 0.8525808997632203, 1.2752278415261842, 0.9354335890819031, 0.8907561639317226, 0.819789326695404, 0.8525808997632203, 1.039732804589293, 1.0930524355938722, 1.0361226212400245, 1.1176154116746333, 1.1303155868072996, 1.1389439500653706, 1.3203686500757836, 1.1218169733726582, 1.039732804589293, 0.7242798905755512, 1.039732804589293, 1.1656379488950277, 0.819789326695404, 1.308786468934768, 1.0733932191263564, 0.9070009571949151, 1.1521363510313787, 0.654393234467384, 0.731380673816488, 0.7811605102542594, 0.7651367049157105, 0.7535437245381997, 1.2330715492443267, 0.8624373263500783, 0.8453351697369039, 1.1521363510313787, 0.9015205888734957, 1.3203686500757836, 1.222964405398062, 0.9153475917703285, 0.9383752041419091, 1.0149772616228812, 1.1702090781063808, 0.7750735452392912, 0.8312070053401869, 0.9325103591160222, 0.7894267590400188, 1.3441590762032751, 1.3688225454914087, 0.923849272189248, 1.1656379488950277, 0.7957421731123389, 1.0581677833940677, 1.1748162004611302, 0.8358636272188434, 0.8725243126231786, 1.1433077199889927, 0.8243185494948262, 0.8725243126231786, 0.7651367049157105, 1.184140138560028, 0.7087964724872378, 0.9946777163904237, 1.050715897595518, 1.4772441332531043, 1.1218169733726582, 0.9125483636609392, 1.522465892434322, 0.8624373263500783, 0.7957421731123389, 0.5716538599944964, 0.9209978855466886, 1.0325374218585712, 1.2862211849876168, 1.4920165745856355, 1.0733932191263564, 1.0851029633350076, 1.3262369551872315, 0.5136029516645905, 0.9783715243184494, 1.3563787041687596, 0.7811605102542594, 0.8043216035502078, 1.2862211849876168, 1.0657261247040253, 0.84294721728002, 1.0657261247040253, 0.838211558755975, 1.308786468934768, 1.2130216053541751, 1.2807009223911034, 1.4075628062128636, 1.0695459316026061, 0.8501518943507894, 1.0619335050431569, 1.0013534057621714, 1.0772682848993758, 1.3879223949633819, 1.0930524355938722, 1.1051974626560264, 0.9209978855466886, 0.8907561639317226, 1.3145520480930708, 1.1936132596685083, 1.2179727139474574, 0.9443142877124275, 1.0619335050431569, 1.3145520480930708, 1.0361226212400245, 0.9946777163904237, 1.3563787041687596, 1.2130216053541751, 1.1702090781063808, 1.1433077199889927, 1.5381614170985933, 1.2032391730529317, 1.2974057170309874, 0.6720795381016376, 0.8175433285400742, 1.0289769479900934, 1.0581677833940677, 0.9751742317553173, 0.5225977494170352, 0.9181640458988526, 0.9125483636609392, 0.8574807899917445, 1.308786468934768, 1.554183931860037, 1.0657261247040253, 1.2807009223911034, 1.227997180728918, 1.184140138560028, 1.0930524355938722, 1.011536660736024, 1.394408013631435, 1.434631321716957, 0.8574807899917445, 0.8725243126231786, 1.0361226212400245, 1.3381314570274758, 1.1936132596685083, 1.5788535180800376, 0.8599519161876862, 1.26442082592003, 1.248549434799695, 1.2130216053541751, 0.7535437245381997, 0.9751742317553173, 1.0695459316026061, 0.8725243126231786, 1.2807009223911034, 1.2032391730529317, 0.9688419315491139, 2.0027068115243427, 1.2330715492443267, 0.9625913384423455, 0.9848294221687363, 1.830695183540657, 1.1433077199889927, 0.8750830349475868, 1.1521363510313787, 1.2179727139474574, 0.42087914656858544], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 1397, Val: 146, Test: 146
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in CrossPlatform-Android: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+EXPERIMENT COMPLETE
+Results: /workspace/yqm/NetKD/results/full_pipeline_20251210_154952
+============================================================

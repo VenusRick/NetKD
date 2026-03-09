@@ -1,0 +1,21 @@
+{
+  "experiment_type": "kd_ablation_data_efficiency",
+  "student_name": "mobilenetv3_small",
+  "kd_config_id": "ce_only",
+  "kd_config_name": "CE Only",
+  "train_fraction": 0.2,
+  "params_m": 1.524743,
+  "test_acc": 0.8186416184971098,
+  "macro_f1": 0.7701596616297669,
+  "precision": 0.7746851082750034,
+  "recall": 0.7737546613953498,
+  "best_val_f1": 0.7591001078127493,
+  "best_epoch": 100,
+  "config": {
+    "dataset": "ISCXVPN2016",
+    "data_path": "/workspace/yqm/Dataset/ISCXVPN2016",
+    "batch_size": 128,
+    "num_workers": 8,
+    "teachers": {
+      "convnextv2_tiny": {
+        "class": 

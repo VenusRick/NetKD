@@ -1,0 +1,6 @@
+run_kd_fixed.sh: line 3: conda: command not found
+=== CICIoT2022 ===
+run_kd_fixed.sh: line 7: python: command not found
+=== USTC-TFC2016 ===
+run_kd_fixed.sh: line 7: python: command not found
+run_kd_fixed.sh: line 10: $'wait\r': command not found

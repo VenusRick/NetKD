@@ -1,0 +1,540 @@
+nohup: ignoring input
+Device: cuda:0
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+SUMMARY
+============================================================
+
+ISCXVPN2016:
+
+ISCXTor2016:
+
+Results: /workspace/yqm/NetKD/results/complete_experiment/20251210_211735

@@ -1,0 +1,81 @@
+{
+  "mae": [
+    {
+      "backbone": "convnextv2_tiny",
+      "mask_ratio": 0.6,
+      "best_loss": 0.016619885089592293
+    },
+    {
+      "backbone": "convnextv2_tiny",
+      "mask_ratio": 0.7,
+      "best_loss": 0.01668790842478092
+    },
+    {
+      "backbone": "convnextv2_tiny",
+      "mask_ratio": 0.8,
+      "best_loss": 0.016721568822574157
+    },
+    {
+      "backbone": "efficientnetv2_rw_s",
+      "mask_ratio": 0.6,
+      "best_loss": 0.009826249084793605
+    },
+    {
+      "backbone": "efficientnetv2_rw_s",
+      "mask_ratio": 0.7,
+      "best_loss": 0.007455885481949036
+    },
+    {
+      "backbone": "efficientnetv2_rw_s",
+      "mask_ratio": 0.8,
+      "best_loss": 0.010074821659005605
+    },
+    {
+      "backbone": "mobilenetv3_large_100",
+      "mask_ratio": 0.6,
+      "best_loss": 0.009385712408962158
+    },
+    {
+      "backbone": "mobilenetv3_large_100",
+      "mask_ratio": 0.7,
+      "best_loss": 0.009268648062761013
+    },
+    {
+      "backbone": "mobilenetv3_large_100",
+      "mask_ratio": 0.8,
+      "best_loss": 0.009122496703639627
+    }
+  ],
+  "simclr": [
+    {
+      "backbone": "convnextv2_tiny",
+      "temperature": 0.1,
+      "best_loss": Infinity
+    },
+    {
+      "backbone": "convnextv2_tiny",
+      "temperature": 0.5,
+      "best_loss": Infinity
+    },
+    {
+      "backbone": "efficientnetv2_rw_s",
+      "temperature": 0.1,
+      "best_loss": Infinity
+    },
+    {
+      "backbone": "efficientnetv2_rw_s",
+      "temperature": 0.5,
+      "best_loss": Infinity
+    },
+    {
+      "backbone": "mobilenetv3_large_100",
+      "temperature": 0.1,
+      "best_loss": Infinity
+    },
+    {
+      "backbone": "mobilenetv3_large_100",
+      "temperature": 0.5,
+      "best_loss": Infinity
+    }
+  ]
+}

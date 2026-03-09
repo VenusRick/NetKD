@@ -1,0 +1,118 @@
+nohup: ignoring input
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+[Monitor] >>> Stage 'teacher_resnet50' started (15 epochs)
+[Teacher resnet50] epoch=1 train_loss=1.2290 val_loss=0.4276 val_acc=0.9179
+[Monitor][teacher_resnet50] epoch 1/15 | train_loss=1.2290 | val_loss=0.4276 | val_acc=0.9179
+[Teacher resnet50] epoch=2 train_loss=0.8411 val_loss=0.3462 val_acc=0.9338
+[Monitor][teacher_resnet50] epoch 2/15 | train_loss=0.8411 | val_loss=0.3462 | val_acc=0.9338 | Δacc=+0.0159
+[Teacher resnet50] epoch=3 train_loss=0.8284 val_loss=0.3659 val_acc=0.9446
+[Monitor][teacher_resnet50] epoch 3/15 | train_loss=0.8284 | val_loss=0.3659 | val_acc=0.9446 | Δacc=+0.0108
+[Teacher resnet50] epoch=4 train_loss=0.7604 val_loss=0.4297 val_acc=0.9543
+[Monitor][teacher_resnet50] epoch 4/15 | train_loss=0.7604 | val_loss=0.4297 | val_acc=0.9543 | Δacc=+0.0097
+[Teacher resnet50] epoch=5 train_loss=0.9085 val_loss=0.3430 val_acc=0.9472
+[Monitor][teacher_resnet50] epoch 5/15 | train_loss=0.9085 | val_loss=0.3430 | val_acc=0.9472 | Δacc=-0.0072
+[Teacher resnet50] epoch=6 train_loss=0.7220 val_loss=0.3281 val_acc=0.9584
+[Monitor][teacher_resnet50] epoch 6/15 | train_loss=0.7220 | val_loss=0.3281 | val_acc=0.9584 | Δacc=+0.0113
+[Teacher resnet50] epoch=7 train_loss=0.6597 val_loss=0.2712 val_acc=0.9708
+[Monitor][teacher_resnet50] epoch 7/15 | train_loss=0.6597 | val_loss=0.2712 | val_acc=0.9708 | Δacc=+0.0123
+[Teacher resnet50] epoch=8 train_loss=0.6239 val_loss=0.2792 val_acc=0.9625
+[Monitor][teacher_resnet50] epoch 8/15 | train_loss=0.6239 | val_loss=0.2792 | val_acc=0.9625 | Δacc=-0.0082
+[Teacher resnet50] epoch=9 train_loss=0.6233 val_loss=0.2809 val_acc=0.9718
+[Monitor][teacher_resnet50] epoch 9/15 | train_loss=0.6233 | val_loss=0.2809 | val_acc=0.9718 | Δacc=+0.0092
+[Teacher resnet50] epoch=10 train_loss=0.6181 val_loss=0.2377 val_acc=0.9790
+[Monitor][teacher_resnet50] epoch 10/15 | train_loss=0.6181 | val_loss=0.2377 | val_acc=0.9790 | Δacc=+0.0072
+[Teacher resnet50] epoch=11 train_loss=0.6209 val_loss=0.3786 val_acc=0.9708
+[Monitor][teacher_resnet50] epoch 11/15 | train_loss=0.6209 | val_loss=0.3786 | val_acc=0.9708 | Δacc=-0.0082
+[Teacher resnet50] epoch=12 train_loss=0.6033 val_loss=0.2362 val_acc=0.9820
+[Monitor][teacher_resnet50] epoch 12/15 | train_loss=0.6033 | val_loss=0.2362 | val_acc=0.9820 | Δacc=+0.0113
+[Teacher resnet50] epoch=13 train_loss=0.5849 val_loss=0.2457 val_acc=0.9785
+[Monitor][teacher_resnet50] epoch 13/15 | train_loss=0.5849 | val_loss=0.2457 | val_acc=0.9785 | Δacc=-0.0036
+[Teacher resnet50] epoch=14 train_loss=0.5893 val_loss=0.3008 val_acc=0.9738
+[Monitor][teacher_resnet50] epoch 14/15 | train_loss=0.5893 | val_loss=0.3008 | val_acc=0.9738 | Δacc=-0.0046
+[Teacher resnet50] epoch=15 train_loss=0.5893 val_loss=0.2262 val_acc=0.9856
+[Monitor][teacher_resnet50] epoch 15/15 | train_loss=0.5893 | val_loss=0.2262 | val_acc=0.9856 | Δacc=+0.0118
+[Monitor] <<< Stage 'teacher_resnet50' finished after 15 epochs | final acc=0.9856
+[Monitor] >>> Stage 'teacher_mbv3' started (15 epochs)
+[Teacher mbv3] epoch=1 train_loss=1.1328 val_loss=1.8903 val_acc=0.1278
+[Monitor][teacher_mbv3] epoch 1/15 | train_loss=1.1328 | val_loss=1.8903 | val_acc=0.1278
+[Teacher mbv3] epoch=2 train_loss=0.8074 val_loss=1.7732 val_acc=0.3094
+[Monitor][teacher_mbv3] epoch 2/15 | train_loss=0.8074 | val_loss=1.7732 | val_acc=0.3094 | Δacc=+0.1816
+[Teacher mbv3] epoch=3 train_loss=0.7241 val_loss=1.7802 val_acc=0.3094
+[Monitor][teacher_mbv3] epoch 3/15 | train_loss=0.7241 | val_loss=1.7802 | val_acc=0.3094 | Δacc=+0.0000
+[Teacher mbv3] epoch=4 train_loss=0.6915 val_loss=1.3407 val_acc=0.5269
+[Monitor][teacher_mbv3] epoch 4/15 | train_loss=0.6915 | val_loss=1.3407 | val_acc=0.5269 | Δacc=+0.2175
+[Teacher mbv3] epoch=5 train_loss=0.6594 val_loss=0.4022 val_acc=0.9102
+[Monitor][teacher_mbv3] epoch 5/15 | train_loss=0.6594 | val_loss=0.4022 | val_acc=0.9102 | Δacc=+0.3833
+[Teacher mbv3] epoch=6 train_loss=0.6808 val_loss=0.3786 val_acc=0.9420
+[Monitor][teacher_mbv3] epoch 6/15 | train_loss=0.6808 | val_loss=0.3786 | val_acc=0.9420 | Δacc=+0.0318
+[Teacher mbv3] epoch=7 train_loss=0.6351 val_loss=0.2714 val_acc=0.9774
+[Monitor][teacher_mbv3] epoch 7/15 | train_loss=0.6351 | val_loss=0.2714 | val_acc=0.9774 | Δacc=+0.0354
+[Teacher mbv3] epoch=8 train_loss=0.6124 val_loss=0.2435 val_acc=0.9815
+[Monitor][teacher_mbv3] epoch 8/15 | train_loss=0.6124 | val_loss=0.2435 | val_acc=0.9815 | Δacc=+0.0041
+[Teacher mbv3] epoch=9 train_loss=0.5996 val_loss=0.2191 val_acc=0.9836
+[Monitor][teacher_mbv3] epoch 9/15 | train_loss=0.5996 | val_loss=0.2191 | val_acc=0.9836 | Δacc=+0.0021
+[Teacher mbv3] epoch=10 train_loss=0.5921 val_loss=0.2812 val_acc=0.9708
+[Monitor][teacher_mbv3] epoch 10/15 | train_loss=0.5921 | val_loss=0.2812 | val_acc=0.9708 | Δacc=-0.0128
+[Teacher mbv3] epoch=11 train_loss=0.5915 val_loss=0.2642 val_acc=0.9790
+[Monitor][teacher_mbv3] epoch 11/15 | train_loss=0.5915 | val_loss=0.2642 | val_acc=0.9790 | Δacc=+0.0082
+[Teacher mbv3] epoch=12 train_loss=0.5791 val_loss=0.2377 val_acc=0.9861
+[Monitor][teacher_mbv3] epoch 12/15 | train_loss=0.5791 | val_loss=0.2377 | val_acc=0.9861 | Δacc=+0.0072
+[Teacher mbv3] epoch=13 train_loss=0.5519 val_loss=0.2181 val_acc=0.9897
+[Monitor][teacher_mbv3] epoch 13/15 | train_loss=0.5519 | val_loss=0.2181 | val_acc=0.9897 | Δacc=+0.0036
+[Teacher mbv3] epoch=14 train_loss=0.5468 val_loss=0.2187 val_acc=0.9903
+[Monitor][teacher_mbv3] epoch 14/15 | train_loss=0.5468 | val_loss=0.2187 | val_acc=0.9903 | Δacc=+0.0005
+[Teacher mbv3] epoch=15 train_loss=0.5418 val_loss=0.2185 val_acc=0.9903
+[Monitor][teacher_mbv3] epoch 15/15 | train_loss=0.5418 | val_loss=0.2185 | val_acc=0.9903 | Δacc=+0.0000
+[Monitor] <<< Stage 'teacher_mbv3' finished after 15 epochs | final acc=0.9903
+[Monitor] >>> Stage 'teacher_densenet121' started (15 epochs)
+[Teacher densenet121] epoch=1 train_loss=1.0218 val_loss=0.7923 val_acc=0.8102
+[Monitor][teacher_densenet121] epoch 1/15 | train_loss=1.0218 | val_loss=0.7923 | val_acc=0.8102
+[Teacher densenet121] epoch=2 train_loss=0.8032 val_loss=0.3738 val_acc=0.9287
+[Monitor][teacher_densenet121] epoch 2/15 | train_loss=0.8032 | val_loss=0.3738 | val_acc=0.9287 | Δacc=+0.1185
+[Teacher densenet121] epoch=3 train_loss=0.7297 val_loss=0.4074 val_acc=0.9282
+[Monitor][teacher_densenet121] epoch 3/15 | train_loss=0.7297 | val_loss=0.4074 | val_acc=0.9282 | Δacc=-0.0005
+[Teacher densenet121] epoch=4 train_loss=0.6843 val_loss=0.3239 val_acc=0.9451
+[Monitor][teacher_densenet121] epoch 4/15 | train_loss=0.6843 | val_loss=0.3239 | val_acc=0.9451 | Δacc=+0.0169
+[Teacher densenet121] epoch=5 train_loss=0.6435 val_loss=0.2556 val_acc=0.9718
+[Monitor][teacher_densenet121] epoch 5/15 | train_loss=0.6435 | val_loss=0.2556 | val_acc=0.9718 | Δacc=+0.0267
+[Teacher densenet121] epoch=6 train_loss=0.6312 val_loss=0.2646 val_acc=0.9723
+[Monitor][teacher_densenet121] epoch 6/15 | train_loss=0.6312 | val_loss=0.2646 | val_acc=0.9723 | Δacc=+0.0005
+[Teacher densenet121] epoch=7 train_loss=0.6106 val_loss=0.2788 val_acc=0.9672
+[Monitor][teacher_densenet121] epoch 7/15 | train_loss=0.6106 | val_loss=0.2788 | val_acc=0.9672 | Δacc=-0.0051
+[Teacher densenet121] epoch=8 train_loss=0.6000 val_loss=0.2494 val_acc=0.9672
+[Monitor][teacher_densenet121] epoch 8/15 | train_loss=0.6000 | val_loss=0.2494 | val_acc=0.9672 | Δacc=+0.0000
+[Teacher densenet121] epoch=9 train_loss=0.5893 val_loss=0.2079 val_acc=0.9846
+[Monitor][teacher_densenet121] epoch 9/15 | train_loss=0.5893 | val_loss=0.2079 | val_acc=0.9846 | Δacc=+0.0174
+[Teacher densenet121] epoch=10 train_loss=0.5727 val_loss=0.2290 val_acc=0.9841
+[Monitor][teacher_densenet121] epoch 10/15 | train_loss=0.5727 | val_loss=0.2290 | val_acc=0.9841 | Δacc=-0.0005
+[Teacher densenet121] epoch=11 train_loss=0.5776 val_loss=0.2415 val_acc=0.9826
+[Monitor][teacher_densenet121] epoch 11/15 | train_loss=0.5776 | val_loss=0.2415 | val_acc=0.9826 | Δacc=-0.0015
+[Teacher densenet121] epoch=12 train_loss=0.5704 val_loss=0.2215 val_acc=0.9877
+[Monitor][teacher_densenet121] epoch 12/15 | train_loss=0.5704 | val_loss=0.2215 | val_acc=0.9877 | Δacc=+0.0051
+[Teacher densenet121] epoch=13 train_loss=0.5410 val_loss=0.2149 val_acc=0.9938
+[Monitor][teacher_densenet121] epoch 13/15 | train_loss=0.5410 | val_loss=0.2149 | val_acc=0.9938 | Δacc=+0.0062
+[Teacher densenet121] epoch=14 train_loss=0.5351 val_loss=0.2053 val_acc=0.9944
+[Monitor][teacher_densenet121] epoch 14/15 | train_loss=0.5351 | val_loss=0.2053 | val_acc=0.9944 | Δacc=+0.0005
+[Teacher densenet121] epoch=15 train_loss=0.5375 val_loss=0.2037 val_acc=0.9933
+[Monitor][teacher_densenet121] epoch 15/15 | train_loss=0.5375 | val_loss=0.2037 | val_acc=0.9933 | Δacc=-0.0010
+[Monitor] <<< Stage 'teacher_densenet121' finished after 15 epochs | final acc=0.9933
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/training/train.py", line 793, in <module>
+    main()
+  File "/workspace/yqm/NetKD/training/train.py", line 745, in main
+    run_real_pipeline(
+  File "/workspace/yqm/NetKD/training/train.py", line 628, in run_real_pipeline
+    teachers = _ensure_teachers()
+               ^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/training/train.py", line 596, in _ensure_teachers
+    Path(src).replace(target)
+  File "/root/miniconda3/lib/python3.12/pathlib.py", line 1376, in replace
+    os.replace(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: 'resnet50_teacher.pth' -> 'runs/CICIoT2022/resnet50_teacher.pth'

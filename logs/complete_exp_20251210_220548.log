@@ -1,0 +1,738 @@
+nohup: ignoring input
+Device: cuda:0
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9841, f1=0.9759
+  Training mobilenetv3...
+    test_acc=0.9805, f1=0.9701
+  Training convnextv2_tiny...
+    test_acc=0.9733, f1=0.9607
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9855, f1=0.9777
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9762, f1=0.9687
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9848, f1=0.9746
+  Training mobilenetv3...
+    test_acc=0.9762, f1=0.9649
+  Training convnextv2_tiny...
+    test_acc=0.9747, f1=0.9645
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9877, f1=0.9824
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9754, f1=0.9656
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9805, f1=0.9710
+  Training mobilenetv3...
+    test_acc=0.9783, f1=0.9683
+  Training convnextv2_tiny...
+    test_acc=0.9747, f1=0.9653
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9805, f1=0.9703
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9747, f1=0.9622
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 24
+    test_acc=0.9639, f1=0.9514
+  Training mobilenetv3...
+    Early stop at epoch 23
+    test_acc=0.9603, f1=0.9462
+  Training convnextv2_tiny...
+    Early stop at epoch 25
+    test_acc=0.9624, f1=0.9514
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9718, f1=0.9598
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9595, f1=0.9474
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9776, f1=0.9699
+  Training mobilenetv3...
+    Early stop at epoch 22
+    test_acc=0.9668, f1=0.9539
+  Training convnextv2_tiny...
+    test_acc=0.9624, f1=0.9462
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9747, f1=0.9611
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9603, f1=0.9422
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9668, f1=0.9553
+  Training mobilenetv3...
+    Early stop at epoch 23
+    test_acc=0.9451, f1=0.9246
+  Training convnextv2_tiny...
+    Early stop at epoch 25
+    test_acc=0.9530, f1=0.9332
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9653, f1=0.9481
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9610, f1=0.9458
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 25
+    test_acc=0.9393, f1=0.9079
+  Training mobilenetv3...
+    Early stop at epoch 10
+    test_acc=0.2991, f1=0.0658
+  Training convnextv2_tiny...
+    test_acc=0.9342, f1=0.9017
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9487, f1=0.9223
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9234, f1=0.8979
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 23
+    test_acc=0.9415, f1=0.9167
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.2991, f1=0.0658
+  Training convnextv2_tiny...
+    test_acc=0.9364, f1=0.9158
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9494, f1=0.9297
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9314, f1=0.9104
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9523, f1=0.9322
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.2796, f1=0.0624
+  Training convnextv2_tiny...
+    test_acc=0.9436, f1=0.9239
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9566, f1=0.9382
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9306, f1=0.9151
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9147, f1=0.8830
+  Training mobilenetv3...
+    Early stop at epoch 8
+    test_acc=0.2991, f1=0.0658
+  Training convnextv2_tiny...
+    Early stop at epoch 19
+    test_acc=0.8136, f1=0.8082
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9140, f1=0.8819
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.8526, f1=0.8327
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 23
+    test_acc=0.9082, f1=0.8646
+  Training mobilenetv3...
+    Early stop at epoch 8
+    test_acc=0.2991, f1=0.0658
+  Training convnextv2_tiny...
+    test_acc=0.8374, f1=0.8384
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9155, f1=0.8753
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.8707, f1=0.8387
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9147, f1=0.8751
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.2796, f1=0.0624
+  Training convnextv2_tiny...
+    test_acc=0.8540, f1=0.8411
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9227, f1=0.8899
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.8764, f1=0.8515
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 22
+    test_acc=0.9973, f1=0.9970
+  Training mobilenetv3...
+    Early stop at epoch 24
+    test_acc=0.9945, f1=0.9941
+  Training convnextv2_tiny...
+    Early stop at epoch 15
+    test_acc=0.9973, f1=0.9967
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9986, f1=0.9985
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9890, f1=0.9886
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 14
+    test_acc=0.9966, f1=0.9958
+  Training mobilenetv3...
+    Early stop at epoch 15
+    test_acc=0.9842, f1=0.9831
+  Training convnextv2_tiny...
+    Early stop at epoch 17
+    test_acc=0.9993, f1=0.9990
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9993, f1=0.9990
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9938, f1=0.9934
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 14
+    test_acc=0.9959, f1=0.9958
+  Training mobilenetv3...
+    Early stop at epoch 22
+    test_acc=0.9877, f1=0.9872
+  Training convnextv2_tiny...
+    Early stop at epoch 20
+    test_acc=0.9986, f1=0.9985
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9966, f1=0.9967
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9945, f1=0.9946
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 20
+    test_acc=0.9945, f1=0.9945
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1262, f1=0.0280
+  Training convnextv2_tiny...
+    Early stop at epoch 18
+    test_acc=0.9993, f1=0.9990
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9993, f1=0.9994
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9575, f1=0.9542
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 23
+    test_acc=0.9931, f1=0.9926
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1324, f1=0.0292
+  Training convnextv2_tiny...
+    Early stop at epoch 19
+    test_acc=0.9986, f1=0.9985
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9986, f1=0.9981
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9787, f1=0.9765
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 23
+    test_acc=0.9966, f1=0.9964
+  Training mobilenetv3...
+    test_acc=0.9595, f1=0.9574
+  Training convnextv2_tiny...
+    Early stop at epoch 18
+    test_acc=0.9986, f1=0.9985
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9959, f1=0.9959
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9664, f1=0.9637
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9753, f1=0.9718
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1324, f1=0.0292
+  Training convnextv2_tiny...
+    Early stop at epoch 21
+    test_acc=0.9945, f1=0.9934
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9952, f1=0.9941
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.8807, f1=0.8695
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9774, f1=0.9764
+  Training mobilenetv3...
+    Early stop at epoch 7
+    test_acc=0.1262, f1=0.0280
+  Training convnextv2_tiny...
+    Early stop at epoch 17
+    test_acc=0.9877, f1=0.9860
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9918, f1=0.9912
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.8937, f1=0.8816
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 25
+    test_acc=0.9609, f1=0.9586
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1324, f1=0.0292
+  Training convnextv2_tiny...
+    Early stop at epoch 23
+    test_acc=0.9938, f1=0.9935
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9931, f1=0.9926
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9204, f1=0.9144
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.8402, f1=0.8313
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1262, f1=0.0280
+  Training convnextv2_tiny...
+    test_acc=0.9678, f1=0.9657
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9575, f1=0.9543
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.6516, f1=0.6336
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 20
+    test_acc=0.8025, f1=0.7943
+  Training mobilenetv3...
+    Early stop at epoch 8
+    test_acc=0.1708, f1=0.0365
+  Training convnextv2_tiny...
+    test_acc=0.9746, f1=0.9735
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9492, f1=0.9461
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.6982, f1=0.6760
+
+============================================================
+Dataset: ISCXTor2016 | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 23
+    test_acc=0.8539, f1=0.8481
+  Training mobilenetv3...
+    Early stop at epoch 6
+    test_acc=0.1708, f1=0.0365
+  Training convnextv2_tiny...
+    test_acc=0.9582, f1=0.9558
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9527, f1=0.9517
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.7016, f1=0.6848
+
+============================================================
+Dataset: USTC-TFC2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/USTC-TFC2016
+
+Dataset split:
+  Train: 37323 images (73.6%)
+  Val:   6692 images (13.2%)
+  Test:  6662 images (13.1%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/multiprocessing/resource_sharer.py", line 138, in _serve
+  File "/root/miniconda3/lib/python3.12/multiprocessing/connection.py", line 480, in accept
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/multiprocessing/connection.py", line 626, in accept
+  File "/root/miniconda3/lib/python3.12/multiprocessing/queues.py", line 264, in _feed
+  File "/root/miniconda3/lib/python3.12/multiprocessing/reduction.py", line 51, in dumps
+  File "/root/miniconda3/lib/python3.12/socket.py", line 295, in accept
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/multiprocessing/reductions.py", line 619, in reduce_storage
+  File "/root/miniconda3/lib/python3.12/multiprocessing/reduction.py", line 198, in DupFd
+OSError: [Errno 24] Too many open files
+  File "/root/miniconda3/lib/python3.12/multiprocessing/resource_sharer.py", line 48, in __init__
+Traceback (most recent call last):
+OSError: [Errno 24] Too many open files
+  File "/root/miniconda3/lib/python3.12/multiprocessing/resource_sharer.py", line 138, in _serve
+    with self._listener.accept() as conn:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/connection.py", line 480, in accept
+    c = self._listener.accept()
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/multiprocessing/connection.py", line 626, in accept
+    s, self._last_accepted = self._socket.accept()
+                             ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/socket.py", line 295, in accept
+    fd, addr = self._accept()
+               ^^^^^^^^^^^^^^
+OSError: [Errno 24] Too many open files

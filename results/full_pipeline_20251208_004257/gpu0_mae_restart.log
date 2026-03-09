@@ -1,0 +1,3 @@
+usage: full_pipeline_experiment_fixed.py [-h] [--gpu GPU] [--skip_pretrain]
+                                         [--output_dir OUTPUT_DIR]
+full_pipeline_experiment_fixed.py: error: unrecognized arguments: --skip_contrastive

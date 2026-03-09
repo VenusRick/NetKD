@@ -1,0 +1,322 @@
+nohup: ignoring input
+Using device: cuda:0
+
+============================================================
+Dataset: CICIoT2022 | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.9554 (best=0.9554)
+  Epoch 10: val_acc=0.9810 (best=0.9810)
+  Epoch 15: val_acc=0.9933 (best=0.9933)
+  Epoch 20: val_acc=0.9954 (best=0.9954)
+  Epoch 25: val_acc=0.9974 (best=0.9974)
+  Epoch 30: val_acc=0.9979 (best=0.9979)
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9918, f1=0.9910
+  Training densenet121...
+  Epoch 5: val_acc=0.9620 (best=0.9620)
+  Epoch 10: val_acc=0.9815 (best=0.9841)
+  Epoch 15: val_acc=0.9918 (best=0.9938)
+  Epoch 20: val_acc=0.9959 (best=0.9969)
+  Epoch 25: val_acc=0.9974 (best=0.9974)
+  Early stop at epoch 26
+  densenet121: test_acc=0.9959, f1=0.9942
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.9436 (best=0.9436)
+  Epoch 10: val_acc=0.9826 (best=0.9826)
+  Epoch 15: val_acc=0.9908 (best=0.9908)
+  Epoch 20: val_acc=0.9954 (best=0.9954)
+  Early stop at epoch 25
+  mobilenetv3: test_acc=0.9913, f1=0.9888
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in CICIoT2022 run 1: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+Dataset: CICIoT2022 | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.9559 (best=0.9559)
+  Epoch 10: val_acc=0.9790 (best=0.9790)
+  Epoch 15: val_acc=0.9913 (best=0.9913)
+  Epoch 20: val_acc=0.9928 (best=0.9959)
+  Epoch 25: val_acc=0.9954 (best=0.9974)
+  Epoch 30: val_acc=0.9974 (best=0.9979)
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9892, f1=0.9881
+  Training densenet121...
+  Epoch 5: val_acc=0.9702 (best=0.9702)
+  Epoch 10: val_acc=0.9810 (best=0.9820)
+  Epoch 15: val_acc=0.9923 (best=0.9938)
+  Epoch 20: val_acc=0.9964 (best=0.9974)
+  Early stop at epoch 24
+  densenet121: test_acc=0.9964, f1=0.9953
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.9569 (best=0.9569)
+  Epoch 10: val_acc=0.9805 (best=0.9805)
+  Epoch 15: val_acc=0.9933 (best=0.9933)
+  Epoch 20: val_acc=0.9954 (best=0.9959)
+  Early stop at epoch 21
+  mobilenetv3: test_acc=0.9908, f1=0.9894
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in CICIoT2022 run 2: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+Dataset: CICIoT2022 | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.9533 (best=0.9533)
+  Epoch 10: val_acc=0.9867 (best=0.9867)
+  Epoch 15: val_acc=0.9897 (best=0.9913)
+  Epoch 20: val_acc=0.9959 (best=0.9959)
+  Epoch 25: val_acc=0.9969 (best=0.9969)
+  Epoch 30: val_acc=0.9974 (best=0.9974)
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9913, f1=0.9907
+  Training densenet121...
+  Epoch 5: val_acc=0.9702 (best=0.9702)
+  Epoch 10: val_acc=0.9805 (best=0.9841)
+  Epoch 15: val_acc=0.9923 (best=0.9933)
+  Epoch 20: val_acc=0.9979 (best=0.9979)
+  Early stop at epoch 25
+  densenet121: test_acc=0.9954, f1=0.9914
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.9425 (best=0.9425)
+  Epoch 10: val_acc=0.9903 (best=0.9903)
+  Epoch 15: val_acc=0.9928 (best=0.9928)
+  Epoch 20: val_acc=0.9959 (best=0.9964)
+  Epoch 25: val_acc=0.9969 (best=0.9969)
+  Early stop at epoch 28
+  mobilenetv3: test_acc=0.9938, f1=0.9919
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in CICIoT2022 run 3: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+Dataset: ISCXVPN2016 | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.8149 (best=0.8149)
+  Epoch 10: val_acc=0.8829 (best=0.8829)
+  Epoch 15: val_acc=0.9675 (best=0.9675)
+  Epoch 20: val_acc=0.9805 (best=0.9805)
+  Epoch 25: val_acc=0.9805 (best=0.9826)
+  Early stop at epoch 27
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9769, f1=0.9688
+  Training densenet121...
+  Epoch 5: val_acc=0.9017 (best=0.9067)
+  Epoch 10: val_acc=0.9226 (best=0.9422)
+  Epoch 15: val_acc=0.9602 (best=0.9602)
+  Epoch 20: val_acc=0.9761 (best=0.9761)
+  Epoch 25: val_acc=0.9892 (best=0.9892)
+  Early stop at epoch 30
+  densenet121: test_acc=0.9798, f1=0.9709
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.3008 (best=0.3008)
+  Epoch 10: val_acc=0.9349 (best=0.9378)
+  Epoch 15: val_acc=0.9646 (best=0.9667)
+  Epoch 20: val_acc=0.9761 (best=0.9790)
+  Epoch 25: val_acc=0.9819 (best=0.9826)
+  Epoch 30: val_acc=0.9834 (best=0.9834)
+  mobilenetv3: test_acc=0.9725, f1=0.9662
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in ISCXVPN2016 run 1: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+Dataset: ISCXVPN2016 | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.8380 (best=0.8380)
+  Epoch 10: val_acc=0.9465 (best=0.9465)
+  Epoch 15: val_acc=0.9725 (best=0.9725)
+  Epoch 20: val_acc=0.9776 (best=0.9776)
+  Epoch 25: val_acc=0.9826 (best=0.9826)
+  Early stop at epoch 30
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9790, f1=0.9700
+  Training densenet121...
+  Epoch 5: val_acc=0.9226 (best=0.9226)
+  Epoch 10: val_acc=0.9262 (best=0.9494)
+  Epoch 15: val_acc=0.9754 (best=0.9754)
+  Epoch 20: val_acc=0.9841 (best=0.9884)
+  Epoch 25: val_acc=0.9892 (best=0.9906)
+  Early stop at epoch 29
+  densenet121: test_acc=0.9863, f1=0.9776
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.2885 (best=0.3008)
+  Epoch 10: val_acc=0.9414 (best=0.9414)
+  Epoch 15: val_acc=0.9653 (best=0.9653)
+  Epoch 20: val_acc=0.9747 (best=0.9747)
+  Epoch 25: val_acc=0.9798 (best=0.9819)
+  Epoch 30: val_acc=0.9826 (best=0.9826)
+  mobilenetv3: test_acc=0.9733, f1=0.9620
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in ISCXVPN2016 run 2: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+Dataset: ISCXVPN2016 | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training convnextv2_tiny...
+  Epoch 5: val_acc=0.8272 (best=0.8272)
+  Epoch 10: val_acc=0.9544 (best=0.9544)
+  Epoch 15: val_acc=0.9704 (best=0.9704)
+  Epoch 20: val_acc=0.9805 (best=0.9805)
+  Epoch 25: val_acc=0.9826 (best=0.9826)
+  Epoch 30: val_acc=0.9841 (best=0.9848)
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 467, in main
+    results = run_single_experiment(dataset_name, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 389, in run_single_experiment
+    stacking, stacking_val_acc = train_stacking(
+                                 ^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_dataset_experiment.py", line 218, in train_stacking
+    stacking = StackingModel(num_teachers=num_teachers, num_classes=num_classes, hidden_dim=hidden_dim).to(device)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+  convnextv2_tiny: test_acc=0.9747, f1=0.9651
+  Training densenet121...
+  Epoch 5: val_acc=0.9270 (best=0.9270)
+  Epoch 10: val_acc=0.9465 (best=0.9465)
+  Epoch 15: val_acc=0.9783 (best=0.9783)
+  Epoch 20: val_acc=0.9848 (best=0.9848)
+  Epoch 25: val_acc=0.9877 (best=0.9884)
+  Epoch 30: val_acc=0.9892 (best=0.9899)
+  densenet121: test_acc=0.9841, f1=0.9764
+  Training mobilenetv3...
+  Epoch 5: val_acc=0.2885 (best=0.3008)
+  Epoch 10: val_acc=0.8749 (best=0.9183)
+  Epoch 15: val_acc=0.9508 (best=0.9530)
+  Epoch 20: val_acc=0.9740 (best=0.9740)
+  Epoch 25: val_acc=0.9761 (best=0.9769)
+  Early stop at epoch 29
+  mobilenetv3: test_acc=0.9704, f1=0.9612
+
+[Phase 2] Training Stacking Ensemble...
+ERROR in ISCXVPN2016 run 3: StackingModel.__init__() got an unexpected keyword argument 'num_teachers'
+
+============================================================
+EXPERIMENT SUMMARY
+============================================================
+
+Results saved to: /workspace/yqm/NetKD/results/full_dataset_experiment/20251210_105931

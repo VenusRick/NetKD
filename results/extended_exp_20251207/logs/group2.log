@@ -1,0 +1,94 @@
+nohup: ignoring input
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/ghostnetv3_100.in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/repvit_m1_0.dist_300e_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/ghostnetv3_100.in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+Device: cuda
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Dataset loaded: 7 classes
+
+============================================================
+Phase 1: Training/Finetuning Teachers
+============================================================
+
+Training teacher: ghostnetv3_100
+✗ ghostnetv3_100 failed: Cannot send a request, as the client has been closed.
+
+Training teacher: repvit_m1_0
+✗ repvit_m1_0 failed: Cannot send a request, as the client has been closed.
+
+============================================================
+Phase 2: Training Students with KD
+============================================================
+Loading teachers...
+  ! Teacher checkpoint not found: results/extended_exp_20251207/group2/teacher_ghostnetv3_100_best.pth
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 399, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 354, in main
+    teacher = create_teacher(t_name, num_classes, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 95, in create_teacher
+    model = TimmTeacher(cfg["timm_name"], num_classes, pretrained=cfg["pretrained"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 38, in __init__
+    self.model = timm.create_model(model_name, pretrained=pretrained, num_classes=num_classes)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/ghostnet.py", line 1000, in ghostnetv3_100
+    model = _create_ghostnet('ghostnetv3_100', width=1.0, pretrained=pretrained, version='v3', **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/ghostnet.py", line 898, in _create_ghostnet
+    return build_model_with_cfg(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.

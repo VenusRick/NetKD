@@ -1,0 +1,135 @@
+nohup: ignoring input
+Device: cuda:0
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 456, in main
+    results = run_single_experiment(dataset_name, ratio, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 405, in run_single_experiment
+    student = create_student_model(num_classes)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 138, in create_student_model
+    from models.student_models_v2 import create_repvit_student
+ImportError: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+    test_acc=0.9834, f1=0.9759
+  Training mobilenetv3...
+    Early stop at epoch 25
+    test_acc=0.9783, f1=0.9685
+  Training convnextv2_tiny...
+    test_acc=0.9790, f1=0.9696
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9841, f1=0.9791
+
+[Phase 3] Knowledge Distillation...
+ERROR: ISCXVPN2016 ratio=1.0 run=1: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 25
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 456, in main
+    results = run_single_experiment(dataset_name, ratio, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 405, in run_single_experiment
+    student = create_student_model(num_classes)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 138, in create_student_model
+    from models.student_models_v2 import create_repvit_student
+ImportError: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+    test_acc=0.9790, f1=0.9682
+  Training mobilenetv3...
+    Early stop at epoch 23
+    test_acc=0.9718, f1=0.9666
+  Training convnextv2_tiny...
+    Early stop at epoch 24
+    test_acc=0.9718, f1=0.9616
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9812, f1=0.9709
+
+[Phase 3] Knowledge Distillation...
+ERROR: ISCXVPN2016 ratio=1.0 run=2: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 24
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 456, in main
+    results = run_single_experiment(dataset_name, ratio, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 405, in run_single_experiment
+    student = create_student_model(num_classes)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 138, in create_student_model
+    from models.student_models_v2 import create_lightweight_student
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+    test_acc=0.9827, f1=0.9764
+  Training mobilenetv3...
+    test_acc=0.9769, f1=0.9724
+  Training convnextv2_tiny...
+    test_acc=0.9762, f1=0.9692
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9884, f1=0.9835
+
+[Phase 3] Knowledge Distillation...
+ERROR: ISCXVPN2016 ratio=1.0 run=3: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...

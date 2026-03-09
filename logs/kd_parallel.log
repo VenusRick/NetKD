@@ -1,0 +1,487 @@
+nohup: ignoring input
+==========================================
+CE+KL 并行实验 - 3个GPU同时运行
+输出目录: results/kd_simple_20251208_230027
+==========================================
+GPU 0 PID: 291486
+GPU 1 PID: 291487
+等待所有实验完成...
+[GPU0] repvit_m0_9 | frac=1.0
+[GPU1] mobilenetv3_small | frac=1.0
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+使用设备: cuda:0
+
+加载数据集 (训练数据比例: 1.0)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+使用设备: cuda:1
+
+加载数据集 (训练数据比例: 1.0)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+[GPU0] repvit_m0_9 | frac=0.5
+[GPU1] mobilenetv3_small | frac=0.5
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+使用设备: cuda:0
+
+加载数据集 (训练数据比例: 0.5)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+训练集大小: 13281 -> 6640
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+使用设备: cuda:1
+
+加载数据集 (训练数据比例: 0.5)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+训练集大小: 13281 -> 6640
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+[GPU0] repvit_m0_9 | frac=0.2
+[GPU1] mobilenetv3_small | frac=0.2
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/timm/resnet50.a1_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+使用设备: cuda:0
+
+加载数据集 (训练数据比例: 0.2)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+训练集大小: 13281 -> 2656
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+[GPU0] ✅ 完成!
+使用设备: cuda:1
+
+加载数据集 (训练数据比例: 0.2)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+训练集大小: 13281 -> 2656
+
+创建教师模型（使用timm预训练）...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 227, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_simple.py", line 186, in main
+    t = timm.create_model(name, pretrained=True, num_classes=num_classes, in_chans=1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 1552, in resnet50
+    return _create_resnet('resnet50', pretrained, **dict(model_args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/resnet.py", line 791, in _create_resnet
+    return build_model_with_cfg(ResNet, variant, pretrained, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_hub.py", line 226, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+                       ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1024, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1157, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1691, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1614, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 302, in _httpx_follow_relative_redirects
+    response = http_backoff(
+               ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 506, in http_backoff
+    return next(
+           ^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 414, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
+[GPU1] ✅ 完成!
+
+==========================================
+🎉 所有 CE+KL 实验完成!
+结果保存在: results/kd_simple_20251208_230027
+==========================================
+================================================================================
+STEP 3: KD 配置消融分析 (100% 训练数据)
+================================================================================
+
+完整训练数据结果:
+     student_name kd_config_id  test_acc  macro_f1  params_m
+mobilenetv3_small      ce_only  0.974711  0.961467  1.524743
+      repvit_m0_9      ce_only  0.980491  0.973652  4.724286
+
+================================================================================
+STEP 4: 数据效率分析 (不同训练数据比例)
+================================================================================
+
+repvit_m0_9:
+kd_config_id  train_fraction  test_acc  macro_f1
+     ce_only             0.2  0.882225  0.836294
+     ce_only             0.5  0.937139  0.918898
+     ce_only             1.0  0.980491  0.973652
+
+mobilenetv3_small:
+kd_config_id  train_fraction  test_acc  macro_f1
+     ce_only             0.2  0.809249  0.773703
+     ce_only             0.5  0.903902  0.863688
+     ce_only             1.0  0.974711  0.961467
+
+================================================================================
+关键发现
+================================================================================
+
+1. 最佳模型:
+   模型: repvit_m0_9
+   配置: ce_only
+   数据比例: 100.0%
+   Test Acc: 0.9805
+   Macro F1: 0.9737
+   参数量: 4.72M
+
+2. 数据效率洞察:
+   repvit_m0_9 (ce_only): 50%数据 → F1下降 0.0548
+   mobilenetv3_small (ce_only): 50%数据 → F1下降 0.0978
+
+✅ 汇总已保存到: analysis/summary/step3_step4_results.csv

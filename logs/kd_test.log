@@ -1,0 +1,5 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_local.py", line 12, in <module>
+    from src.data import get_dataloaders
+ModuleNotFoundError: No module named 'src'

@@ -1,0 +1,343 @@
+nohup: ignoring input
+/workspace/yqm/NetKD/scripts/exp1_student_baseline.py:171: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+Using device: cuda:0
+Loading data...
+Classes: ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip']
+Train samples: 13281, Val: 1383, Test: 1384
+Number of classes: 7
+
+Training MobileNetV2
+  Parameters: 2.23M (trainable: 2.23M)
+/workspace/yqm/NetKD/scripts/exp1_student_baseline.py:115: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+  Epoch 1/50: Loss=2.2634, Train Acc=53.31%, Val Acc=74.11%
+  Epoch 2/50: Loss=1.0729, Train Acc=72.40%, Val Acc=75.70%
+  Epoch 3/50: Loss=0.9160, Train Acc=79.53%, Val Acc=84.60%
+  Epoch 4/50: Loss=0.8169, Train Acc=84.32%, Val Acc=86.91%
+  Epoch 5/50: Loss=0.7388, Train Acc=87.89%, Val Acc=90.02%
+  Epoch 6/50: Loss=0.6974, Train Acc=89.77%, Val Acc=91.54%
+  Epoch 7/50: Loss=0.6459, Train Acc=92.43%, Val Acc=92.91%
+  Epoch 8/50: Loss=0.6126, Train Acc=94.01%, Val Acc=94.14%
+  Epoch 9/50: Loss=0.5955, Train Acc=94.86%, Val Acc=95.01%
+  Epoch 10/50: Loss=0.5882, Train Acc=95.02%, Val Acc=94.94%
+  Epoch 11/50: Loss=0.5606, Train Acc=96.42%, Val Acc=95.52%
+  Epoch 12/50: Loss=0.5405, Train Acc=97.21%, Val Acc=94.79%
+  Epoch 13/50: Loss=0.5350, Train Acc=97.36%, Val Acc=96.75%
+  Epoch 14/50: Loss=0.5287, Train Acc=97.52%, Val Acc=95.73%
+  Epoch 15/50: Loss=0.5264, Train Acc=97.46%, Val Acc=95.88%
+  Epoch 16/50: Loss=0.5258, Train Acc=97.36%, Val Acc=95.16%
+  Epoch 17/50: Loss=0.5169, Train Acc=97.78%, Val Acc=96.67%
+  Epoch 18/50: Loss=0.5101, Train Acc=97.94%, Val Acc=96.10%
+  Epoch 19/50: Loss=0.5056, Train Acc=98.09%, Val Acc=96.53%
+  Epoch 20/50: Loss=0.5072, Train Acc=97.95%, Val Acc=96.24%
+  Epoch 21/50: Loss=0.4953, Train Acc=98.49%, Val Acc=96.24%
+  Epoch 22/50: Loss=0.4967, Train Acc=98.34%, Val Acc=97.32%
+  Epoch 23/50: Loss=0.4904, Train Acc=98.68%, Val Acc=96.67%
+  Epoch 24/50: Loss=0.4958, Train Acc=98.31%, Val Acc=97.04%
+  Epoch 25/50: Loss=0.4820, Train Acc=98.86%, Val Acc=96.53%
+  Epoch 26/50: Loss=0.4794, Train Acc=98.98%, Val Acc=96.60%
+  Epoch 27/50: Loss=0.4763, Train Acc=99.06%, Val Acc=97.18%
+  Epoch 28/50: Loss=0.4673, Train Acc=99.39%, Val Acc=96.46%
+  Epoch 29/50: Loss=0.4700, Train Acc=99.30%, Val Acc=97.32%
+  Epoch 30/50: Loss=0.4669, Train Acc=99.39%, Val Acc=97.47%
+  Epoch 31/50: Loss=0.4648, Train Acc=99.48%, Val Acc=97.32%
+  Epoch 32/50: Loss=0.4590, Train Acc=99.69%, Val Acc=97.18%
+  Epoch 33/50: Loss=0.4599, Train Acc=99.63%, Val Acc=97.54%
+  Epoch 34/50: Loss=0.4560, Train Acc=99.82%, Val Acc=97.40%
+  Epoch 35/50: Loss=0.4545, Train Acc=99.83%, Val Acc=97.47%
+  Epoch 36/50: Loss=0.4547, Train Acc=99.75%, Val Acc=97.40%
+  Epoch 37/50: Loss=0.4536, Train Acc=99.87%, Val Acc=97.54%
+  Epoch 38/50: Loss=0.4518, Train Acc=99.89%, Val Acc=97.47%
+  Epoch 39/50: Loss=0.4506, Train Acc=99.94%, Val Acc=97.61%
+  Epoch 40/50: Loss=0.4515, Train Acc=99.92%, Val Acc=97.90%
+  Epoch 41/50: Loss=0.4504, Train Acc=99.93%, Val Acc=97.47%
+  Epoch 42/50: Loss=0.4502, Train Acc=99.95%, Val Acc=97.61%
+  Epoch 43/50: Loss=0.4491, Train Acc=99.98%, Val Acc=97.69%
+  Epoch 44/50: Loss=0.4496, Train Acc=99.96%, Val Acc=97.47%
+  Epoch 45/50: Loss=0.4491, Train Acc=99.98%, Val Acc=97.47%
+  Epoch 46/50: Loss=0.4492, Train Acc=99.98%, Val Acc=97.61%
+  Epoch 47/50: Loss=0.4493, Train Acc=99.97%, Val Acc=97.40%
+  Epoch 48/50: Loss=0.4489, Train Acc=99.98%, Val Acc=97.61%
+  Epoch 49/50: Loss=0.4495, Train Acc=99.96%, Val Acc=97.54%
+  Epoch 50/50: Loss=0.4497, Train Acc=99.94%, Val Acc=97.47%
+  Best Val Acc: 97.90%, Test Acc: 97.40%
+  Training Time: 3.3 minutes
+
+Training MobileNetV3-Small
+  Parameters: 1.52M (trainable: 1.52M)
+  Epoch 1/50: Loss=1.8726, Train Acc=49.09%, Val Acc=59.36%
+  Epoch 2/50: Loss=1.1849, Train Acc=66.85%, Val Acc=74.98%
+  Epoch 3/50: Loss=1.0255, Train Acc=74.53%, Val Acc=78.09%
+  Epoch 4/50: Loss=0.9348, Train Acc=78.43%, Val Acc=81.71%
+  Epoch 5/50: Loss=0.8799, Train Acc=81.58%, Val Acc=83.95%
+  Epoch 6/50: Loss=0.8253, Train Acc=83.25%, Val Acc=85.39%
+  Epoch 7/50: Loss=0.7897, Train Acc=85.08%, Val Acc=87.20%
+  Epoch 8/50: Loss=0.7628, Train Acc=86.31%, Val Acc=88.43%
+  Epoch 9/50: Loss=0.7235, Train Acc=87.79%, Val Acc=87.27%
+  Epoch 10/50: Loss=0.7023, Train Acc=89.19%, Val Acc=91.11%
+  Epoch 11/50: Loss=0.6782, Train Acc=90.26%, Val Acc=89.59%
+  Epoch 12/50: Loss=0.6566, Train Acc=91.44%, Val Acc=92.55%
+  Epoch 13/50: Loss=0.6374, Train Acc=92.11%, Val Acc=91.03%
+  Epoch 14/50: Loss=0.6223, Train Acc=93.12%, Val Acc=92.77%
+  Epoch 15/50: Loss=0.6085, Train Acc=93.83%, Val Acc=93.35%
+  Epoch 16/50: Loss=0.5941, Train Acc=94.31%, Val Acc=93.64%
+  Epoch 17/50: Loss=0.5928, Train Acc=94.26%, Val Acc=94.58%
+  Epoch 18/50: Loss=0.5768, Train Acc=95.10%, Val Acc=94.50%
+  Epoch 19/50: Loss=0.5662, Train Acc=95.65%, Val Acc=94.65%
+  Epoch 20/50: Loss=0.5628, Train Acc=95.82%, Val Acc=95.23%
+  Epoch 21/50: Loss=0.5468, Train Acc=96.33%, Val Acc=95.73%
+  Epoch 22/50: Loss=0.5399, Train Acc=96.69%, Val Acc=95.23%
+  Epoch 23/50: Loss=0.5442, Train Acc=96.40%, Val Acc=95.52%
+  Epoch 24/50: Loss=0.5319, Train Acc=96.94%, Val Acc=96.38%
+  Epoch 25/50: Loss=0.5267, Train Acc=97.06%, Val Acc=95.66%
+  Epoch 26/50: Loss=0.5208, Train Acc=97.32%, Val Acc=95.81%
+  Epoch 27/50: Loss=0.5142, Train Acc=97.53%, Val Acc=96.46%
+  Epoch 28/50: Loss=0.5130, Train Acc=97.79%, Val Acc=96.60%
+  Epoch 29/50: Loss=0.5172, Train Acc=97.34%, Val Acc=96.53%
+  Epoch 30/50: Loss=0.5072, Train Acc=97.93%, Val Acc=97.18%
+  Epoch 31/50: Loss=0.5052, Train Acc=97.84%, Val Acc=96.89%
+  Epoch 32/50: Loss=0.4991, Train Acc=98.09%, Val Acc=97.25%
+  Epoch 33/50: Loss=0.4979, Train Acc=98.16%, Val Acc=97.11%
+  Epoch 34/50: Loss=0.4958, Train Acc=98.32%, Val Acc=97.32%
+  Epoch 35/50: Loss=0.4923, Train Acc=98.36%, Val Acc=97.04%
+  Epoch 36/50: Loss=0.4922, Train Acc=98.33%, Val Acc=97.32%
+  Epoch 37/50: Loss=0.4872, Train Acc=98.64%, Val Acc=97.40%
+  Epoch 38/50: Loss=0.4848, Train Acc=98.65%, Val Acc=97.32%
+  Epoch 39/50: Loss=0.4845, Train Acc=98.58%, Val Acc=97.32%
+  Epoch 40/50: Loss=0.4822, Train Acc=98.67%, Val Acc=97.25%
+  Epoch 41/50: Loss=0.4788, Train Acc=98.86%, Val Acc=97.47%
+  Epoch 42/50: Loss=0.4777, Train Acc=98.94%, Val Acc=97.47%
+  Epoch 43/50: Loss=0.4755, Train Acc=98.97%, Val Acc=97.25%
+  Epoch 44/50: Loss=0.4774, Train Acc=98.89%, Val Acc=97.32%
+  Epoch 45/50: Loss=0.4731, Train Acc=99.16%, Val Acc=97.54%
+  Epoch 46/50: Loss=0.4736, Train Acc=99.16%, Val Acc=97.54%
+  Epoch 47/50: Loss=0.4724, Train Acc=99.19%, Val Acc=97.47%
+  Epoch 48/50: Loss=0.4715, Train Acc=99.17%, Val Acc=97.47%
+  Epoch 49/50: Loss=0.4717, Train Acc=99.16%, Val Acc=97.40%
+  Epoch 50/50: Loss=0.4731, Train Acc=99.07%, Val Acc=97.32%
+  Best Val Acc: 97.54%, Test Acc: 96.32%
+  Training Time: 2.9 minutes
+
+Training MobileNetV3-Large
+  Parameters: 4.21M (trainable: 4.21M)
+  Epoch 1/50: Loss=2.1347, Train Acc=53.24%, Val Acc=66.09%
+  Epoch 2/50: Loss=1.1195, Train Acc=72.37%, Val Acc=70.86%
+  Epoch 3/50: Loss=0.9510, Train Acc=79.31%, Val Acc=82.65%
+  Epoch 4/50: Loss=0.8466, Train Acc=84.23%, Val Acc=87.78%
+  Epoch 5/50: Loss=0.7532, Train Acc=87.99%, Val Acc=91.54%
+  Epoch 6/50: Loss=0.7128, Train Acc=90.23%, Val Acc=92.77%
+  Epoch 7/50: Loss=0.6562, Train Acc=92.70%, Val Acc=94.65%
+  Epoch 8/50: Loss=0.6117, Train Acc=94.44%, Val Acc=94.50%
+  Epoch 9/50: Loss=0.5944, Train Acc=95.39%, Val Acc=94.65%
+  Epoch 10/50: Loss=0.5717, Train Acc=95.94%, Val Acc=95.88%
+  Epoch 11/50: Loss=0.5533, Train Acc=96.65%, Val Acc=95.73%
+  Epoch 12/50: Loss=0.5484, Train Acc=96.44%, Val Acc=96.31%
+  Epoch 13/50: Loss=0.5352, Train Acc=97.09%, Val Acc=96.24%
+  Epoch 14/50: Loss=0.5228, Train Acc=97.60%, Val Acc=96.38%
+  Epoch 15/50: Loss=0.5139, Train Acc=97.91%, Val Acc=96.82%
+  Epoch 16/50: Loss=0.5158, Train Acc=97.72%, Val Acc=96.75%
+  Epoch 17/50: Loss=0.5210, Train Acc=97.33%, Val Acc=96.38%
+  Epoch 18/50: Loss=0.5104, Train Acc=97.83%, Val Acc=96.67%
+  Epoch 19/50: Loss=0.5037, Train Acc=98.06%, Val Acc=95.95%
+  Epoch 20/50: Loss=0.4939, Train Acc=98.44%, Val Acc=96.89%
+  Epoch 21/50: Loss=0.4848, Train Acc=98.76%, Val Acc=96.67%
+  Epoch 22/50: Loss=0.4888, Train Acc=98.55%, Val Acc=97.04%
+  Epoch 23/50: Loss=0.4813, Train Acc=98.89%, Val Acc=97.04%
+  Epoch 24/50: Loss=0.4871, Train Acc=98.61%, Val Acc=97.32%
+  Epoch 25/50: Loss=0.4765, Train Acc=99.03%, Val Acc=97.18%
+  Epoch 26/50: Loss=0.4757, Train Acc=98.98%, Val Acc=97.18%
+  Epoch 27/50: Loss=0.4732, Train Acc=99.13%, Val Acc=97.61%
+  Epoch 28/50: Loss=0.4734, Train Acc=99.21%, Val Acc=97.25%
+  Epoch 29/50: Loss=0.4696, Train Acc=99.27%, Val Acc=97.25%
+  Epoch 30/50: Loss=0.4639, Train Acc=99.41%, Val Acc=97.40%
+  Epoch 31/50: Loss=0.4601, Train Acc=99.62%, Val Acc=97.61%
+  Epoch 32/50: Loss=0.4604, Train Acc=99.61%, Val Acc=97.61%
+  Epoch 33/50: Loss=0.4592, Train Acc=99.64%, Val Acc=97.90%
+  Epoch 34/50: Loss=0.4579, Train Acc=99.67%, Val Acc=97.90%
+  Epoch 35/50: Loss=0.4544, Train Acc=99.80%, Val Acc=98.12%
+  Epoch 36/50: Loss=0.4544, Train Acc=99.76%, Val Acc=97.90%
+  Epoch 37/50: Loss=0.4533, Train Acc=99.84%, Val Acc=97.98%
+  Epoch 38/50: Loss=0.4533, Train Acc=99.82%, Val Acc=97.98%
+  Epoch 39/50: Loss=0.4519, Train Acc=99.86%, Val Acc=97.83%
+  Epoch 40/50: Loss=0.4514, Train Acc=99.89%, Val Acc=97.76%
+  Epoch 41/50: Loss=0.4501, Train Acc=99.94%, Val Acc=97.90%
+  Epoch 42/50: Loss=0.4506, Train Acc=99.89%, Val Acc=97.98%
+  Epoch 43/50: Loss=0.4498, Train Acc=99.95%, Val Acc=97.76%
+  Epoch 44/50: Loss=0.4497, Train Acc=99.96%, Val Acc=97.90%
+  Epoch 45/50: Loss=0.4494, Train Acc=99.95%, Val Acc=97.69%
+  Epoch 46/50: Loss=0.4503, Train Acc=99.93%, Val Acc=98.05%
+  Epoch 47/50: Loss=0.4489, Train Acc=99.98%, Val Acc=98.05%
+  Epoch 48/50: Loss=0.4490, Train Acc=99.96%, Val Acc=98.05%
+  Epoch 49/50: Loss=0.4497, Train Acc=99.95%, Val Acc=97.98%
+  Epoch 50/50: Loss=0.4492, Train Acc=99.97%, Val Acc=98.05%
+  Best Val Acc: 98.12%, Test Acc: 96.89%
+  Training Time: 3.3 minutes
+
+Training GhostNet
+  Parameters: 3.91M (trainable: 3.91M)
+  Epoch 1/50: Loss=1.0637, Train Acc=71.30%, Val Acc=79.90%
+  Epoch 2/50: Loss=0.8416, Train Acc=82.25%, Val Acc=86.04%
+  Epoch 3/50: Loss=0.7614, Train Acc=86.24%, Val Acc=88.00%
+  Epoch 4/50: Loss=0.7069, Train Acc=88.86%, Val Acc=91.47%
+  Epoch 5/50: Loss=0.6660, Train Acc=90.82%, Val Acc=92.34%
+  Epoch 6/50: Loss=0.6326, Train Acc=92.38%, Val Acc=91.83%
+  Epoch 7/50: Loss=0.5976, Train Acc=93.94%, Val Acc=92.70%
+  Epoch 8/50: Loss=0.5792, Train Acc=94.55%, Val Acc=90.74%
+  Epoch 9/50: Loss=0.5633, Train Acc=95.38%, Val Acc=95.08%
+  Epoch 10/50: Loss=0.5600, Train Acc=95.69%, Val Acc=93.78%
+  Epoch 11/50: Loss=0.5546, Train Acc=95.72%, Val Acc=96.02%
+  Epoch 12/50: Loss=0.5274, Train Acc=97.03%, Val Acc=96.60%
+  Epoch 13/50: Loss=0.5151, Train Acc=97.58%, Val Acc=96.02%
+  Epoch 14/50: Loss=0.5203, Train Acc=97.22%, Val Acc=95.81%
+  Epoch 15/50: Loss=0.5116, Train Acc=97.61%, Val Acc=96.82%
+  Epoch 16/50: Loss=0.4995, Train Acc=98.13%, Val Acc=96.67%
+  Epoch 17/50: Loss=0.5049, Train Acc=98.00%, Val Acc=97.11%
+  Epoch 18/50: Loss=0.4859, Train Acc=98.65%, Val Acc=97.18%
+  Epoch 19/50: Loss=0.4828, Train Acc=98.78%, Val Acc=97.18%
+  Epoch 20/50: Loss=0.4846, Train Acc=98.80%, Val Acc=96.60%
+  Epoch 21/50: Loss=0.4865, Train Acc=98.58%, Val Acc=97.32%
+  Epoch 22/50: Loss=0.4797, Train Acc=98.87%, Val Acc=97.11%
+  Epoch 23/50: Loss=0.4825, Train Acc=98.70%, Val Acc=97.54%
+  Epoch 24/50: Loss=0.4741, Train Acc=99.05%, Val Acc=97.69%
+  Epoch 25/50: Loss=0.4693, Train Acc=99.27%, Val Acc=97.69%
+  Epoch 26/50: Loss=0.4703, Train Acc=99.25%, Val Acc=97.76%
+  Epoch 27/50: Loss=0.4692, Train Acc=99.22%, Val Acc=97.61%
+  Epoch 28/50: Loss=0.4656, Train Acc=99.40%, Val Acc=97.90%
+  Epoch 29/50: Loss=0.4642, Train Acc=99.44%, Val Acc=97.98%
+  Epoch 30/50: Loss=0.4619, Train Acc=99.54%, Val Acc=97.83%
+  Epoch 31/50: Loss=0.4615, Train Acc=99.59%, Val Acc=97.83%
+  Epoch 32/50: Loss=0.4610, Train Acc=99.57%, Val Acc=98.05%
+  Epoch 33/50: Loss=0.4588, Train Acc=99.65%, Val Acc=98.05%
+  Epoch 34/50: Loss=0.4584, Train Acc=99.65%, Val Acc=97.98%
+  Epoch 35/50: Loss=0.4554, Train Acc=99.77%, Val Acc=98.12%
+  Epoch 36/50: Loss=0.4560, Train Acc=99.74%, Val Acc=98.12%
+  Epoch 37/50: Loss=0.4537, Train Acc=99.83%, Val Acc=98.26%
+  Epoch 38/50: Loss=0.4528, Train Acc=99.88%, Val Acc=98.34%
+  Epoch 39/50: Loss=0.4521, Train Acc=99.89%, Val Acc=98.34%
+  Epoch 40/50: Loss=0.4521, Train Acc=99.88%, Val Acc=98.19%
+  Epoch 41/50: Loss=0.4518, Train Acc=99.89%, Val Acc=98.19%
+  Epoch 42/50: Loss=0.4514, Train Acc=99.91%, Val Acc=98.05%
+  Epoch 43/50: Loss=0.4510, Train Acc=99.93%, Val Acc=98.12%
+  Epoch 44/50: Loss=0.4513, Train Acc=99.91%, Val Acc=98.26%
+  Epoch 45/50: Loss=0.4511, Train Acc=99.93%, Val Acc=98.12%
+  Epoch 46/50: Loss=0.4510, Train Acc=99.92%, Val Acc=98.19%
+  Epoch 47/50: Loss=0.4508, Train Acc=99.92%, Val Acc=98.26%
+  Epoch 48/50: Loss=0.4507, Train Acc=99.93%, Val Acc=98.05%
+  Epoch 49/50: Loss=0.4507, Train Acc=99.92%, Val Acc=98.12%
+  Epoch 50/50: Loss=0.4505, Train Acc=99.93%, Val Acc=98.19%
+  Best Val Acc: 98.34%, Test Acc: 97.54%
+  Training Time: 4.9 minutes
+
+Training EfficientNet-Lite0
+  Parameters: 3.38M (trainable: 3.38M)
+  Epoch 1/50: Loss=1.8497, Train Acc=57.74%, Val Acc=78.02%
+  Epoch 2/50: Loss=0.9588, Train Acc=77.60%, Val Acc=84.45%
+  Epoch 3/50: Loss=0.8076, Train Acc=84.72%, Val Acc=90.74%
+  Epoch 4/50: Loss=0.7178, Train Acc=88.87%, Val Acc=92.34%
+  Epoch 5/50: Loss=0.6523, Train Acc=92.19%, Val Acc=92.62%
+  Epoch 6/50: Loss=0.6020, Train Acc=94.63%, Val Acc=95.73%
+  Epoch 7/50: Loss=0.5681, Train Acc=96.23%, Val Acc=95.73%
+  Epoch 8/50: Loss=0.5628, Train Acc=96.40%, Val Acc=95.88%
+  Epoch 9/50: Loss=0.5399, Train Acc=97.21%, Val Acc=96.17%
+  Epoch 10/50: Loss=0.5203, Train Acc=97.94%, Val Acc=96.82%
+  Epoch 11/50: Loss=0.5043, Train Acc=98.56%, Val Acc=96.67%
+  Epoch 12/50: Loss=0.5098, Train Acc=98.19%, Val Acc=96.31%
+  Epoch 13/50: Loss=0.5073, Train Acc=98.31%, Val Acc=96.67%
+  Epoch 14/50: Loss=0.5066, Train Acc=98.17%, Val Acc=96.10%
+  Epoch 15/50: Loss=0.4879, Train Acc=98.87%, Val Acc=97.11%
+  Epoch 16/50: Loss=0.4896, Train Acc=98.80%, Val Acc=96.67%
+  Epoch 17/50: Loss=0.4963, Train Acc=98.43%, Val Acc=96.31%
+  Epoch 18/50: Loss=0.4987, Train Acc=98.45%, Val Acc=96.60%
+  Epoch 19/50: Loss=0.5018, Train Acc=98.34%, Val Acc=95.59%
+  Epoch 20/50: Loss=0.4910, Train Acc=98.46%, Val Acc=96.60%
+  Epoch 21/50: Loss=0.4969, Train Acc=98.40%, Val Acc=97.25%
+  Epoch 22/50: Loss=0.4786, Train Acc=99.01%, Val Acc=97.04%
+  Epoch 23/50: Loss=0.4795, Train Acc=98.80%, Val Acc=96.89%
+  Epoch 24/50: Loss=0.4757, Train Acc=99.12%, Val Acc=97.69%
+  Epoch 25/50: Loss=0.4677, Train Acc=99.34%, Val Acc=96.89%
+  Epoch 26/50: Loss=0.4622, Train Acc=99.54%, Val Acc=96.82%
+  Epoch 27/50: Loss=0.4596, Train Acc=99.62%, Val Acc=97.40%
+  Epoch 28/50: Loss=0.4577, Train Acc=99.69%, Val Acc=97.04%
+  Epoch 29/50: Loss=0.4586, Train Acc=99.65%, Val Acc=97.54%
+  Epoch 30/50: Loss=0.4560, Train Acc=99.76%, Val Acc=97.40%
+  Epoch 31/50: Loss=0.4527, Train Acc=99.85%, Val Acc=97.83%
+  Epoch 32/50: Loss=0.4519, Train Acc=99.85%, Val Acc=97.76%
+  Epoch 33/50: Loss=0.4510, Train Acc=99.89%, Val Acc=97.90%
+  Epoch 34/50: Loss=0.4500, Train Acc=99.93%, Val Acc=97.98%
+  Epoch 35/50: Loss=0.4485, Train Acc=99.98%, Val Acc=97.90%
+  Epoch 36/50: Loss=0.4483, Train Acc=99.98%, Val Acc=97.98%
+  Epoch 37/50: Loss=0.4484, Train Acc=99.96%, Val Acc=97.90%
+  Epoch 38/50: Loss=0.4485, Train Acc=99.98%, Val Acc=98.12%
+  Epoch 39/50: Loss=0.4480, Train Acc=99.99%, Val Acc=97.90%
+  Epoch 40/50: Loss=0.4476, Train Acc=100.00%, Val Acc=97.83%
+  Epoch 41/50: Loss=0.4479, Train Acc=99.96%, Val Acc=97.83%
+  Epoch 42/50: Loss=0.4483, Train Acc=99.96%, Val Acc=97.90%
+  Epoch 43/50: Loss=0.4477, Train Acc=99.99%, Val Acc=97.61%
+  Epoch 44/50: Loss=0.4473, Train Acc=100.00%, Val Acc=97.69%
+  Epoch 45/50: Loss=0.4481, Train Acc=99.96%, Val Acc=97.61%
+  Epoch 46/50: Loss=0.4475, Train Acc=99.98%, Val Acc=97.69%
+  Epoch 47/50: Loss=0.4474, Train Acc=100.00%, Val Acc=97.90%
+  Epoch 48/50: Loss=0.4472, Train Acc=100.00%, Val Acc=97.76%
+  Epoch 49/50: Loss=0.4472, Train Acc=100.00%, Val Acc=97.90%
+  Epoch 50/50: Loss=0.4474, Train Acc=99.98%, Val Acc=97.76%
+  Best Val Acc: 98.12%, Test Acc: 97.33%
+  Training Time: 2.8 minutes
+
+Training RepVit-M0.9
+  Parameters: 4.72M (trainable: 4.72M)
+  Epoch 1/50: Loss=1.1184, Train Acc=70.82%, Val Acc=79.54%
+  Epoch 2/50: Loss=0.8508, Train Acc=81.80%, Val Acc=81.71%
+  Epoch 3/50: Loss=0.7604, Train Acc=85.92%, Val Acc=89.52%
+  Epoch 4/50: Loss=0.6743, Train Acc=90.15%, Val Acc=89.15%
+  Epoch 5/50: Loss=0.6204, Train Acc=92.65%, Val Acc=94.79%
+  Epoch 6/50: Loss=0.5579, Train Acc=95.78%, Val Acc=94.94%
+  Epoch 7/50: Loss=0.5371, Train Acc=96.63%, Val Acc=96.31%
+  Epoch 8/50: Loss=0.5350, Train Acc=96.58%, Val Acc=96.38%
+  Epoch 9/50: Loss=0.5144, Train Acc=97.43%, Val Acc=96.24%
+  Epoch 10/50: Loss=0.5006, Train Acc=98.00%, Val Acc=96.89%
+  Epoch 11/50: Loss=0.5027, Train Acc=97.95%, Val Acc=96.89%
+  Epoch 12/50: Loss=0.4956, Train Acc=98.21%, Val Acc=97.25%
+  Epoch 13/50: Loss=0.4913, Train Acc=98.42%, Val Acc=97.54%
+  Epoch 14/50: Loss=0.4924, Train Acc=98.37%, Val Acc=96.60%
+  Epoch 15/50: Loss=0.4874, Train Acc=98.58%, Val Acc=97.54%
+  Epoch 16/50: Loss=0.4810, Train Acc=98.73%, Val Acc=97.04%
+  Epoch 17/50: Loss=0.4792, Train Acc=98.86%, Val Acc=97.69%
+  Epoch 18/50: Loss=0.4777, Train Acc=98.85%, Val Acc=97.98%
+  Epoch 19/50: Loss=0.4732, Train Acc=99.07%, Val Acc=97.69%
+  Epoch 20/50: Loss=0.4711, Train Acc=99.10%, Val Acc=97.54%
+  Epoch 21/50: Loss=0.4690, Train Acc=99.26%, Val Acc=97.69%
+  Epoch 22/50: Loss=0.4687, Train Acc=99.30%, Val Acc=97.90%
+  Epoch 23/50: Loss=0.4699, Train Acc=99.17%, Val Acc=97.90%
+  Epoch 24/50: Loss=0.4678, Train Acc=99.21%, Val Acc=97.69%
+  Epoch 25/50: Loss=0.4631, Train Acc=99.47%, Val Acc=97.76%
+  Epoch 26/50: Loss=0.4623, Train Acc=99.45%, Val Acc=97.54%
+  Epoch 27/50: Loss=0.4652, Train Acc=99.28%, Val Acc=97.83%
+  Epoch 28/50: Loss=0.4604, Train Acc=99.51%, Val Acc=97.90%
+  Epoch 29/50: Loss=0.4599, Train Acc=99.53%, Val Acc=98.05%
+  Epoch 30/50: Loss=0.4576, Train Acc=99.58%, Val Acc=98.19%
+  Epoch 31/50: Loss=0.4570, Train Acc=99.63%, Val Acc=98.26%
+  Epoch 32/50: Loss=0.4546, Train Acc=99.74%, Val Acc=98.19%
+  Epoch 33/50: Loss=0.4537, Train Acc=99.76%, Val Acc=98.19%
+  Epoch 34/50: Loss=0.4535, Train Acc=99.75%, Val Acc=98.12%
+  Epoch 35/50: Loss=0.4526, Train Acc=99.77%, Val Acc=98.34%
+  Epoch 36/50: Loss=0.4515, Train Acc=99.84%, Val Acc=98.19%
+  Epoch 37/50: Loss=0.4507, Train Acc=99.87%, Val Acc=98.19%
+  Epoch 38/50: Loss=0.4506, Train Acc=99.86%, Val Acc=98.34%
+  Epoch 39/50: Loss=0.4500, Train Acc=99.92%, Val Acc=98.34%
+  Epoch 40/50: Loss=0.4495, Train Acc=99.93%, Val Acc=98.26%
+  Epoch 41/50: Loss=0.4490, Train Acc=99.93%, Val Acc=98.34%
+  Epoch 42/50: Loss=0.4490, Train Acc=99.95%, Val Acc=98.34%
+  Epoch 43/50: Loss=0.4486, Train Acc=99.95%, Val Acc=98.41%
+  Epoch 44/50: Loss=0.4482, Train Acc=99.97%, Val Acc=98.26%
+  Epoch 45/50: Loss=0.4481, Train Acc=99.98%, Val Acc=98.34%
+  Epoch 46/50: Loss=0.4480, Train Acc=100.00%, Val Acc=98.34%
+  Epoch 47/50: Loss=0.4478, Train Acc=100.00%, Val Acc=98.41%
+  Epoch 48/50: Loss=0.4481, Train Acc=99.99%, Val Acc=98.26%
+  Epoch 49/50: Loss=0.4479, Train Acc=100.00%, Val Acc=98.34%
+  Epoch 50/50: Loss=0.4480, Train Acc=99.98%, Val Acc=98.41%
+  Best Val Acc: 98.41%, Test Acc: 98.19%
+  Training Time: 4.9 minutes
+
+Results saved to: results/student_baseline/baseline_results.json
+Report saved to: results/student_baseline/baseline_report.md

@@ -1,0 +1,78 @@
+nohup: ignoring input
+
+============================================================
+Dataset: CrossPlatform-iOS | GPU: cuda:2
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'CrossPlatform-iOS', 'dataset_path': '/workspace/yqm/Dataset/CrossPlatform-iOS', 'num_classes': 124, 'class_names': ['1mg', '58tongcheng', 'Buzzfeed', 'accuweather-weather-for-life', 'aibajiaoyou', 'aiqiyi', 'amazon', 'amazon-shopping-made-easy', 'autocar-india-mag', 'b612kaji', 'baicizhan', 'baidutieba', 'beautyplus-selfie-camera-for-a-beautiful-image', 'bible', 'byjus-the-learning-app', 'camscanner', 'cnn-breaking-us-world-news', 'colorfy-coloring-book', 'cricbuzz-live-cricket-scores-news', 'dancing-line', 'dataoshajuedichiji', 'dictionary', 'dominos-pizza-usa', 'dream11-fantasy-sports-cricket-kabaddi-football', 'duolingo-learn-spanish-french-and-more', 'ebay-buy-sell-save-money', 'epocrates-medical-references', 'espn-live-sports-scores', 'espncricinfo-cricket', 'fire-rides', 'fitness-for-weight-loss-personalized-workout-plan', 'flashlight', 'flipagram', 'forbes-india', 'goibibo', 'goodrx-save-on-prescriptions', 'google', 'google-chrome', 'google-translate', 'hike-messenger', 'hotspotshield-vpn-wifi-proxy', 'hotstar', 'hungama-music-songs-radio-videos', 'india-today', 'indian-railway-irctc-pnr-status', 'jabong-online-shopping-for-fashion', 'jetpack-joyride', 'jianyujiayuan', 'jiezoudashi', 'kuaishou', 'layout-from-instagram', 'leps-world-free-platformer-games', 'like-magic-music-video-maker', 'live-wallpapers-and-themes-now', 'ludo-king', 'makemytrip-flights-hotels-buses', 'medscape', 'meipian', 'meiyanxiangji', 'musical-ly-your-video-social-network', 'my-airtel-recharge-pay-bill-payments-bank', 'my-talking-tom', 'myfitnesspal', 'myradar-weather-radar', 'navmii-gps-india-offline-navigation', 'netmeds-india-ki-pharmacy', 'nfl', 'nike-run-club', 'ola-cabs-book-a-taxi-with-one-touch', 'olx-buy-sell-near-you', 'opentable', 'oyo-hotel-booking-app', 'pandora-music', 'paypal-send-receive-money', 'perfect365', 'pinterest', 'practo-your-home-for-health', 'puzzledom', 'qiuqiudazuozhanbob', 'qqkongjian', 'renren', 'rolly-vortex', 'saavn-music-radio', 'sarahah', 'scanner-app-pdf-document-scan', 'scribd-reading-subscription', 'secret-apps-the-locker', 'secret-apps-the-secret-locker-for-photo-video', 'shareit-connect-transfer', 'snake-vs-block', 'soundcloud-music-audio', 'speedtest-by-ookla', 'spotify-music', 'starbucks', 'subway-surfers', 'swiggy-food-order-delivery', 'tbh', 'tengxunshipin', 'the-new-york-times', 'the-times-of-india', 'the-wall-street-journal', 'tinder', 'trivia-crack', 'truecaller-spam-identification-block', 'tuunes-ringtones-music-text-tones-for-iphone', 'ubereats-food-delivery-fast', 'uc-browser-fast-browsing-powerful-ad-block', 'usa-today', 'vivavideo-video-editor-photo-movie-maker', 'voot-tv-shows-movies-cartoons', 'wangzherongyao', 'waze-navigation-live-traffic', 'weather-live-weather-forecast-temperature', 'weather-radar', 'weibo', 'wish-shopping-made-fun', 'xender-file-transfer-sharing', 'yahoo-weather', 'yarn-chat-text-stories', 'yelp-discover-local-favorites', 'youku', 'yy', 'zhihu', 'zillow-real-estate-rentals'], 'total_images': 48787, 'train_size': 40379, 'val_size': 4203, 'test_size': 4205, 'class_counts': [476, 391, 357, 447, 272, 385, 384, 445, 434, 362, 338, 278, 364, 378, 377, 348, 342, 232, 325, 349, 240, 452, 300, 472, 452, 361, 285, 296, 390, 404, 417, 302, 382, 331, 339, 198, 413, 332, 807, 570, 364, 389, 453, 503, 369, 294, 360, 402, 216, 394, 404, 417, 411, 382, 372, 393, 555, 379, 244, 395, 415, 379, 288, 286, 271, 437, 360, 699, 436, 412, 318, 386, 294, 386, 253, 663, 393, 386, 325, 330, 295, 406, 411, 872, 323, 369, 349, 504, 425, 374, 362, 372, 422, 299, 303, 391, 476, 316, 364, 499, 394, 910, 360, 464, 438, 390, 331, 335, 446, 514, 411, 710, 424, 436, 374, 484, 314, 381, 376, 399, 277, 345, 396, 306], 'class_weights': [0.8265620764434806, 1.0062494843659764, 1.1020827685913075, 0.8801869091433933, 1.4464836337760911, 1.0219312945119396, 1.0245925739247312, 0.8841428053642624, 0.9065519548089788, 1.0868606309035822, 1.1640341668257301, 1.4152645625435136, 1.080888869195321, 1.0408559481140127, 1.0436168392230682, 1.130584909158324, 1.150419732126014, 1.695877363737486, 1.2105955334987593, 1.1273454108512801, 1.63934811827957, 0.8704503282900371, 1.311478494623656, 0.8335668398031711, 0.8704503282900371, 1.0898713251720131, 1.3805036785512168, 1.329201176983435, 1.008829611248966, 0.973870169274992, 0.9435097083623424, 1.3027932065797907, 1.0299569329505152, 1.188651203586395, 1.1606004377200494, 1.9870886282176605, 0.9526478169179099, 1.1850709288767975, 0.4875384738377903, 0.6902518392756084, 1.080888869195321, 1.0114230035658014, 0.8685288043865271, 0.7821939331751426, 1.066242678555818, 1.3382433618608733, 1.0928987455197132, 0.9787152944952656, 1.821497909199522, 0.9985876862616669, 0.973870169274992, 0.9435097083623424, 0.957283572717997, 1.0299569329505152, 1.057643947277142, 1.001128621850119, 0.7089072943911654, 1.0381096263511789, 1.6124735589635113, 0.9960596161698653, 0.948056743101438, 1.0381096263511789, 1.3661234318996416, 1.3756767426122265, 1.4518212117605047, 0.900328486011663, 1.0928987455197132, 0.5628663067054317, 0.902393459603433, 0.9549600689007203, 1.2372438628525055, 1.0192838041116496, 1.3382433618608733, 1.0192838041116496, 1.5551128394746907, 0.5934291830876272, 1.001128621850119, 1.0192838041116496, 1.2105955334987593, 1.1922531769305962, 1.3337069436850737, 0.9690727792785635, 0.957283572717997, 0.4511967298017165, 1.218091481074603, 1.066242678555818, 1.1273454108512801, 0.7806419610855094, 0.9257495256166983, 1.0519880972917026, 1.0868606309035822, 1.057643947277142, 0.9323306833817459, 1.3158647103247383, 1.2984935590333226, 1.0062494843659764, 0.8265620764434806, 1.2450745202123314, 1.080888869195321, 0.7884640248238413, 0.9985876862616669, 0.43235554767812834, 1.0928987455197132, 0.847938681868743, 0.898272941523052, 1.008829611248966, 1.188651203586395, 1.1744583533943187, 0.8821604223925936, 0.7654543742939626, 0.957283572717997, 0.5541458427987278, 0.9279328971393792, 0.902393459603433, 1.0519880972917026, 0.8128998933617702, 1.253004931169098, 1.0326602319871305, 1.0463924159231297, 0.9860740561080119, 1.420373820892046, 1.14041608228144, 0.9935443141088303, 1.285763230023192], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 1262, Val: 132, Test: 132
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in CrossPlatform-iOS: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+Dataset: ISCXVPN2016 | GPU: cuda:2
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'ISCXVPN2016', 'dataset_path': '/workspace/yqm/Dataset/ISCXVPN2016', 'num_classes': 7, 'class_names': ['browsing', 'chat', 'email', 'ftp', 'p2p', 'streaming', 'voip'], 'total_images': 16048, 'train_size': 13281, 'val_size': 1383, 'test_size': 1384, 'class_counts': [1980, 4668, 684, 2239, 1082, 762, 4633], 'class_weights': [1.1578643578643577, 0.49112498469824944, 3.351712614870509, 1.023926497798762, 2.118827567995775, 3.0086239220097486, 0.4948351885541611], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 416, Val: 44, Test: 44
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in ISCXVPN2016: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+EXPERIMENT COMPLETE
+Results: /workspace/yqm/NetKD/results/full_pipeline_20251210_154952
+============================================================

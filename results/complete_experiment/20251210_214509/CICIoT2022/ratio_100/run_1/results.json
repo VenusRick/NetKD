@@ -1,0 +1,36 @@
+{
+  "dataset": "CICIoT2022",
+  "data_ratio": 1.0,
+  "run_id": 1,
+  "timestamp": "2025-12-10T21:45:09.910854",
+  "num_classes": 6,
+  "train_samples_used": 18734,
+  "teachers": {
+    "densenet121": {
+      "val_acc": 0.9969214982042073,
+      "test_acc": 0.9917990773962071,
+      "test_f1": 0.986263830436294
+    },
+    "mobilenetv3": {
+      "val_acc": 0.9974345818368394,
+      "test_acc": 0.9938493080471553,
+      "test_f1": 0.9915331617382619
+    },
+    "convnextv2_tiny": {
+      "val_acc": 0.9974345818368394,
+      "test_acc": 0.99128651973347,
+      "test_f1": 0.9899873420852475
+    }
+  },
+  "stacking": {
+    "test_acc": 0.9953869810353665,
+    "test_f1": 0.9936156687829891
+  },
+  "student": {
+    "test_acc": 0.9964120963608406,
+    "test_f1": 0.9956073815851219,
+    "test_precision": 0.9959079760958529,
+    "test_recall": 0.995315277366153,
+    "params_m": 4.723516
+  }
+}

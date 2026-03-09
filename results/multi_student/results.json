@@ -1,0 +1,29 @@
+[
+  {
+    "model": "ghostnet",
+    "params_m": 3.910187,
+    "best_epoch": 72,
+    "best_val_acc": 0.9848156182212582,
+    "test_acc": 0.9725433526011561,
+    "test_f1": 0.9593987796920639,
+    "train_time_min": 14.323366852601369
+  },
+  {
+    "model": "mobilenetv2",
+    "params_m": 2.232263,
+    "best_epoch": 90,
+    "best_val_acc": 0.9884309472161966,
+    "test_acc": 0.9797687861271677,
+    "test_f1": 0.9694385542679624,
+    "train_time_min": 10.138401635487874
+  },
+  {
+    "model": "mobilenetv3_small",
+    "params_m": 1.524743,
+    "best_epoch": 81,
+    "best_val_acc": 0.9833694866232827,
+    "test_acc": 0.9797687861271677,
+    "test_f1": 0.9719666240482442,
+    "train_time_min": 10.42018547852834
+  }
+]

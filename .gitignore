@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+nohup.out
+logs/*.log
+
+# Checkpoints and Models
+*.pth
+*.pt
+runs/
+checkpoints/
+
+# Results (keep structure, ignore large files)
+results/**/models/
+results/**/*.pth
+results/**/*.png
+results/**/*.jpg
+
+# Data
+Dataset/
+data/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Specific large files
+densenet121_teacher.pth
+mbv3_teacher.pth

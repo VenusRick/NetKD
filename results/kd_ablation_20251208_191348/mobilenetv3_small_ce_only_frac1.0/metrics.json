@@ -1,0 +1,20 @@
+{
+  "experiment_type": "kd_ablation_data_efficiency",
+  "student_name": "mobilenetv3_small",
+  "kd_config_id": "ce_only",
+  "kd_config_name": "CE Only",
+  "train_fraction": 1.0,
+  "params_m": 1.524743,
+  "test_acc": 0.9747109826589595,
+  "macro_f1": 0.9614666792524397,
+  "precision": 0.9607605206393212,
+  "recall": 0.9622952346815236,
+  "best_val_f1": 0.9696079465983617,
+  "best_epoch": 65,
+  "config_summary": {
+    "epochs": 100,
+    "batch_size": 128,
+    "learning_rate": 0.001
+  },
+  "timestamp": "2025-12-08 19:46:07"
+}

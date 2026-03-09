@@ -1,0 +1,20 @@
+{
+  "experiment_type": "kd_ablation_data_efficiency",
+  "student_name": "repvit_m0_9",
+  "kd_config_id": "ce_only",
+  "kd_config_name": "CE Only",
+  "train_fraction": 1.0,
+  "params_m": 4.724286,
+  "test_acc": 0.9804913294797688,
+  "macro_f1": 0.9736515092438112,
+  "precision": 0.9745018102459433,
+  "recall": 0.9728805772051174,
+  "best_val_f1": 0.9779183322900254,
+  "best_epoch": 85,
+  "config_summary": {
+    "epochs": 100,
+    "batch_size": 128,
+    "learning_rate": 0.001
+  },
+  "timestamp": "2025-12-08 19:26:35"
+}

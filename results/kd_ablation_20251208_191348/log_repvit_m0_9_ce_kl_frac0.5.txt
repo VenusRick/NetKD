@@ -1,0 +1,40 @@
+/workspace/yqm/NetKD/scripts/run_kd_data_efficiency.py:165: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+使用设备: cuda:2
+
+加载数据集 (训练数据比例: 0.5)...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+训练集大小: 13281 -> 6640
+
+加载教师模型...
+加载了 3 个教师模型
+
+创建学生模型: repvit_m0_9
+学生模型参数量: 4.72M
+
+开始训练 (KD配置: ce_kl)...
+E1/100:   0%|          | 0/52 [00:00<?, ?it/s]                                              Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_kd_data_efficiency.py", line 361, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_kd_data_efficiency.py", line 323, in main
+    results = train_student(
+              ^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_kd_data_efficiency.py", line 196, in train_student
+    teacher_logits = stacking(teacher_logits_stacked)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/models/teacher_models.py", line 417, in forward
+    raise ValueError(
+ValueError: Expected 3 teacher logits, got 1

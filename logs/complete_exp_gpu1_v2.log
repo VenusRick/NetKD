@@ -1,0 +1,56 @@
+nohup: ignoring input
+Device: cuda:1
+
+============================================================
+Dataset: USTC-TFC2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/USTC-TFC2016
+
+Dataset split:
+  Train: 37323 images (73.6%)
+  Val:   6692 images (13.2%)
+  Test:  6662 images (13.1%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 456, in main
+    results = run_single_experiment(dataset_name, ratio, run_id, output_dir, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 405, in run_single_experiment
+    student = create_student_model(num_classes)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_complete_experiment.py", line 138, in create_student_model
+    from models.student_models_v2 import create_lightweight_student
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+    test_acc=0.9988, f1=0.9892
+  Training mobilenetv3...
+    test_acc=0.9986, f1=0.9908
+  Training convnextv2_tiny...
+    test_acc=0.9986, f1=0.9926
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9992, f1=0.9914
+
+[Phase 3] Knowledge Distillation...
+ERROR: USTC-TFC2016 ratio=1.0 run=1: cannot import name 'create_repvit_student' from 'models.student_models_v2' (/workspace/yqm/NetKD/models/student_models_v2.py)
+
+============================================================
+Dataset: USTC-TFC2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/USTC-TFC2016
+
+Dataset split:
+  Train: 37323 images (73.6%)
+  Val:   6692 images (13.2%)
+  Test:  6662 images (13.1%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...

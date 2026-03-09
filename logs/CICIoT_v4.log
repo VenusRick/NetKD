@@ -1,0 +1,48 @@
+nohup: ignoring input
+Device: cuda:2
+
+============================================================
+Dataset: CICIoT2022 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 19
+    test_acc=0.9918, f1=0.9863
+  Training mobilenetv3...
+    Early stop at epoch 23
+    test_acc=0.9938, f1=0.9915
+  Training convnextv2_tiny...
+    test_acc=0.9913, f1=0.9900
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9954, f1=0.9936
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9964, f1=0.9956
+
+============================================================
+Dataset: CICIoT2022 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CICIoT2022
+
+Dataset split:
+  Train: 18734 images (82.8%)
+  Val:   1949 images (8.6%)
+  Test:  1951 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    Early stop at epoch 22

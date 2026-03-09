@@ -1,0 +1,78 @@
+nohup: ignoring input
+
+============================================================
+Dataset: USTC-TFC2016 | GPU: cuda:0
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/USTC-TFC2016
+
+Dataset split:
+  Train: 37323 images (73.6%)
+  Val:   6692 images (13.2%)
+  Test:  6662 images (13.1%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'USTC-TFC2016', 'dataset_path': '/workspace/yqm/Dataset/USTC-TFC2016', 'num_classes': 19, 'class_names': ['BitTorrent', 'Cridex', 'FTP', 'Facetime', 'Geodo', 'Gmail', 'Htbot', 'Miuref', 'MySQL', 'Neris', 'Nsis-ay', 'Outlook', 'Shifu', 'Skype', 'Tinba', 'Virut', 'Weibo', 'WorldOfWarcraft', 'Zeus'], 'total_images': 50677, 'train_size': 37323, 'val_size': 6692, 'test_size': 6662, 'class_counts': [2722, 4203, 2813, 2785, 2721, 3742, 2765, 3949, 4147, 120, 277, 2742, 4480, 2715, 2717, 227, 2000, 2751, 2801], 'class_weights': [0.9798716114312233, 0.6345968418548155, 0.9481729563867008, 0.9577057545119532, 0.9802317259521461, 0.7127767307097247, 0.964633101741696, 0.6754141621463129, 0.6431662711154544, 22.226754385964913, 9.628918867566027, 0.9727244807862107, 0.595359492481203, 0.9823979839100514, 0.9816748348604305, 11.749826107118016, 1.3336052631578947, 0.969542176050814, 0.9522351040042091], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 1167, Val: 210, Test: 209
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in USTC-TFC2016: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+Dataset: ISCXTor2016 | GPU: cuda:0
+============================================================
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXTor2016
+
+Dataset split:
+  Train: 11655 images (80.0%)
+  Val:   1456 images (10.0%)
+  Test:  1458 images (10.0%)
+
+Image dimensions: 1 x 40 x 40
+Classes: {'dataset_name': 'ISCXTor2016', 'dataset_path': '/workspace/yqm/Dataset/ISCXTor2016', 'num_classes': 8, 'class_names': ['AUDIO', 'BROWSING', 'CHAT', 'FILE-TRANSFER', 'MAIL', 'P2P', 'VIDEO', 'VOIP'], 'total_images': 14569, 'train_size': 11655, 'val_size': 1456, 'test_size': 1458, 'class_counts': [1178, 1759, 1932, 2342, 2378, 1250, 1617, 2113], 'class_weights': [1.545946519524618, 1.035318362706083, 0.9426112836438924, 0.7775939368061486, 0.7658221194280909, 1.4569, 1.1262368583797155, 0.8618670137245622], 'image_height': 40, 'image_width': 40, 'image_channels': 1, 'batch_size': 32, 'max_samples_per_class': None, 'split_strategy': 'folder_split'}, Train: 365, Val: 46, Test: 46
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+ERROR in ISCXTor2016: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 250, in main
+    results = run_experiment(dataset, device, output_dir)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 199, in run_experiment
+    model = create_grayscale_model(t_name, num_classes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_full_pipeline.py", line 80, in create_grayscale_model
+    model.classifier = nn.Linear(cfg['features'], num_classes)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 106, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+ * (tuple of ints size, *, torch.memory_format memory_format = None, Tensor out = None, torch.dtype dtype = None, torch.layout layout = None, torch.device device = None, bool pin_memory = False, bool requires_grad = False)
+
+
+============================================================
+EXPERIMENT COMPLETE
+Results: /workspace/yqm/NetKD/results/full_pipeline_20251210_154952
+============================================================

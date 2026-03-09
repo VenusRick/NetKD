@@ -1,0 +1,540 @@
+nohup: ignoring input
+Device: cuda:2
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 100% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 75% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 75% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 75% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 50% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 50% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 50% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 25% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 25% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+Dataset: CrossPlatform-iOS | Ratio: 25% | Run: 3
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-iOS
+
+Dataset split:
+  Train: 40379 images (82.8%)
+  Val:   4203 images (8.6%)
+  Test:  4205 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training mobilenetv3...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+  Training convnextv2_tiny...
+    ERROR: cannot import name 'EfficientNetV2Teacher' from 'models.teacher_models' (/workspace/yqm/NetKD/models/teacher_models.py)
+No teachers trained successfully!
+
+============================================================
+SUMMARY
+============================================================
+
+CrossPlatform-Android:
+
+CrossPlatform-iOS:
+
+Results: /workspace/yqm/NetKD/results/complete_experiment/20251210_211735

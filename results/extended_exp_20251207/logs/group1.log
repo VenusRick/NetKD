@@ -1,0 +1,53 @@
+nohup: ignoring input
+Device: cuda
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Dataset loaded: 7 classes
+
+============================================================
+Phase 1: Training/Finetuning Teachers
+============================================================
+
+Training teacher: convnextv2_small
+✗ convnextv2_small failed: No pretrained weights exist for convnextv2_small. Use `pretrained=False` for random init.
+
+Training teacher: efficientnetv2_s
+✗ efficientnetv2_s failed: No pretrained weights exist for efficientnetv2_s. Use `pretrained=False` for random init.
+
+============================================================
+Phase 2: Training Students with KD
+============================================================
+Loading teachers...
+  ! Teacher checkpoint not found: results/extended_exp_20251207/group1/teacher_convnextv2_small_best.pth
+Traceback (most recent call last):
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 399, in <module>
+    main()
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 354, in main
+    teacher = create_teacher(t_name, num_classes, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 95, in create_teacher
+    model = TimmTeacher(cfg["timm_name"], num_classes, pretrained=cfg["pretrained"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/yqm/NetKD/scripts/run_extended_experiments.py", line 38, in __init__
+    self.model = timm.create_model(model_name, pretrained=pretrained, num_classes=num_classes)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+            ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/convnext.py", line 1345, in convnextv2_small
+    model = _create_convnext('convnextv2_small', pretrained=pretrained, **dict(model_args, **kwargs))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/convnext.py", line 699, in _create_convnext
+    model = build_model_with_cfg(
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/root/miniconda3/lib/python3.12/site-packages/timm/models/_builder.py", line 236, in load_pretrained
+    raise RuntimeError(f"No pretrained weights exist for {model_name}. Use `pretrained=False` for random init.")
+RuntimeError: No pretrained weights exist for convnextv2_small. Use `pretrained=False` for random init.

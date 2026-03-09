@@ -1,0 +1,18 @@
+nohup: ignoring input
+Device: cuda:2
+
+============================================================
+Dataset: CrossPlatform-Android | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/CrossPlatform-Android
+
+Dataset split:
+  Train: 44700 images (82.8%)
+  Val:   4655 images (8.6%)
+  Test:  4656 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...

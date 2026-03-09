@@ -1,0 +1,18 @@
+nohup: ignoring input
+Device: cuda:1
+
+============================================================
+Dataset: USTC-TFC2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/USTC-TFC2016
+
+Dataset split:
+  Train: 37323 images (73.6%)
+  Val:   6692 images (13.2%)
+  Test:  6662 images (13.1%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...

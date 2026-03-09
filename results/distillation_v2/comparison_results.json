@@ -1,0 +1,30 @@
+{
+  "shufflenet": {
+    "test_accuracy": 0.5932080924855492,
+    "test_f1_macro": 0.46327097935652517,
+    "best_val_acc": 0.5994215473608099,
+    "best_epoch": 1,
+    "params_M": 9.807223
+  },
+  "ghostnet": {
+    "test_accuracy": 0.7239884393063584,
+    "test_f1_macro": 0.6616312696616269,
+    "best_val_acc": 0.7490961677512654,
+    "best_epoch": 1,
+    "params_M": 3.910187
+  },
+  "efficientnet_lite": {
+    "test_accuracy": 0.6336705202312138,
+    "test_f1_macro": 0.4955540311208355,
+    "best_val_acc": 0.6543745480838756,
+    "best_epoch": 1,
+    "params_M": 3.379399
+  },
+  "mobilenetv3_small": {
+    "test_accuracy": 0.38078034682080925,
+    "test_f1_macro": 0.21945686324618655,
+    "best_val_acc": 0.38177874186550975,
+    "best_epoch": 1,
+    "params_M": 1.524743
+  }
+}

@@ -1,4 +1,4 @@
-"""Distillation losses for SD-MKD.
+"""Distillation losses for SD-MKD with improved numerical stability.
 
 This module implements the composite loss used in SD-MKD training, combining
 cross-entropy, forward/reverse KL, and Sinkhorn distances between teacher and
@@ -22,19 +22,38 @@ def ce_loss(logits_s: torch.Tensor, labels: torch.Tensor) -> torch.Tensor:
     return F.cross_entropy(logits_s, labels)
 
 
-def forward_kl(P_t: torch.Tensor, P_s: torch.Tensor) -> torch.Tensor:
-    """Forward KL divergence KL(P_t || P_s).
+def forward_kl(P_t: torch.Tensor, P_s: torch.Tensor, eps: float = 1e-8) -> torch.Tensor:
+    """Forward KL divergence KL(P_t || P_s) with improved numerical stability.
 
     Both inputs are assumed to be valid probability distributions.
     """
-    log_P_s = (P_s + 1e-8).log()
-    return F.kl_div(log_P_s, P_t, reduction="batchmean")
+    # Clamp to avoid log(0)
+    P_s_safe = torch.clamp(P_s, min=eps)
+    P_t_safe = torch.clamp(P_t, min=eps)
+    
+    # Use log_softmax for stability
+    log_P_s = P_s_safe.log()
+    kl = F.kl_div(log_P_s, P_t_safe, reduction="batchmean")
+    
+    # Check for NaN and return safe value
+    if torch.isnan(kl) or torch.isinf(kl):
+        return torch.tensor(0.0, device=P_t.device, dtype=P_t.dtype)
+    return kl
 
 
-def reverse_kl(P_t: torch.Tensor, P_s: torch.Tensor) -> torch.Tensor:
-    """Reverse KL divergence KL(P_s || P_t)."""
-    log_P_t = (P_t + 1e-8).log()
-    return F.kl_div(log_P_t, P_s, reduction="batchmean")
+def reverse_kl(P_t: torch.Tensor, P_s: torch.Tensor, eps: float = 1e-8) -> torch.Tensor:
+    """Reverse KL divergence KL(P_s || P_t) with improved numerical stability."""
+    # Clamp to avoid log(0)
+    P_s_safe = torch.clamp(P_s, min=eps)
+    P_t_safe = torch.clamp(P_t, min=eps)
+    
+    log_P_t = P_t_safe.log()
+    kl = F.kl_div(log_P_t, P_s_safe, reduction="batchmean")
+    
+    # Check for NaN and return safe value
+    if torch.isnan(kl) or torch.isinf(kl):
+        return torch.tensor(0.0, device=P_t.device, dtype=P_t.dtype)
+    return kl
 
 
 def class_cost_matrix(num_classes: int, device=None) -> torch.Tensor:
@@ -51,8 +70,9 @@ def sinkhorn_distance(
     C: torch.Tensor,
     epsilon: float = 0.1,
     n_iters: int = 50,
+    eps: float = 1e-8,
 ) -> torch.Tensor:
-    """Compute Sinkhorn distance between teacher and student distributions.
+    """Compute Sinkhorn distance with improved numerical stability.
 
     Args:
         P_t: Teacher probability distributions ``[B, C]``.
@@ -60,24 +80,46 @@ def sinkhorn_distance(
         C: Cost matrix ``[C, C]``.
         epsilon: Entropic regularization coefficient.
         n_iters: Number of Sinkhorn iterations.
+        eps: Small constant for numerical stability.
     Returns:
         Mean Sinkhorn cost over the batch.
     """
     B, C_dim = P_t.shape
-    K = torch.exp(-C / epsilon)
+    
+    # Ensure inputs are valid probability distributions
+    P_t_safe = torch.clamp(P_t, min=eps)
+    P_s_safe = torch.clamp(P_s, min=eps)
+    P_t_safe = P_t_safe / P_t_safe.sum(dim=1, keepdim=True)
+    P_s_safe = P_s_safe / P_s_safe.sum(dim=1, keepdim=True)
+    
+    # Compute kernel matrix with clamping to avoid overflow
+    K = torch.exp(-torch.clamp(C / epsilon, max=50.0))
 
     u = torch.ones(B, C_dim, device=P_t.device, dtype=P_t.dtype) / C_dim
     v = torch.ones(B, C_dim, device=P_t.device, dtype=P_t.dtype) / C_dim
 
     for _ in range(n_iters):
         Kv = torch.matmul(v, K.T)
-        u = P_t / (Kv + 1e-8)
+        u = P_t_safe / (Kv + eps)
+        
+        # Clamp u to avoid explosion
+        u = torch.clamp(u, max=1e6)
+        
         Ku = torch.matmul(u, K)
-        v = P_s / (Ku + 1e-8)
+        v = P_s_safe / (Ku + eps)
+        
+        # Clamp v to avoid explosion
+        v = torch.clamp(v, max=1e6)
 
     pi = u.unsqueeze(2) * K.unsqueeze(0) * v.unsqueeze(1)
     cost = (pi * C.unsqueeze(0)).sum(dim=(1, 2))
-    return cost.mean()
+    result = cost.mean()
+    
+    # Check for NaN and return safe value
+    if torch.isnan(result) or torch.isinf(result):
+        return torch.tensor(0.0, device=P_t.device, dtype=P_t.dtype)
+    
+    return result
 
 
 def distillation_loss(
@@ -90,8 +132,13 @@ def distillation_loss(
     lamb_f: float = 0.5,
     lamb_r: float = 0.5,
     lamb_s: float = 0.1,
+    lamb_hard: float = 0.0,
+    teacher_logits_raw: list[torch.Tensor] | None = None,
+    lamb_s_adapt: float = 0.0,
+    adaptive_sinkhorn_tau: float = 1.0,
+    distill_mode: str = "full",  # ce/kl/kl2/full
 ) -> torch.Tensor:
-    """Composite distillation loss for SD-MKD.
+    """Composite distillation loss for SD-MKD with improved numerical stability.
 
     Args:
         student_logits: Student logits ``[B, C]``.
@@ -103,7 +150,16 @@ def distillation_loss(
         lamb_r: Weight for reverse KL loss.
         lamb_s: Weight for Sinkhorn loss.
         cost_matrix: Precomputed class cost matrix ``[C, C]``.
+        lamb_hard: Weight for teacher hard-label CE (pseudo labels) loss.
+        teacher_logits_raw: Optional list of teacher logits for adaptive Sinkhorn.
+        lamb_s_adapt: Weight for adaptive Sinkhorn loss across teachers.
+        adaptive_sinkhorn_tau: Temperature for adaptive Sinkhorn weighting (smaller=sharper).
     """
+    # Check for NaN in inputs
+    if torch.isnan(student_logits).any() or torch.isnan(teacher_logits).any():
+        print("Warning: NaN detected in input logits!")
+        return torch.tensor(0.0, device=student_logits.device, requires_grad=True)
+    
     L_ce = ce_loss(student_logits, labels)
 
     P_t_T = softmax_with_temperature(teacher_logits, T).detach()
@@ -113,4 +169,50 @@ def distillation_loss(
     L_r = reverse_kl(P_t_T, P_s_T)
     L_s = sinkhorn_distance(P_t_T, P_s_T, cost_matrix)
 
-    return lamb_ce * L_ce + lamb_f * L_f + lamb_r * L_r + lamb_s * L_s
+    L_hard = torch.tensor(0.0, device=student_logits.device, dtype=student_logits.dtype)
+    if lamb_hard > 0:
+        pseudo_labels = teacher_logits.detach().argmax(dim=1)
+        L_hard = F.cross_entropy(student_logits, pseudo_labels)
+
+    L_s_adapt = torch.tensor(0.0, device=student_logits.device, dtype=student_logits.dtype)
+    if lamb_s_adapt > 0 and teacher_logits_raw:
+        P_s_temp = P_s_T  # reuse temperature-smoothed student probs
+        per_teacher_losses = []
+        for logits_t in teacher_logits_raw:
+            P_ti = softmax_with_temperature(logits_t, T).detach()
+            per_teacher_losses.append(sinkhorn_distance(P_ti, P_s_temp, cost_matrix))
+        loss_vec = torch.stack(per_teacher_losses)  # [num_teachers]
+        weights = torch.softmax(loss_vec / max(1e-6, adaptive_sinkhorn_tau), dim=0)
+        L_s_adapt = torch.sum(weights * loss_vec)
+
+    # 根据distill_mode选择性计算损失
+    if distill_mode == "ce":
+        # S-CE: 仅硬标签
+        total_loss = L_ce
+    elif distill_mode == "kl":
+        # S-KL: CE + Forward KL
+        total_loss = lamb_ce * L_ce + lamb_f * L_f
+    elif distill_mode == "kl2":
+        # S-KL2: CE + Forward KL + Reverse KL
+        total_loss = lamb_ce * L_ce + lamb_f * L_f + lamb_r * L_r
+    else:  # distill_mode == "full"
+        # S-Full: 完整多分布蒸馏
+        total_loss = (
+            lamb_ce * L_ce
+            + lamb_f * L_f
+            + lamb_r * L_r
+            + lamb_s * L_s
+            + lamb_hard * L_hard
+            + lamb_s_adapt * L_s_adapt
+        )
+    
+    # Final NaN check
+    if torch.isnan(total_loss) or torch.isinf(total_loss):
+        print(
+            "Warning: NaN/Inf in total loss! "
+            f"L_ce={L_ce:.4f}, L_f={L_f:.4f}, L_r={L_r:.4f}, L_s={L_s:.4f}, "
+            f"L_hard={L_hard:.4f}, L_s_adapt={L_s_adapt:.4f}"
+        )
+        return torch.tensor(0.0, device=student_logits.device, requires_grad=True)
+    
+    return total_loss

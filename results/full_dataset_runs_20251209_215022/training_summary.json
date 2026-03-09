@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-12-09T21:51:14+08:00",
+  "datasets": [
+    {
+      "name": "CICIoT2022",
+      "status": "failed"
+    },
+    {
+      "name": "USTC-TFC2016",
+      "status": "failed"
+    },
+    {
+      "name": "ISCXTor2016",
+      "status": "failed"
+    },
+    {
+      "name": "ISCXVPN2016",
+      "status": "failed"
+    },
+    {
+      "name": "Bing-Traffic",
+      "status": "failed"
+    },
+    {
+      "name": "Malware-Traffic",
+      "status": "failed"
+    }
+  ],
+  "total_trained": 0,
+  "total_failed": 6
+}

@@ -2,7 +2,7 @@
 
 This package contains all neural network model definitions:
 - Student model: Lightweight ShuffleNetV2 with AgentAttention
-- Teacher models: ResNet50, MobileNetV3, DenseNet121
+- Teacher models: ResNet50, MobileNetV3, DenseNet121, ConvNeXtV2, EfficientNetV2
 - Ensemble models: Stacking and MLP fusion
 """
 
@@ -11,6 +11,8 @@ from .teacher_models import (
     ResNet50Teacher,
     MobileNetV3LargeTeacher,
     DenseNet121Teacher,
+    ConvNeXtV2TinyTeacher,
+    EfficientNetV2STeacher,
     TeacherEnsemble,
     StackingModel,
     TrainResult,
@@ -28,6 +30,8 @@ __all__ = [
     "ResNet50Teacher",
     "MobileNetV3LargeTeacher",
     "DenseNet121Teacher",
+    "ConvNeXtV2TinyTeacher",
+    "EfficientNetV2STeacher",
     "TeacherEnsemble",
     "StackingModel",
     "TrainResult",

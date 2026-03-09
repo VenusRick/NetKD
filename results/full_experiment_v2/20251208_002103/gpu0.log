@@ -1,0 +1,18 @@
+[2025-12-08 00:21:06] Starting MAE pretrain: convnextv2_tiny, mask=0.6
+[2025-12-08 00:21:09] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:09] Starting MAE pretrain: convnextv2_tiny, mask=0.7
+[2025-12-08 00:21:09] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:09] Starting MAE pretrain: convnextv2_tiny, mask=0.8
+[2025-12-08 00:21:10] Failed convnextv2_tiny: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:10] Starting MAE pretrain: convnextv2_small, mask=0.6
+[2025-12-08 00:21:10] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:10] Starting MAE pretrain: convnextv2_small, mask=0.7
+[2025-12-08 00:21:11] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:11] Starting MAE pretrain: convnextv2_small, mask=0.8
+[2025-12-08 00:21:12] Failed convnextv2_small: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:12] Starting MAE pretrain: convnextv2_nano, mask=0.6
+[2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:14] Starting MAE pretrain: convnextv2_nano, mask=0.7
+[2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288
+[2025-12-08 00:21:14] Starting MAE pretrain: convnextv2_nano, mask=0.8
+[2025-12-08 00:21:14] Failed convnextv2_nano: shape '[512, 1, 40, 40]' is invalid for input of size 524288

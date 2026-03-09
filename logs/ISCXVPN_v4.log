@@ -1,0 +1,46 @@
+nohup: ignoring input
+Device: cuda:0
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 1
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...
+    test_acc=0.9819, f1=0.9713
+  Training mobilenetv3...
+    test_acc=0.9754, f1=0.9638
+  Training convnextv2_tiny...
+    Early stop at epoch 24
+    test_acc=0.9754, f1=0.9635
+
+[Phase 2] Training Stacking...
+  Stacking: acc=0.9827, f1=0.9766
+
+[Phase 3] Knowledge Distillation...
+  Student: acc=0.9783, f1=0.9702
+
+============================================================
+Dataset: ISCXVPN2016 | Ratio: 100% | Run: 2
+============================================================
+Loading dataset...
+Detected pre-split layout, using provided train/val/test folders under: /workspace/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+
+[Phase 1] Training Teachers...
+  Training densenet121...

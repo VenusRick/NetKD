@@ -1,0 +1,19 @@
+{
+  "pretrain": {
+    "name": "mobilenetv3_large_100_mr0.9",
+    "best_loss": 0.009860177273647143
+  },
+  "pretrained_finetune": {
+    "name": "mobilenetv3_large_100_pretrained_mr0.9",
+    "val_acc": 0.9624005784526392,
+    "test_acc": 0.9450867052023122,
+    "test_f1": 0.9390283745046897,
+    "best_epoch": 50
+  },
+  "scratch": {
+    "name": "mobilenetv3_large_100_scratch",
+    "val_acc": 0.9804772234273319,
+    "test_acc": 0.9682080924855492,
+    "test_f1": 0.9620771770996027
+  }
+}

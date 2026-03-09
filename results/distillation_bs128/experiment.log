@@ -1,0 +1,21 @@
+nohup: ignoring input
+Using device: cuda
+GPU: NVIDIA GeForce RTX 4090
+Detected pre-split layout, using provided train/val/test folders under: /walnut_data/yqm/Dataset/ISCXVPN2016
+
+Dataset split:
+  Train: 13281 images (82.8%)
+  Val:   1383 images (8.6%)
+  Test:  1384 images (8.6%)
+
+Image dimensions: 1 x 40 x 40
+Traceback (most recent call last):
+  File "/walnut_data/yqm/NetKD/scripts/run_distillation_experiment.py", line 348, in <module>
+    main()
+  File "/walnut_data/yqm/NetKD/scripts/run_distillation_experiment.py", line 296, in main
+    train_loader, val_loader, test_loader, num_classes = create_dataloaders(
+                                                         ^^^^^^^^^^^^^^^^^^^
+  File "/walnut_data/yqm/NetKD/scripts/run_distillation_experiment.py", line 85, in create_dataloaders
+    train_data, val_data, test_data = quick_load_dataset(dataset_name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: too many values to unpack (expected 3)

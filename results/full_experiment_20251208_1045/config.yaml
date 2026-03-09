@@ -1,0 +1,97 @@
+distill:
+  alpha_ce_values:
+  - 0.3
+  - 0.5
+  - 0.7
+  batch_size: 128
+  enabled: true
+  epochs: 100
+  hyperparam_search: true
+  search_epochs: 30
+  students:
+  - name: repvit_m0_9
+    type: high_performance
+  - name: mobilenetv3_small_050
+    type: ultra_light
+  - name: mobilenetv3_small_075
+    type: light
+  - name: ghostnet_100
+    type: light
+  temperatures:
+  - 2
+  - 3
+  - 4
+  - 5
+evaluation:
+  inference_test:
+    batch_size: 1
+    enabled: true
+    num_runs: 100
+    warmup_runs: 10
+  metrics:
+  - accuracy
+  - macro_f1
+  - params_m
+  - flops_g
+  - inference_ms
+experiment:
+  dataset: ISCXVPN2016
+  dataset_root: /workspace/yqm/Dataset
+  name: full_experiment
+  num_gpus: 3
+  output_root: results/full_experiment_20251208_1045
+finetune:
+  baselines:
+    imagenet_pretrain: false
+    scratch: true
+    scratch_eca: true
+  batch_size: 128
+  epochs: 50
+  lr_pretrained: 0.0001
+  lr_scratch: 0.001
+  optimizer: adamw
+  scheduler: cosine
+  weight_decay: 0.0001
+logging:
+  log_every_n_steps: 50
+  save_every_n_epochs: 10
+  tensorboard: false
+  wandb: false
+pretrain:
+  mae:
+    backbones:
+    - convnextv2_tiny
+    - efficientnetv2_rw_s
+    - mobilenetv3_large_100
+    base_lr: 0.01
+    batch_size: 512
+    enabled: true
+    epochs: 100
+    mask_ratios:
+    - 0.6
+    - 0.7
+    - 0.8
+    optimizer: adamw
+    warmup_epochs: 10
+    weight_decay: 0.05
+  simclr:
+    backbones:
+    - convnextv2_tiny
+    - efficientnetv2_rw_s
+    - mobilenetv3_large_100
+    base_lr: 0.3
+    batch_size: 256
+    enabled: true
+    epochs: 100
+    optimizer: lars
+    temperatures:
+    - 0.1
+    - 0.5
+    weight_decay: 1.0e-06
+stacking:
+  batch_size: 128
+  enabled: true
+  epochs: 30
+  hidden_dim: 384
+  lr: 0.001
+  num_teachers: 3

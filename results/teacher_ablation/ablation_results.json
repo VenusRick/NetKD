@@ -1,0 +1,113 @@
+{
+  "full_3teachers": {
+    "teachers": [
+      "DenseNet121-ECA",
+      "MobileNetV3-Large-ECA",
+      "ConvNeXtV2-Tiny-ECA"
+    ],
+    "num_teachers": 3,
+    "teacher_results": {
+      "densenet121": {
+        "val_acc": 98.7707881417209
+      },
+      "mobilenetv3": {
+        "val_acc": 98.91540130151844
+      },
+      "convnextv2": {
+        "val_acc": 98.33694866232827
+      }
+    },
+    "ensemble_test_acc": 98.55491329479769,
+    "training_time_seconds": 897.8638718128204
+  },
+  "remove_densenet": {
+    "teachers": [
+      "MobileNetV3-Large-ECA",
+      "ConvNeXtV2-Tiny-ECA"
+    ],
+    "num_teachers": 2,
+    "teacher_results": {
+      "mobilenetv3": {
+        "val_acc": 98.62617498192336
+      },
+      "convnextv2": {
+        "val_acc": 97.97541576283442
+      }
+    },
+    "ensemble_test_acc": 98.19364161849711,
+    "training_time_seconds": 541.6579439640045
+  },
+  "remove_mobilenet": {
+    "teachers": [
+      "DenseNet121-ECA",
+      "ConvNeXtV2-Tiny-ECA"
+    ],
+    "num_teachers": 2,
+    "teacher_results": {
+      "densenet121": {
+        "val_acc": 98.91540130151844
+      },
+      "convnextv2": {
+        "val_acc": 98.62617498192336
+      }
+    },
+    "ensemble_test_acc": 97.90462427745665,
+    "training_time_seconds": 838.3725771903992
+  },
+  "remove_convnext": {
+    "teachers": [
+      "DenseNet121-ECA",
+      "MobileNetV3-Large-ECA"
+    ],
+    "num_teachers": 2,
+    "teacher_results": {
+      "densenet121": {
+        "val_acc": 98.69848156182212
+      },
+      "mobilenetv3": {
+        "val_acc": 99.13232104121475
+      }
+    },
+    "ensemble_test_acc": 98.33815028901734,
+    "training_time_seconds": 801.2006094455719
+  },
+  "only_densenet": {
+    "teachers": [
+      "DenseNet121-ECA"
+    ],
+    "num_teachers": 1,
+    "teacher_results": {
+      "densenet121": {
+        "val_acc": 98.69848156182212
+      }
+    },
+    "ensemble_test_acc": 98.26589595375722,
+    "training_time_seconds": 530.490772485733
+  },
+  "only_mobilenet": {
+    "teachers": [
+      "MobileNetV3-Large-ECA"
+    ],
+    "num_teachers": 1,
+    "teacher_results": {
+      "mobilenetv3": {
+        "val_acc": 98.7707881417209
+      }
+    },
+    "ensemble_test_acc": 97.97687861271676,
+    "training_time_seconds": 303.67924523353577
+  },
+  "only_convnext": {
+    "teachers": [
+      "ConvNeXtV2-Tiny-ECA"
+    ],
+    "num_teachers": 1,
+    "teacher_results": {
+      "convnextv2": {
+        "val_acc": 98.55386840202459
+      }
+    },
+    "ensemble_test_acc": 97.97687861271676,
+    "training_time_seconds": 318.0585267543793
+  }
+}
